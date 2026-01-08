@@ -79,7 +79,7 @@ const Noise: React.FC = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-[0.10] dark:opacity-[0.10] mix-blend-overlay"
+      className="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-[0.05] dark:opacity-[0.05] mix-blend-overlay"
       style={{ filter: 'contrast(140%) brightness(100%)' }}
     />
   );
