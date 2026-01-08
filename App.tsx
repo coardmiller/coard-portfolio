@@ -6,6 +6,7 @@ import CaseStudy from './components/CaseStudy';
 import About from './components/About';
 import CV from './components/CV';
 import Playground from './components/Playground';
+import Reading from './components/Reading';
 import RevealOnScroll from './components/RevealOnScroll';
 import Noise from './components/Noise';
 import Parallax from './components/Parallax';
@@ -297,6 +298,13 @@ const PlaygroundPage: React.FC<{ animationClass: string }> = ({ animationClass }
   </main>
 );
 
+// Reading page component
+const ReadingPage: React.FC<{ animationClass: string }> = ({ animationClass }) => (
+  <main className={`relative z-10 ${animationClass}`}>
+    <Reading />
+  </main>
+);
+
 // Main App wrapper with router
 const AppContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -366,6 +374,9 @@ const AppContent: React.FC = () => {
       case 'ABOUT':
         navigate('/about');
         break;
+      case 'READING':
+        navigate('/reading');
+        break;
       case 'PLAYGROUND':
         navigate('/playground');
         break;
@@ -410,6 +421,7 @@ const AppContent: React.FC = () => {
               />
             } />
             <Route path="/about" element={<AboutPage animationClass={animationClass} />} />
+            <Route path="/reading" element={<ReadingPage animationClass={animationClass} />} />
             <Route path="/playground" element={<PlaygroundPage animationClass={animationClass} />} />
           </Routes>
         </>
