@@ -1,59 +1,22 @@
 import React from 'react';
 import RevealOnScroll from './RevealOnScroll';
+import { feedItems as importedFeed } from '../data/feed';
 
 interface FeedItem {
   id: string;
   type: 'tweet' | 'article' | 'link';
   title: string;
-  excerpt?: string;
+  excerpt?: string | null;
   url: string;
   source: string;
   date: string;
   author?: string;
   authorHandle?: string;
+  domain?: string;
 }
 
-// Sample data - replace with actual API call to Raindrop/Twitter
-const feedItems: FeedItem[] = [
-  {
-    id: '1',
-    type: 'tweet',
-    title: 'This post made me realize I don\'t actually understand how terminal UIs work.',
-    excerpt: 'I asked Claude to make an explainer with interactive examples.',
-    url: 'https://x.com/brian_lovin/status/2009046532218372262',
-    source: 'Twitter',
-    date: '2026-01-08',
-    author: 'Brian Lovin',
-    authorHandle: '@brian_lovin'
-  },
-  {
-    id: '2',
-    type: 'article',
-    title: 'How Terminals Work',
-    excerpt: 'Interactive explainer on terminal emulators, escape codes, and the magic behind your command line.',
-    url: 'https://how-terminals-work.vercel.app/',
-    source: 'Web',
-    date: '2026-01-08'
-  },
-  {
-    id: '3',
-    type: 'link',
-    title: 'Jakub Krehel',
-    excerpt: 'Founding Design Engineer at Interfere. Design engineering articles and beautiful component showcases.',
-    url: 'https://jakub.kr/',
-    source: 'Portfolio',
-    date: '2026-01-08'
-  },
-  {
-    id: '4',
-    type: 'article',
-    title: 'Vibe Guide',
-    excerpt: 'Tips for getting the most out of AI coding agents like Claude Code, Codex, and Gemini CLI.',
-    url: 'https://www.vibekanban.com/vibe-guide',
-    source: 'Vibe Kanban',
-    date: '2026-01-07'
-  }
-];
+// Import curated feed from Raindrop + Twitter
+const feedItems: FeedItem[] = importedFeed as FeedItem[];
 
 const FeedCard: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) => {
   return (
@@ -106,8 +69,8 @@ const FeedCard: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) 
             </p>
           )}
 
-          {/* Author (for tweets) */}
-          {item.author && (
+          {/* Author (for tweets) or Domain (for links) */}
+          {item.author ? (
             <div className="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-white/5">
               <span className="font-sans text-xs text-gray-600 dark:text-gray-400">
                 {item.author}
@@ -117,6 +80,12 @@ const FeedCard: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) 
                   {item.authorHandle}
                 </span>
               )}
+            </div>
+          ) : item.domain && (
+            <div className="pt-3 border-t border-gray-100 dark:border-white/5">
+              <span className="font-sans text-xs text-gray-400 dark:text-gray-500">
+                {item.domain}
+              </span>
             </div>
           )}
 
