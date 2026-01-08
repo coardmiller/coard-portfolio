@@ -60,7 +60,6 @@ const Header: React.FC<HeaderProps> = ({
       <nav className="hidden md:flex flex-1 justify-center space-x-6 lg:space-x-12 text-black/80 dark:text-gray-300">
         <NavItem label="Work" onClick={() => setPage('HOME')} />
         <NavItem label="About" onClick={() => setPage('ABOUT')} />
-        <NavItem label="Reading" onClick={() => setPage('READING')} />
         <a href="mailto:hello@coardmiller.com" className="group relative uppercase tracking-wide hover:text-black dark:hover:text-white transition-colors">
           <span>Contact</span>
           <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-black dark:bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
