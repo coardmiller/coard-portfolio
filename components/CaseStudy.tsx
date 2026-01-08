@@ -49,10 +49,23 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, nextProject, onNext, onB
 
       {/* Nav for Case Study */}
       <div className="flex justify-between items-center mb-12 font-sans text-xs uppercase sticky top-10 md:top-12 bg-white/90 dark:bg-[#121212]/90 backdrop-blur-sm py-4 z-40 border-b border-gray-100 dark:border-white/10 transition-colors duration-500">
-        <button onClick={onBack} className="group flex items-center gap-2 hover:text-black dark:hover:text-white text-gray-500 dark:text-gray-400 transition-colors">
+        {/* Desktop: Text link */}
+        <button onClick={onBack} className="hidden md:flex group items-center gap-2 hover:text-black dark:hover:text-white text-gray-500 dark:text-gray-400 transition-colors">
            <span className="inline-block transform transition-transform duration-300 group-hover:-translate-x-1">←</span>
            <span>Back to Index</span>
         </button>
+        
+        {/* Mobile: X button */}
+        <button 
+          onClick={onBack} 
+          className="md:hidden flex items-center justify-center w-10 h-10 -ml-2 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white active:text-black dark:active:text-white transition-colors"
+          aria-label="Close project"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        
         <span className="text-gray-400 dark:text-gray-500">{project.category} / {project.year}</span>
       </div>
 
