@@ -18,84 +18,47 @@ interface FeedItem {
 // Import curated feed from Raindrop + Twitter
 const feedItems: FeedItem[] = importedFeed as FeedItem[];
 
-const FeedCard: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) => {
+const FeedRow: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) => {
   return (
-    <RevealOnScroll delay={index * 50}>
+    <RevealOnScroll delay={index * 30}>
       <a 
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block"
+        className="group block py-6 border-b border-gray-100 dark:border-white/5 last:border-b-0"
       >
-        <article 
-          className="
-            p-6 
-            bg-white dark:bg-white/[0.02]
-            rounded-xl
-            shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_1px_2px_-1px_rgba(0,0,0,0.03),0_2px_4px_0_rgba(0,0,0,0.03)]
-            dark:shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_1px_2px_-1px_rgba(255,255,255,0.02),0_2px_4px_0_rgba(255,255,255,0.02)]
-            hover:shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_2px_4px_-1px_rgba(0,0,0,0.06),0_4px_8px_0_rgba(0,0,0,0.06)]
-            dark:hover:shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_2px_4px_-1px_rgba(255,255,255,0.04),0_4px_8px_0_rgba(255,255,255,0.04)]
-            transition-all duration-200 ease-out
-            hover:scale-[1.01]
-            active:scale-[0.99]
-          "
-        >
-          {/* Meta row */}
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                ( {item.type} )
-              </span>
-              <span className="text-gray-300 dark:text-gray-600">·</span>
-              <span className="font-sans text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">
-                {item.source}
-              </span>
-            </div>
-            <span className="font-sans text-[10px] text-gray-400 dark:text-gray-500">
-              {item.date}
-            </span>
-          </div>
+        {/* Source & Date - small, muted, uppercase */}
+        <div className="flex items-center gap-2 mb-2">
+          <span className="font-sans text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500">
+            {item.domain || item.source}
+          </span>
+          <span className="text-gray-300 dark:text-gray-600">·</span>
+          <span className="font-sans text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">
+            {item.date}
+          </span>
+        </div>
 
-          {/* Title */}
-          <h3 className="font-sans text-base font-medium text-black dark:text-white mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
-            {item.title}
-          </h3>
+        {/* Title - main content */}
+        <h3 className="font-sans text-base text-black dark:text-white mb-1 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-colors duration-200">
+          {item.title}
+          <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-gray-400">
+            →
+          </span>
+        </h3>
 
-          {/* Excerpt */}
-          {item.excerpt && (
-            <p className="font-sans text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-3">
-              {item.excerpt}
-            </p>
-          )}
+        {/* Excerpt - if available */}
+        {item.excerpt && (
+          <p className="font-sans text-sm text-gray-500 dark:text-gray-500 leading-relaxed line-clamp-2">
+            {item.excerpt}
+          </p>
+        )}
 
-          {/* Author (for tweets) or Domain (for links) */}
-          {item.author ? (
-            <div className="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-white/5">
-              <span className="font-sans text-xs text-gray-600 dark:text-gray-400">
-                {item.author}
-              </span>
-              {item.authorHandle && (
-                <span className="font-sans text-xs text-gray-400 dark:text-gray-500">
-                  {item.authorHandle}
-                </span>
-              )}
-            </div>
-          ) : item.domain && (
-            <div className="pt-3 border-t border-gray-100 dark:border-white/5">
-              <span className="font-sans text-xs text-gray-400 dark:text-gray-500">
-                {item.domain}
-              </span>
-            </div>
-          )}
-
-          {/* Arrow indicator */}
-          <div className="flex justify-end mt-2">
-            <span className="text-gray-300 dark:text-gray-600 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 transition-all duration-200">
-              →
-            </span>
-          </div>
-        </article>
+        {/* Author for tweets */}
+        {item.author && (
+          <p className="font-sans text-xs text-gray-400 dark:text-gray-600 mt-2">
+            {item.author} {item.authorHandle && <span className="text-gray-300 dark:text-gray-700">{item.authorHandle}</span>}
+          </p>
+        )}
       </a>
     </RevealOnScroll>
   );
@@ -105,36 +68,33 @@ const Reading: React.FC = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-[#121212] pt-32 px-4 md:px-6 pb-20">
       {/* Header */}
-      <div className="max-w-2xl mx-auto mb-16">
+      <div className="max-w-xl mx-auto mb-12">
         <RevealOnScroll>
-          <span className="font-sans text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 block mb-4">
+          <span className="font-sans text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 block mb-4">
             ( Reading )
           </span>
-          <h1 className="text-3xl md:text-4xl font-light tracking-tight text-black dark:text-white mb-6">
-            Things I've saved, shared, and found interesting.
+          <h1 className="text-2xl md:text-3xl font-light tracking-tight text-black dark:text-white mb-4">
+            Things I've found interesting.
           </h1>
-          <p className="font-sans text-gray-500 dark:text-gray-400 leading-relaxed">
-            A stream of tweets, articles, and links from around the web. 
-            Curated from my bookmarks and saved posts.
+          <p className="font-sans text-sm text-gray-500 dark:text-gray-500 leading-relaxed">
+            Curated links from around the web.
           </p>
         </RevealOnScroll>
       </div>
 
-      {/* Feed */}
-      <div className="max-w-2xl mx-auto">
-        <div className="space-y-4">
+      {/* Feed - simple list */}
+      <div className="max-w-xl mx-auto">
+        <div className="border-t border-gray-100 dark:border-white/5">
           {feedItems.map((item, index) => (
-            <FeedCard key={item.id} item={item} index={index} />
+            <FeedRow key={item.id} item={item} index={index} />
           ))}
         </div>
 
-        {/* Footer note */}
-        <RevealOnScroll delay={feedItems.length * 50 + 100}>
-          <div className="mt-16 pt-8 border-t border-gray-100 dark:border-white/5">
-            <p className="font-sans text-xs text-gray-400 dark:text-gray-500 text-center">
-              Updated automatically from Raindrop and Twitter bookmarks
-            </p>
-          </div>
+        {/* Footer */}
+        <RevealOnScroll delay={feedItems.length * 30 + 100}>
+          <p className="font-sans text-[10px] uppercase tracking-widest text-gray-300 dark:text-gray-600 text-center mt-12">
+            Updated daily at midnight
+          </p>
         </RevealOnScroll>
       </div>
     </div>
