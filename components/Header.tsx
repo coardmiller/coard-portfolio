@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Page, ThemeMode } from '../types';
+import { ThemeMode } from '../types';
 
 interface HeaderProps {
-  setPage: (page: Page) => void;
+  setPage: (page: string) => void;
   theme: ThemeMode;
   setTheme: (t: ThemeMode) => void;
   noiseEnabled: boolean;
