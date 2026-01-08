@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COARD MILLER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              // Map mono to Inter as well to strictly enforce "Inter only" even if a class remains
+              mono: ['Inter', 'sans-serif'], 
+            },
+            colors: {
+              graphite: '#121212',
+              'graphite-light': '#1e1e1e',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+      }
+      /* Use .dark selector for manual toggle support */
+      :root.dark ::-webkit-scrollbar-thumb {
+        background: #333;
+      }
+      :root.dark ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      
+      body {
+        cursor: crosshair;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #ffffff;
+        color: #000;
+        overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease;
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Dark mode styles applied via class */
+      :root.dark body {
+        background-color: #121212;
+        color: #e5e5e5;
+      }
+
+      /* Global Page Transitions */
+      
+      /* Enter: Slide Up & Fade In (More pronounced rising effect) */
+      @keyframes fadeInUp {
+        from { 
+          opacity: 0; 
+          transform: translateY(60px); 
+          filter: blur(8px);
+        }
+        to { 
+          opacity: 1; 
+          transform: translateY(0); 
+          filter: blur(0px);
+        }
+      }
+      
+      /* Exit Down: Slide Down & Fade Out (Default) */
+      @keyframes fadeOutDown {
+        from { 
+          opacity: 1; 
+          transform: translateY(0); 
+          filter: blur(0px);
+        }
+        to { 
+          opacity: 0; 
+          transform: translateY(20px); 
+          filter: blur(8px);
+        }
+      }
+
+      /* Exit Up: Slide Up & Fade Out (For Next Project) */
+      @keyframes fadeOutUp {
+        from { 
+          opacity: 1; 
+          transform: translateY(0); 
+          filter: blur(0px);
+        }
+        to { 
+          opacity: 0; 
+          transform: translateY(-60px); 
+          filter: blur(8px);
+        }
+      }
+
+      .animate-in {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        will-change: transform, opacity, filter;
+      }
+      
+      .animate-out {
+        animation: fadeOutDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        pointer-events: none; /* Prevent clicks during exit */
+        will-change: transform, opacity, filter;
+      }
+
+      .animate-out-up {
+        animation: fadeOutUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        pointer-events: none;
+        will-change: transform, opacity, filter;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+    "three/": "https://esm.sh/three@^0.182.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
