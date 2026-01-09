@@ -85,7 +85,7 @@ const projects: Project[] = [
     slug: 'nascar-next',
     title: 'NASCAR Next', 
     category: 'Platform Design', 
-    year: '2019', 
+    year: '2016', 
     image: '/images/nascar-next-hero.png',
     detailImages: [
       '/images/nascar-next-hero.png',
@@ -101,8 +101,8 @@ const projects: Project[] = [
     id: '06', 
     slug: 'boars-head',
     title: 'Boar\'s Head', 
-    category: 'Interactive Experience', 
-    year: '2019', 
+    category: 'Interactive Sweepstakes Experience', 
+    year: '2017', 
     image: '/images/boars-head-hero.jpg',
     detailImages: [
       '/images/boars-head-hero.jpg',
@@ -110,7 +110,7 @@ const projects: Project[] = [
       '/images/boars-head-2.jpg',
       '/images/boars-head-3.jpg'
     ],
-    description: 'Interactive product experiences for one of the largest deli purveyors in the US. Bringing craft and quality to life through digital touchpoints.',
+    description: 'Interactive product experiences for one of the largest deli purveyors in the US. Bringing their renowned craft and quality to digital',
     role: 'Product Designer',
     client: 'Boar\'s Head'
   },
