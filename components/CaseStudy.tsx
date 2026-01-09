@@ -125,20 +125,24 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ project, nextProject, onNext, onB
 
         {/* Right Column: Stacked Images */}
         <div className="lg:col-span-8 flex flex-col gap-6">
-          {allImages.map((img, index) => (
-            <RevealOnScroll key={index} delay={100 + index * 100}>
-              <div 
-                className="w-full bg-gray-100 dark:bg-white/5 overflow-hidden cursor-pointer group"
-                onClick={() => openLightbox(index)}
-              >
-                <img 
-                  src={img} 
-                  alt={`${project.title} - Image ${index + 1}`} 
-                  className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500" 
-                />
-              </div>
-            </RevealOnScroll>
-          ))}
+          {allImages.map((img, index) => {
+            const isHero = img === project.image;
+            return (
+              <RevealOnScroll key={index} delay={100 + index * 100}>
+                <div 
+                  className={`w-full overflow-hidden cursor-pointer group ${isHero ? 'bg-black/5 dark:bg-white/5' : 'bg-gray-100 dark:bg-white/5'}`}
+                  onClick={() => openLightbox(index)}
+                >
+                  <img 
+                    src={img} 
+                    alt={`${project.title} - Image ${index + 1}`} 
+                    className={`w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500 ${isHero ? 'max-h-[70vh] md:max-h-[80vh]' : ''}`}
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              </RevealOnScroll>
+            );
+          })}
         </div>
 
       </div>

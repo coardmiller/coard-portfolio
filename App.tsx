@@ -23,7 +23,13 @@ const projects: Project[] = [
     year: '2024', 
     image: '/images/style-studio-hero.png',
     detailImages: [
-      '/images/style-studio-hero.png'
+      '/images/style-studio-1.png',
+      '/images/style-studio-2.png',
+      '/images/style-studio-3.png',
+      '/images/style-studio-4.png',
+      '/images/style-studio-5.png',
+      '/images/style-studio-6.png',
+      '/images/style-studio-7.png'
     ],
     description: 'A groundbreaking kitchen design experience built exclusively for Apple Vision Pro. Helping users visualize what a space could be before a single tile is laid.',
     role: 'Lead Product Designer',
