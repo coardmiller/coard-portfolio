@@ -62,7 +62,7 @@ const CV: React.FC = () => {
                     <span>Immersive Experiences</span> <span className="text-gray-400 dark:text-gray-600">AR / VR</span>
                  </li>
                  <li className="flex justify-between border-b border-gray-100 dark:border-white/10 py-2 group hover:pl-2 transition-all duration-300">
-                    <span>Rapid Prototyping</span> <span className="text-gray-400 dark:text-gray-600">Figma / Webflow</span>
+                    <span>Rapid Prototyping</span> <span className="text-gray-400 dark:text-gray-600">Claude Code / Cursor</span>
                  </li>
                  <li className="flex justify-between border-b border-gray-100 dark:border-white/10 py-2 group hover:pl-2 transition-all duration-300">
                     <span>Web &amp; Mobile Web</span> <span className="text-gray-400 dark:text-gray-600">Responsive UI</span>
