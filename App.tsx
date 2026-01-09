@@ -276,7 +276,7 @@ const HomePage: React.FC<{
         <RevealOnScroll delay={300}>
           <footer className="border-t border-black/10 dark:border-white/10 py-12 font-sans text-[10px] uppercase flex flex-wrap gap-x-6 gap-y-2 justify-between text-gray-400 dark:text-gray-600">
             <span>© 2026 Coard Miller</span>
-            <span>Experience: Lowe&apos;s (Sep 2020–Present) • Union (Mar 2018–Sep 2020)</span>
+            <span>Experience: Lowe&apos;s (2020–Present) • Union (2016–2020)</span>
             <span>Charlotte, NC</span>
           </footer>
         </RevealOnScroll>

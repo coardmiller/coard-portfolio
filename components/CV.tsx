@@ -5,8 +5,7 @@ import RevealOnScroll from './RevealOnScroll';
 const experience: CVItem[] = [
   { year: '2022—PRES', role: 'Lead Product Designer', company: 'Lowe\'s', location: 'Charlotte' },
   { year: '2020—2022', role: 'Senior Product Designer', company: 'Lowe\'s', location: 'Charlotte' },
-  { year: '2018—2020', role: 'Product Designer', company: 'NASCAR', location: 'Charlotte' },
-  { year: '2016—2018', role: 'Designer', company: 'Union', location: 'Charlotte' },
+  { year: '2016—2020', role: 'Designer', company: 'Union', location: 'Charlotte' },
 ];
 
 const CV: React.FC = () => {
