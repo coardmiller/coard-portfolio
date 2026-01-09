@@ -16,10 +16,10 @@ const About: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans text-xs leading-relaxed uppercase text-gray-600 dark:text-gray-400">
              <p>
-               I believe the best products feel invisible while making the impossible feel effortless. My work lives at the intersection of emerging technology and human need.
+               I have a passion for creating solutions that help people dream and explore.
              </p>
              <p>
-               Currently leading product design for Apple Vision Pro experiences and next-gen mobile at Lowe's Innovation Labs. Previously shaped digital experiences for NASCAR, Union, and Boar's Head.
+               In my current role at Lowe's, I'm responsible for creating new experiences across the Lowe’s mobile app for iOS and Android. I'm also helping to create forward-looking initiatives like Lowe's Style Studio for Apple Vision Pro and helping users leverage generative AI to shop for home improvement needs and visualize what a space could be.
              </p>
           </div>
 
