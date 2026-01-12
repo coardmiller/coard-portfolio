@@ -23,10 +23,6 @@ const About: React.FC = () => {
              </p>
           </div>
 
-          <div className="aspect-video w-full bg-gray-200 dark:bg-white/10 overflow-hidden mt-8">
-             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop" alt="Design Studio" className="w-full h-full object-cover opacity-80" />
-          </div>
-
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-black dark:border-white/20 mt-12">
              <div>
                <h4 className="font-sans text-xs uppercase mb-4 text-gray-400 dark:text-gray-500">Expertise</h4>
@@ -51,9 +47,9 @@ const About: React.FC = () => {
                <h4 className="font-sans text-xs uppercase mb-4 text-gray-400 dark:text-gray-500">Tools</h4>
                <ul className="font-sans text-xs uppercase space-y-2 text-black dark:text-gray-200">
                  <li>Figma</li>
-                 <li>Reality Composer</li>
-                 <li>Protopie</li>
-                 <li>After Effects</li>
+                 <li>Cursor</li>
+                 <li>Claude Code</li>
+                 <li>Play</li>
                </ul>
              </div>
              <div>

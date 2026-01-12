@@ -130,9 +130,11 @@ const Header: React.FC<HeaderProps> = ({
         )}
       </div>
       
-      {/* Mobile Nav Trigger */}
-      <div className="md:hidden flex space-x-4 ml-4">
-         <button onClick={() => setPage('ABOUT')}>About</button>
+      {/* Mobile Nav */}
+      <div className="md:hidden flex space-x-4 ml-4 uppercase tracking-wide text-sm">
+         <button onClick={() => setPage('WORK')} className="hover:opacity-60 transition-opacity">Work</button>
+         <button onClick={() => setPage('ABOUT')} className="hover:opacity-60 transition-opacity">About</button>
+         <button onClick={() => setPage('CONTACT')} className="hover:opacity-60 transition-opacity">Contact</button>
       </div>
     </header>
   );
