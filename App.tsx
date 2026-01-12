@@ -195,7 +195,7 @@ const HomePage: React.FC<{
       case 2: return { gridClass: "md:col-span-4", aspectRatio: "aspect-[4/5]" };
       case 3: return { gridClass: "md:col-span-4", aspectRatio: "aspect-video" };
       case 4: return { gridClass: "md:col-span-3 md:col-start-6", aspectRatio: "aspect-[3/4]" };
-      case 5: return { gridClass: "md:col-span-2 md:col-start-10", aspectRatio: "aspect-[1/2]" };
+      case 5: return { gridClass: "md:col-span-3 md:col-start-9", aspectRatio: "aspect-square" };
       default: return { gridClass: "md:col-span-4", aspectRatio: "aspect-square" };
     }
   };
