@@ -154,22 +154,22 @@ const Header: React.FC<HeaderProps> = ({
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-12 text-2xl font-light tracking-widest uppercase">
+        <nav className="flex flex-col pt-24 px-4">
           <button 
             onClick={() => handleMobileNav('HOME')} 
-            className="hover:opacity-50 transition-opacity text-black dark:text-white"
+            className="py-4 border-b border-gray-100 dark:border-white/10 text-left text-sm uppercase tracking-widest hover:opacity-50 transition-opacity text-black dark:text-white"
           >
             WORK
           </button>
           <button 
             onClick={() => handleMobileNav('ABOUT')} 
-            className="hover:opacity-50 transition-opacity text-black dark:text-white"
+            className="py-4 border-b border-gray-100 dark:border-white/10 text-left text-sm uppercase tracking-widest hover:opacity-50 transition-opacity text-black dark:text-white"
           >
             ABOUT
           </button>
           <a 
             href="mailto:hello@coardmiller.com" 
-            className="hover:opacity-50 transition-opacity text-black dark:text-white"
+            className="py-4 border-b border-gray-100 dark:border-white/10 text-left text-sm uppercase tracking-widest hover:opacity-50 transition-opacity text-black dark:text-white"
             onClick={() => setMobileMenuOpen(false)}
           >
             CONTACT
