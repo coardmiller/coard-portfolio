@@ -111,6 +111,10 @@ const projects: Project[] = [
     year: '2017', 
     image: '/images/boars-head-hero.jpg',
     detailImages: [
+      '/images/boars-head1.0 Introduction.jpg',
+      '/images/boars-head1.1 Main Screen Dropdown.jpg',
+      '/images/boars-head1.2 Main Screen - Hover.jpg',
+      '/images/boars-head2.0 Explore Asia.jpg',
       '/images/boars-head-1.jpg',
       '/images/boars-head-2.jpg',
       '/images/boars-head-3.jpg'
