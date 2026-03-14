@@ -14,6 +14,6 @@ export const experiments: Experiment[] = [
     description: 'Upload logo marks, annotate freely, share with one link.',
     category: 'Design Tool',
     iframeSrc: 'https://logocheck-phi.vercel.app',
-    thumbnail: '',
+    thumbnail: '/thumbnails/logocheck.png',
   },
 ];
