@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import ProjectCard from './components/ProjectCard';
 import CaseStudy from './components/CaseStudy';
 import About from './components/About';
 import CV from './components/CV';
-import Playground from './components/Playground';
 import Reading from './components/Reading';
 import RevealOnScroll from './components/RevealOnScroll';
 import Noise from './components/Noise';
 import Parallax from './components/Parallax';
 import Preloader from './components/Preloader';
+import ExperimentsIndex from './components/ExperimentsIndex';
+import ExperimentView from './components/ExperimentView';
 import { Project, ViewMode, ThemeMode } from './types';
 
 // Coard Miller's Real Work
@@ -301,13 +302,6 @@ const AboutPage: React.FC<{ animationClass: string }> = ({ animationClass }) => 
   </main>
 );
 
-// Playground page component  
-const PlaygroundPage: React.FC<{ animationClass: string }> = ({ animationClass }) => (
-  <main className={`relative z-10 ${animationClass}`}>
-    <Playground />
-  </main>
-);
-
 // Reading page component
 const ReadingPage: React.FC<{ animationClass: string }> = ({ animationClass }) => (
   <main className={`relative z-10 ${animationClass}`}>
@@ -322,6 +316,7 @@ const AppContent: React.FC = () => {
   const [animationClass, setAnimationClass] = useState('animate-in');
   const navigate = useNavigate();
   const location = useLocation();
+  const isExperimentDetailPage = location.pathname.startsWith('/experiments/') && location.pathname !== '/experiments';
   
   // Settings State
   const [theme, setTheme] = useState<ThemeMode>(() => {
@@ -387,6 +382,9 @@ const AppContent: React.FC = () => {
       case 'READING':
         navigate('/reading');
         break;
+      case 'EXPERIMENTS':
+        navigate('/experiments');
+        break;
       case 'PLAYGROUND':
         navigate('/playground');
         break;
@@ -406,13 +404,15 @@ const AppContent: React.FC = () => {
       {/* Main Content - Only render when loading is complete */}
       {!loading && (
         <>
-          <Header 
-            setPage={handlePageChange} 
-            theme={theme}
-            setTheme={setTheme}
-            noiseEnabled={noiseEnabled}
-            setNoiseEnabled={setNoiseEnabled}
-          />
+          {!isExperimentDetailPage && (
+            <Header 
+              setPage={handlePageChange} 
+              theme={theme}
+              setTheme={setTheme}
+              noiseEnabled={noiseEnabled}
+              setNoiseEnabled={setNoiseEnabled}
+            />
+          )}
 
           <Routes>
             <Route path="/" element={
@@ -432,7 +432,9 @@ const AppContent: React.FC = () => {
             } />
             <Route path="/about" element={<AboutPage animationClass={animationClass} />} />
             <Route path="/reading" element={<ReadingPage animationClass={animationClass} />} />
-            <Route path="/playground" element={<PlaygroundPage animationClass={animationClass} />} />
+            <Route path="/experiments" element={<ExperimentsIndex animationClass={animationClass} />} />
+            <Route path="/experiments/:slug" element={<ExperimentView animationClass={animationClass} />} />
+            <Route path="/playground" element={<Navigate to="/experiments" replace />} />
           </Routes>
         </>
       )}

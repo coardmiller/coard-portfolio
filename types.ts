@@ -13,7 +13,7 @@ export interface Project {
 
 export type ViewMode = 'GRID' | 'LIST';
 
-export type Page = 'HOME' | 'ABOUT' | 'CASE_STUDY' | 'PLAYGROUND';
+export type Page = 'HOME' | 'ABOUT' | 'CASE_STUDY' | 'PLAYGROUND' | 'EXPERIMENTS';
 
 export type ThemeMode = 'SYSTEM' | 'LIGHT' | 'DARK';
 
