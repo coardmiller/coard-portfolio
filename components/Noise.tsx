@@ -45,9 +45,19 @@ const Noise: React.FC = () => {
     const pattern = ctx.createPattern(patternCanvas, 'repeat');
     
     let animationId: number;
+    let lastFrameTime = 0;
+    const targetFPS = 15;
+    const frameInterval = 1000 / targetFPS;
 
-    const loop = () => {
+    const loop = (timestamp: number) => {
+      animationId = requestAnimationFrame(loop);
+
       if (!pattern) return;
+
+      // Throttle to ~15fps — grain shifts are imperceptible at 5% opacity
+      const delta = timestamp - lastFrameTime;
+      if (delta < frameInterval) return;
+      lastFrameTime = timestamp - (delta % frameInterval);
 
       // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,15 +70,13 @@ const Noise: React.FC = () => {
       ctx.save();
       ctx.translate(xOffset, yOffset);
       ctx.fillStyle = pattern;
-      // We fill a rect larger than the screen shifted by the negative offset 
+      // We fill a rect larger than the screen shifted by the negative offset
       // to ensure coverage.
       ctx.fillRect(-xOffset, -yOffset, canvas.width + patternSize, canvas.height + patternSize);
       ctx.restore();
-
-      animationId = requestAnimationFrame(loop);
     };
 
-    loop();
+    animationId = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener('resize', resize);

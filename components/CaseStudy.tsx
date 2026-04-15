@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Project } from '../types';
 import RevealOnScroll from './RevealOnScroll';
 import Lightbox from './Lightbox';
@@ -11,8 +11,11 @@ interface CaseStudyProps {
 }
 
 const CaseStudy: React.FC<CaseStudyProps> = ({ project, nextProject, onNext, onBack }) => {
-  // All images including hero
-  const allImages = [project.image, ...(project.detailImages || [])];
+  // Memoize to avoid recreating on every render
+  const allImages = useMemo(
+    () => [project.image, ...(project.detailImages || [])],
+    [project.image, project.detailImages]
+  );
 
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
