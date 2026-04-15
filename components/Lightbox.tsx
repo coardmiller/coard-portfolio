@@ -33,6 +33,18 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, onClose, onNe
     };
   }, [handleKeyDown]);
 
+  // Preload adjacent images for smoother navigation
+  useEffect(() => {
+    const preload = (index: number) => {
+      if (index >= 0 && index < images.length) {
+        const img = new Image();
+        img.src = images[index];
+      }
+    };
+    preload((currentIndex + 1) % images.length);
+    preload((currentIndex - 1 + images.length) % images.length);
+  }, [currentIndex, images]);
+
   // Touch handlers for swipe
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
