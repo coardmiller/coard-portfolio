@@ -11,15 +11,15 @@ const About: React.FC = () => {
 
         <div className="md:col-span-6 flex flex-col gap-12">
           <h1 className="text-4xl md:text-6xl font-light leading-[1.1] tracking-tight">
-            I'm Coard Miller—a product designer specializing in spatial computing and mobile experiences at Lowe's.
+            I’m Coard Miller, a product designer at Fastbreak AI.
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans text-xs leading-relaxed uppercase text-gray-600 dark:text-gray-400">
              <p>
-               I have a passion for creating solutions that help people dream and explore.
+               I’m drawn to complex systems and the challenge of making them feel clear, useful, and human.
              </p>
              <p>
-               In my current role at Lowe's, I'm responsible for creating new experiences across the Lowe’s mobile app for iOS and Android. I'm also helping to create forward-looking initiatives like Lowe's Style Studio for Apple Vision Pro and helping users leverage generative AI to shop for home improvement needs and visualize what a space could be.
+               At Fastbreak AI, I help design AI-powered products for the people who make sports happen, from professional leagues to youth tournaments. My work turns complicated scheduling, event management, and operational workflows into intuitive tools that help organizations spend less time managing logistics and more time creating great experiences for athletes, families, and fans. Previously at Lowe’s, I led product design across mobile, spatial computing, and generative AI, including Lowe’s Style Studio for Apple Vision Pro.
              </p>
           </div>
 
@@ -27,20 +27,19 @@ const About: React.FC = () => {
              <div>
                <h4 className="font-sans text-xs uppercase mb-4 text-gray-400 dark:text-gray-500">Expertise</h4>
                <ul className="font-sans text-xs uppercase space-y-2 text-black dark:text-gray-200">
-                 <li>Spatial Computing</li>
-                 <li>Mobile Product</li>
+                 <li>Product Design</li>
+                 <li>AI-Powered Products</li>
+                 <li>Mobile Products</li>
                  <li>Design Systems</li>
                  <li>Prototyping</li>
-                 <li>Brand Identity</li>
                </ul>
              </div>
              <div>
                <h4 className="font-sans text-xs uppercase mb-4 text-gray-400 dark:text-gray-500">Experience</h4>
                <ul className="font-sans text-xs uppercase space-y-2 text-black dark:text-gray-200">
-                 <li>Lowe's</li>
-                 <li>NASCAR</li>
+                 <li>Fastbreak AI</li>
+                 <li>Lowe’s</li>
                  <li>Union</li>
-                 <li>Boar's Head</li>
                </ul>
              </div>
              <div>
@@ -55,10 +54,10 @@ const About: React.FC = () => {
              <div>
                <h4 className="font-sans text-xs uppercase mb-4 text-gray-400 dark:text-gray-500">Focus</h4>
                <ul className="font-sans text-xs uppercase space-y-2 text-black dark:text-gray-200">
-                 <li>Vision Pro</li>
-                 <li>iOS / Android</li>
-                 <li>AR / VR</li>
+                 <li>Sports Technology</li>
+                 <li>Complex Workflows</li>
                  <li>AI Integration</li>
+                 <li>Web and Mobile</li>
                </ul>
              </div>
           </div>
@@ -66,7 +65,7 @@ const About: React.FC = () => {
           <div className="pt-12 border-t border-black dark:border-white/20 mt-12">
             <h4 className="font-sans text-xs uppercase mb-6 text-gray-400 dark:text-gray-500">Philosophy</h4>
             <blockquote className="text-2xl md:text-3xl font-light leading-[1.3] tracking-tight italic">
-              "Great design is invisible. It makes complex things feel simple, and impossible things feel inevitable."
+              "Great design turns complexity into momentum. It helps people understand what’s possible and gives them the confidence to act."
             </blockquote>
           </div>
         </div>
