@@ -19,7 +19,7 @@ const About: React.FC = () => {
                I’m drawn to complex systems and the challenge of making them feel clear, useful, and human.
              </p>
              <p>
-               At Fastbreak AI, I help design AI-powered products for the people who make sports happen, from professional leagues to youth tournaments. My work turns complicated scheduling, event management, and operational workflows into intuitive tools that help organizations spend less time managing logistics and more time creating great experiences for athletes, families, and fans. Previously at Lowe’s, I led product design across mobile, spatial computing, and generative AI, including Lowe’s Style Studio for Apple Vision Pro.
+               At Fastbreak AI, I help design AI-powered products for youth and amateur sports organizations and tournament operators. My work turns complicated scheduling, event management, and operational workflows into intuitive tools that help organizations spend less time managing logistics and more time creating great experiences for athletes, families, and fans. Previously at Lowe’s, I led product design across mobile, spatial computing, and generative AI, including Lowe’s Style Studio for Apple Vision Pro.
              </p>
           </div>
 
