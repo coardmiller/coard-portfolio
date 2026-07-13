@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import ProjectCard from './components/ProjectCard';
 import CaseStudy from './components/CaseStudy';
-import About from './components/About';
-import CV from './components/CV';
-import Reading from './components/Reading';
 import RevealOnScroll from './components/RevealOnScroll';
 import Noise from './components/Noise';
 import Parallax from './components/Parallax';
 import Preloader from './components/Preloader';
-import ExperimentsIndex from './components/ExperimentsIndex';
-import ExperimentView from './components/ExperimentView';
 import { Project, ViewMode, ThemeMode } from './types';
+
+// Lazy-load routes that aren't needed on initial page load
+const About = lazy(() => import('./components/About'));
+const CV = lazy(() => import('./components/CV'));
+const Reading = lazy(() => import('./components/Reading'));
+const ExperimentsIndex = lazy(() => import('./components/ExperimentsIndex'));
+const ExperimentView = lazy(() => import('./components/ExperimentView'));
 
 // Coard Miller's Real Work
 const projects: Project[] = [
@@ -414,28 +416,30 @@ const AppContent: React.FC = () => {
             />
           )}
 
-          <Routes>
-            <Route path="/" element={
-              <HomePage 
-                projects={projects} 
-                viewMode={viewMode} 
-                setViewMode={setViewMode}
-                animationClass={animationClass}
-              />
-            } />
-            <Route path="/work/:slug" element={
-              <ProjectPage 
-                projects={projects} 
-                onBack={handleBack}
-                animationClass={animationClass}
-              />
-            } />
-            <Route path="/about" element={<AboutPage animationClass={animationClass} />} />
-            <Route path="/reading" element={<ReadingPage animationClass={animationClass} />} />
-            <Route path="/experiments" element={<ExperimentsIndex animationClass={animationClass} />} />
-            <Route path="/experiments/:slug" element={<ExperimentView animationClass={animationClass} />} />
-            <Route path="/playground" element={<Navigate to="/experiments" replace />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={
+                <HomePage
+                  projects={projects}
+                  viewMode={viewMode}
+                  setViewMode={setViewMode}
+                  animationClass={animationClass}
+                />
+              } />
+              <Route path="/work/:slug" element={
+                <ProjectPage
+                  projects={projects}
+                  onBack={handleBack}
+                  animationClass={animationClass}
+                />
+              } />
+              <Route path="/about" element={<AboutPage animationClass={animationClass} />} />
+              <Route path="/reading" element={<ReadingPage animationClass={animationClass} />} />
+              <Route path="/experiments" element={<ExperimentsIndex animationClass={animationClass} />} />
+              <Route path="/experiments/:slug" element={<ExperimentView animationClass={animationClass} />} />
+              <Route path="/playground" element={<Navigate to="/experiments" replace />} />
+            </Routes>
+          </Suspense>
         </>
       )}
     </div>

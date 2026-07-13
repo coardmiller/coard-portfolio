@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import RevealOnScroll from './RevealOnScroll';
 import { feedItems as importedFeed } from '../data/feed';
 
@@ -64,7 +64,36 @@ const FeedRow: React.FC<{ item: FeedItem; index: number }> = ({ item, index }) =
   );
 };
 
+const BATCH_SIZE = 20;
+
 const Reading: React.FC = () => {
+  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const loadMore = useCallback(() => {
+    setVisibleCount(prev => Math.min(prev + BATCH_SIZE, feedItems.length));
+  }, []);
+
+  // Infinite scroll: observe a sentinel element at the bottom
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [loadMore]);
+
+  const visibleItems = feedItems.slice(0, visibleCount);
+  const hasMore = visibleCount < feedItems.length;
+
   return (
     <div className="min-h-screen bg-white dark:bg-[#121212] pt-32 px-4 md:px-6 pb-20">
       {/* Header */}
@@ -82,20 +111,25 @@ const Reading: React.FC = () => {
         </RevealOnScroll>
       </div>
 
-      {/* Feed - simple list */}
+      {/* Feed - progressively loaded list */}
       <div className="max-w-xl mx-auto">
         <div className="border-t border-gray-100 dark:border-white/5">
-          {feedItems.map((item, index) => (
-            <FeedRow key={item.id} item={item} index={index} />
+          {visibleItems.map((item, index) => (
+            <FeedRow key={item.id} item={item} index={index % BATCH_SIZE} />
           ))}
         </div>
 
+        {/* Sentinel for infinite scroll */}
+        {hasMore && <div ref={sentinelRef} className="h-1" />}
+
         {/* Footer */}
-        <RevealOnScroll delay={feedItems.length * 30 + 100}>
-          <p className="font-sans text-[10px] uppercase tracking-widest text-gray-300 dark:text-gray-600 text-center mt-12">
-            Updated daily at midnight
-          </p>
-        </RevealOnScroll>
+        {!hasMore && (
+          <RevealOnScroll delay={200}>
+            <p className="font-sans text-[10px] uppercase tracking-widest text-gray-300 dark:text-gray-600 text-center mt-12">
+              Updated daily at midnight
+            </p>
+          </RevealOnScroll>
+        )}
       </div>
     </div>
   );
