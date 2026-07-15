@@ -3,8 +3,8 @@ import { CVItem } from '../types';
 import RevealOnScroll from './RevealOnScroll';
 
 const experience: CVItem[] = [
-  { year: '2022—PRES', role: 'Lead Product Designer', company: 'Lowe\'s', location: 'Charlotte' },
-  { year: '2020—2022', role: 'Senior Product Designer', company: 'Lowe\'s', location: 'Charlotte' },
+  { year: '2026—PRES', role: 'Senior Product Designer', company: 'Fastbreak AI', location: 'Charlotte' },
+  { year: '2020—2026', role: 'Lead Product Designer', company: 'Lowe\'s', location: 'Charlotte' },
   { year: '2016—2020', role: 'Designer', company: 'Union', location: 'Charlotte' },
 ];
 
@@ -52,6 +52,9 @@ const CV: React.FC = () => {
             <RevealOnScroll delay={300}>
               <h3 className="font-sans text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-8">Focus Areas</h3>
               <ul className="space-y-4 font-sans text-xs uppercase text-black dark:text-gray-200">
+                 <li className="flex justify-between border-b border-gray-100 dark:border-white/10 py-2 group hover:pl-2 transition-all duration-300">
+                    <span>Agentic Design Processes</span> <span className="text-gray-400 dark:text-gray-600">AI Workflows</span>
+                 </li>
                  <li className="flex justify-between border-b border-gray-100 dark:border-white/10 py-2 group hover:pl-2 transition-all duration-300">
                     <span>Spatial Computing</span> <span className="text-gray-400 dark:text-gray-600">Vision Pro</span>
                  </li>
