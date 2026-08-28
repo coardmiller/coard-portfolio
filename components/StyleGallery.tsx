@@ -72,11 +72,81 @@ function packMasonry(wall: HTMLElement, cols: number, gap: number) {
   wall.style.height = `${Math.max(0, ...heights) - gap}px`;
 }
 
+function foldSearch(s: string): string {
+  return s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function stemWord(s: string): string {
+  if (s.length <= 3) return s;
+  if (s.endsWith('ies') && s.length > 4) return s.slice(0, -3) + 'y';
+  if (s.endsWith('ses') && s.length > 4) return s.slice(0, -2);
+  if (s.endsWith('s') && !s.endsWith('ss')) return s.slice(0, -1);
+  return s;
+}
+
+function editDistance(a: string, b: string): number {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+  if (Math.abs(a.length - b.length) > 2) return 99;
+  const row = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let prev = i - 1;
+    row[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cur = row[j];
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, prev + cost);
+      prev = cur;
+    }
+  }
+  return row[b.length];
+}
+
+// Small clothing aliases so a look tagged "oxford" still hits "chambray", etc.
+const SEARCH_ALIASES: Record<string, string[]> = {
+  chambray: ['oxford', 'ocbd'],
+  oxford: ['chambray', 'ocbd'],
+  ocbd: ['chambray', 'oxford'],
+  jeans: ['501', 'denim'],
+  denim: ['jeans', '501'],
+  '501': ['jeans', 'denim'],
+  blazer: ['sneaker', 'nike'],
+  sneaker: ['blazer'],
+  loafer: ['penny'],
+  cord: ['corduroy'],
+  corduroy: ['cord'],
+  arcteryx: ['arc', 'shell'],
+  shell: ['arcteryx'],
+  chore: ['field'],
+  field: ['chore'],
+};
+
+function expandToken(token: string): string[] {
+  const stemmed = stemWord(token);
+  const extra = SEARCH_ALIASES[stemmed] ?? SEARCH_ALIASES[token] ?? [];
+  return Array.from(new Set([token, stemmed, ...extra]));
+}
+
+function wordHits(word: string, token: string): boolean {
+  if (!token) return true;
+  if (word.includes(token)) return true;
+  if (token.length >= 4 && word.length >= 4 && token.includes(word)) return true;
+  if (stemWord(word) === stemWord(token)) return true;
+  if (token.length >= 3 && word.startsWith(token)) return true;
+  const max = token.length >= 7 ? 2 : token.length >= 4 ? 1 : 0;
+  if (max === 0) return false;
+  return editDistance(stemWord(word), stemWord(token)) <= max;
+}
+
 function lookMatches(look: Look, raw: string): boolean {
-  const tokens = raw.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const tokens = foldSearch(raw).split(/\s+/).filter((t) => t.length >= 2);
   if (tokens.length === 0) return true;
-  const hay = `${look.alt} ${look.caption} ${look.id}`.toLowerCase();
-  return tokens.every((token) => hay.includes(token));
+  const hay = foldSearch(`${look.alt} ${look.caption} ${look.id}`);
+  const words = hay.split(/\s+/);
+  return tokens.every((token) =>
+    expandToken(token).some((v) => hay.includes(v) || words.some((w) => wordHits(w, v))),
+  );
 }
 
 type LookbookPrefs = { layout: LayoutMode; size: SizeLevel; gap: GapLevel };
@@ -368,7 +438,7 @@ const LookbookToolbar: React.FC<{
 
   useEffect(() => {
     if (!searchOpen || query) return;
-    const id = window.setInterval(() => setPromptI((i) => (i + 1) % SEARCH_PROMPTS.length), 2800);
+    const id = window.setInterval(() => setPromptI((i) => (i + 1) % SEARCH_PROMPTS.length), 4200);
     return () => window.clearInterval(id);
   }, [searchOpen, query]);
 
@@ -911,7 +981,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           inset: 0;
           background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.7) 50%, transparent 80%);
           transform: translateX(-120%);
-          animation: lookShimmer 2.2s ease-in-out infinite;
+          animation: lookShimmer 4s ease-in-out infinite;
           pointer-events: none;
         }
         :root.dark .look-search-hint::after {
@@ -919,7 +989,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         }
         @keyframes lookShimmer {
           0% { transform: translateX(-120%); }
-          55%, 100% { transform: translateX(120%); }
+          65%, 100% { transform: translateX(120%); }
         }
         .look-tool-divider {
           width: 1px;
