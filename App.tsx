@@ -320,6 +320,8 @@ const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isExperimentDetailPage = location.pathname.startsWith('/experiments/') && location.pathname !== '/experiments';
+  const isStylePage = location.pathname === '/style';
+  const hideHeader = isExperimentDetailPage || isStylePage;
   
   // Settings State
   const [theme, setTheme] = useState<ThemeMode>(() => {
@@ -391,9 +393,6 @@ const AppContent: React.FC = () => {
       case 'PLAYGROUND':
         navigate('/playground');
         break;
-      case 'STYLE':
-        navigate('/style');
-        break;
     }
   };
 
@@ -410,7 +409,7 @@ const AppContent: React.FC = () => {
       {/* Main Content - Only render when loading is complete */}
       {!loading && (
         <>
-          {!isExperimentDetailPage && (
+          {!hideHeader && (
             <Header 
               setPage={handlePageChange} 
               theme={theme}

@@ -70,7 +70,6 @@ const Header: React.FC<HeaderProps> = ({
           <NavItem label="Work" onClick={() => setPage('HOME')} />
           <NavItem label="About" onClick={() => setPage('ABOUT')} />
           <NavItem label="Experiments" onClick={() => setPage('EXPERIMENTS')} />
-          <NavItem label="Style" onClick={() => setPage('STYLE')} quiet />
           <a href="mailto:hello@coardmiller.com" className="group relative uppercase tracking-wide hover:text-black dark:hover:text-white transition-colors">
             <span>Contact</span>
             <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-black dark:bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
@@ -174,12 +173,6 @@ const Header: React.FC<HeaderProps> = ({
             className="py-4 border-b border-gray-100 dark:border-white/10 text-left text-sm uppercase tracking-widest hover:opacity-50 transition-opacity text-black dark:text-white"
           >
             EXPERIMENTS
-          </button>
-          <button
-            onClick={() => handleMobileNav('STYLE')}
-            className="py-4 border-b border-gray-100 dark:border-white/10 text-left text-sm uppercase tracking-widest hover:opacity-50 transition-opacity text-black/60 dark:text-white/60"
-          >
-            STYLE
           </button>
           <a 
             href="mailto:hello@coardmiller.com" 
