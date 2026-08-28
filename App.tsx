@@ -15,6 +15,7 @@ const CV = lazy(() => import('./components/CV'));
 const Reading = lazy(() => import('./components/Reading'));
 const ExperimentsIndex = lazy(() => import('./components/ExperimentsIndex'));
 const ExperimentView = lazy(() => import('./components/ExperimentView'));
+const StyleGallery = lazy(() => import('./components/StyleGallery'));
 
 // Coard Miller's Real Work
 const projects: Project[] = [
@@ -390,6 +391,9 @@ const AppContent: React.FC = () => {
       case 'PLAYGROUND':
         navigate('/playground');
         break;
+      case 'STYLE':
+        navigate('/style');
+        break;
     }
   };
 
@@ -438,6 +442,7 @@ const AppContent: React.FC = () => {
               <Route path="/experiments" element={<ExperimentsIndex animationClass={animationClass} />} />
               <Route path="/experiments/:slug" element={<ExperimentView animationClass={animationClass} />} />
               <Route path="/playground" element={<Navigate to="/experiments" replace />} />
+              <Route path="/style" element={<StyleGallery animationClass={animationClass} />} />
             </Routes>
           </Suspense>
         </>
