@@ -239,6 +239,38 @@ const ToolBtn: React.FC<{
   </button>
 );
 
+const IconMasonry = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="6" height="8" rx="0.5" fill="currentColor" />
+    <rect x="0" y="9.5" width="6" height="3.5" rx="0.5" fill="currentColor" />
+    <rect x="7" y="0" width="6" height="4.5" rx="0.5" fill="currentColor" />
+    <rect x="7" y="6" width="6" height="7" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGrid = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="0" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGapTight = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="4" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+    <rect x="7" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGapLoose = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="1.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+    <rect x="9.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
 const LookbookToolbar: React.FC<{
   layout: LayoutMode;
   size: SizeLevel;
@@ -251,48 +283,18 @@ const LookbookToolbar: React.FC<{
     <div className="lookbook-toolbar" role="toolbar" aria-label="Lookbook display">
       <div className="look-tool-group">
         <ToolBtn
-          label="Masonry layout"
-          pressed={layout === 'masonry'}
-          onClick={() => onLayout('masonry')}
+          label={layout === 'masonry' ? 'Switch to grid layout' : 'Switch to masonry layout'}
+          pressed
+          onClick={() => onLayout(layout === 'masonry' ? 'grid' : 'masonry')}
         >
-          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
-            <rect x="0" y="0" width="6" height="8" rx="0.5" fill="currentColor" />
-            <rect x="0" y="9.5" width="6" height="3.5" rx="0.5" fill="currentColor" />
-            <rect x="7" y="0" width="6" height="4.5" rx="0.5" fill="currentColor" />
-            <rect x="7" y="6" width="6" height="7" rx="0.5" fill="currentColor" />
-          </svg>
+          {layout === 'masonry' ? <IconMasonry /> : <IconGrid />}
         </ToolBtn>
         <ToolBtn
-          label="Grid layout"
-          pressed={layout === 'grid'}
-          onClick={() => onLayout('grid')}
+          label={gap === 0 ? 'Switch to looser spacing' : 'Switch to tighter spacing'}
+          pressed
+          onClick={() => onGap(gap === 0 ? 1 : 0)}
         >
-          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
-            <rect x="0" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
-            <rect x="7.5" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
-            <rect x="0" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
-            <rect x="7.5" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
-          </svg>
-        </ToolBtn>
-        <ToolBtn
-          label="Tighter spacing"
-          pressed={gap === 0}
-          onClick={() => onGap(0)}
-        >
-          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
-            <rect x="4" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
-            <rect x="7" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
-          </svg>
-        </ToolBtn>
-        <ToolBtn
-          label="Looser spacing"
-          pressed={gap === 1}
-          onClick={() => onGap(1)}
-        >
-          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
-            <rect x="1.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
-            <rect x="9.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
-          </svg>
+          {gap === 0 ? <IconGapTight /> : <IconGapLoose />}
         </ToolBtn>
       </div>
 
