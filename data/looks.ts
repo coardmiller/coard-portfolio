@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "paynter-b7-staff",
+    date: "2026-08-28",
+    caption: "Batch 7 navy Paynter, grey Ivy crew, olive pleats, Chelseas — around town.",
+    src: "/images/looks/paynter-b7-staff.jpg",
+    alt: "Owned Paynter Jacket Co. Batch No. 7 navy three-pocket chore worn open over a heather grey Ivy crewneck, olive double-pleat cuffed trousers, brown Chelsea boots, navy Atlanta Braves cap, white tile shop-staff snap, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "paynter-b7-street",
+    date: "2026-08-28",
+    caption: "Batch 7 navy Paynter, light blue OCBD, 501s, NB 574s, Braves cap.",
+    src: "/images/looks/paynter-b7-street.jpg",
+    alt: "Owned Paynter Batch 7 navy chore over a light blue oxford, medium indigo straight jeans, grey New Balance 574s, navy Atlanta Braves cap, brick shopfront street, face under brim, grocery bag.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "paynter-b7-knolling",
+    date: "2026-08-28",
+    caption: "Batch 7 navy Paynter knolling: ecru OCBD, tan cords, suede loafers, Braves cap.",
+    src: "/images/looks/paynter-b7-knolling.jpg",
+    alt: "Overhead knolling of owned Paynter Batch 7 navy three-pocket chore with ecru oxford, tan five-pocket cords, brown suede penny loafers, brown belt, and navy Atlanta Braves cap on pale stone tile.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "ecru-shetland-forest-cords",
     date: "2026-08-28",
     caption: "Navy Paynter, oatmeal shetland, forest cords, Braves cap, loafers.",
