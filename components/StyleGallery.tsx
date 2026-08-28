@@ -5,7 +5,7 @@ import { looks, type Look } from '../data/looks';
 type Rect = { left: number; top: number; width: number; height: number };
 type LayoutMode = 'masonry' | 'grid';
 type SizeLevel = 0 | 1 | 2;
-type GapLevel = 0 | 1 | 2;
+type GapLevel = 0 | 1;
 
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 const DURATION_MS = 520;
@@ -13,7 +13,7 @@ const SOURCE_ASPECT = 1536 / 1024;
 const ROW_TOLERANCE_PX = 24;
 const STAGGER_MS = 48;
 const STORAGE_KEY = 'coard-miller-lookbook';
-const GAP_PX = [4, 8, 16] as const;
+const GAP_PX = [8, 16] as const;
 const GRID_ASPECT = '4/5';
 const COLS: Record<SizeLevel, { base: number; md: number; lg: number; xl: number }> = {
   0: { base: 3, md: 3, lg: 4, xl: 5 },
@@ -23,7 +23,7 @@ const COLS: Record<SizeLevel, { base: number; md: number; lg: number; xl: number
 
 type LookbookPrefs = { layout: LayoutMode; size: SizeLevel; gap: GapLevel };
 
-const DEFAULT_PREFS: LookbookPrefs = { layout: 'masonry', size: 0, gap: 1 };
+const DEFAULT_PREFS: LookbookPrefs = { layout: 'masonry', size: 0, gap: 0 };
 
 function readPrefs(): LookbookPrefs {
   try {
@@ -33,7 +33,7 @@ function readPrefs(): LookbookPrefs {
     return {
       layout: parsed.layout === 'grid' ? 'grid' : 'masonry',
       size: parsed.size === 1 || parsed.size === 2 ? parsed.size : 0,
-      gap: parsed.gap === 0 || parsed.gap === 2 ? parsed.gap : 1,
+      gap: Number(parsed.gap) > 0 ? 1 : 0,
     };
   } catch {
     return DEFAULT_PREFS;
@@ -255,11 +255,11 @@ const LookbookToolbar: React.FC<{
           pressed={layout === 'masonry'}
           onClick={() => onLayout('masonry')}
         >
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-            <rect x="0.75" y="0.75" width="5" height="7.5" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="0.75" y="9.5" width="5" height="2.75" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="7.25" y="0.75" width="5" height="4" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="7.25" y="6" width="5" height="6.25" stroke="currentColor" strokeWidth="1.5" />
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+            <rect x="0" y="0" width="6" height="8" rx="0.5" fill="currentColor" />
+            <rect x="0" y="9.5" width="6" height="3.5" rx="0.5" fill="currentColor" />
+            <rect x="7" y="0" width="6" height="4.5" rx="0.5" fill="currentColor" />
+            <rect x="7" y="6" width="6" height="7" rx="0.5" fill="currentColor" />
           </svg>
         </ToolBtn>
         <ToolBtn
@@ -267,11 +267,31 @@ const LookbookToolbar: React.FC<{
           pressed={layout === 'grid'}
           onClick={() => onLayout('grid')}
         >
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-            <rect x="0.75" y="0.75" width="5" height="5" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="7.25" y="0.75" width="5" height="5" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="0.75" y="7.25" width="5" height="5" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="7.25" y="7.25" width="5" height="5" stroke="currentColor" strokeWidth="1.5" />
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+            <rect x="0" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+            <rect x="7.5" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+            <rect x="0" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+            <rect x="7.5" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+          </svg>
+        </ToolBtn>
+        <ToolBtn
+          label="Tighter spacing"
+          pressed={gap === 0}
+          onClick={() => onGap(0)}
+        >
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+            <rect x="4" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+            <rect x="7" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+          </svg>
+        </ToolBtn>
+        <ToolBtn
+          label="Looser spacing"
+          pressed={gap === 1}
+          onClick={() => onGap(1)}
+        >
+          <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+            <rect x="1.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+            <rect x="9.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
           </svg>
         </ToolBtn>
       </div>
@@ -284,8 +304,8 @@ const LookbookToolbar: React.FC<{
           disabled={size <= 0}
           onClick={() => onSize((size - 1) as SizeLevel)}
         >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 6h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <rect x="1.5" y="5" width="9" height="2" rx="0.5" fill="currentColor" />
           </svg>
         </ToolBtn>
         <ToolBtn
@@ -293,31 +313,9 @@ const LookbookToolbar: React.FC<{
           disabled={size >= 2}
           onClick={() => onSize((size + 1) as SizeLevel)}
         >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M2 6h8M6 2v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-          </svg>
-        </ToolBtn>
-      </div>
-
-      <div className="look-tool-divider" aria-hidden="true" />
-
-      <div className="look-tool-group">
-        <ToolBtn
-          label="Tighter spacing"
-          disabled={gap <= 0}
-          onClick={() => onGap((gap - 1) as GapLevel)}
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M4.5 2v8M7.5 2v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-          </svg>
-        </ToolBtn>
-        <ToolBtn
-          label="Looser spacing"
-          disabled={gap >= 2}
-          onClick={() => onGap((gap + 1) as GapLevel)}
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M3 2v8M9 2v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <rect x="1.5" y="5" width="9" height="2" rx="0.5" fill="currentColor" />
+            <rect x="5" y="1.5" width="2" height="9" rx="0.5" fill="currentColor" />
           </svg>
         </ToolBtn>
       </div>
