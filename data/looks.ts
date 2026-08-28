@@ -30,9 +30,9 @@ export const looks: Look[] = [
   {
     id: "shaggy-quiet-street",
     date: "2026-08-28",
-    caption: "Shaggy Dog ecru under navy chore, indigo trousers, Chelseas — bare head.",
+    caption: "Shaggy Dog ecru under navy chore, 501s, Chelseas — bare head, male.",
     src: "/images/looks/shaggy-quiet-street.jpg",
-    alt: "Ecru Shaggy Dog crew under open navy chore jacket, blue trousers, brown Chelseas, plain red brick wall, face turned down, no hat.",
+    alt: "Adult man in Jamieson's Shaggy Dog ecru under open navy men's chore jacket, medium indigo straight 501s, brown Chelsea boots, plain brick wall, face turned away, no hat.",
     aspect: "4/5",
     objectPosition: "top",
   },
