@@ -44,20 +44,24 @@ function clearMasonryPack(wall: HTMLElement) {
 function packMasonry(wall: HTMLElement, cols: number, gap: number) {
   const tiles = Array.from(wall.querySelectorAll<HTMLElement>('.look-tile'));
   const totalW = wall.clientWidth;
-  if (totalW <= 0 || tiles.length === 0 || cols < 1) return;
+  if (totalW <= 0 || cols < 1) return;
+  if (tiles.length === 0) {
+    wall.style.height = '0px';
+    return;
+  }
   const colW = (totalW - gap * (cols - 1)) / cols;
   const heights = Array(cols).fill(0);
   for (const tile of tiles) {
     tile.style.position = 'absolute';
     tile.style.width = `${colW}px`;
   }
-  for (const tile of tiles) {
-    const col = heights.indexOf(Math.min(...heights));
+  tiles.forEach((tile, i) => {
+    const col = i % cols;
     const h = tile.getBoundingClientRect().height;
     tile.style.left = `${col * (colW + gap)}px`;
     tile.style.top = `${heights[col]}px`;
     heights[col] += h + gap;
-  }
+  });
   wall.style.height = `${Math.max(0, ...heights) - gap}px`;
 }
 
@@ -372,14 +376,25 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   const [intro, setIntro] = useState<'wait' | 'stagger' | 'ready'>('wait');
   const [prefs, setPrefs] = useState<LookbookPrefs>(readPrefs);
   const wallRef = useRef<HTMLDivElement>(null);
+  const pendingScrollRef = useRef<number | null>(null);
 
   const setPrefsAnimated = useCallback((update: (p: LookbookPrefs) => LookbookPrefs) => {
+    pendingScrollRef.current = window.scrollY;
     const apply = () => setPrefs(update);
-    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    const restore = () => {
+      const y = pendingScrollRef.current;
+      if (y == null) return;
+      window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    };
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => { finished: Promise<unknown> };
+    };
     if (!reducedMotion && typeof doc.startViewTransition === 'function') {
-      doc.startViewTransition(() => {
+      const vt = doc.startViewTransition(() => {
         flushSync(apply);
+        restore();
       });
+      void vt.finished.then(restore).catch(restore);
     } else {
       apply();
     }
@@ -403,6 +418,9 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
       packMasonry(wall, colCountFor(prefs.size), gap);
     } else {
       clearMasonryPack(wall);
+    }
+    if (pendingScrollRef.current != null) {
+      window.scrollTo({ top: pendingScrollRef.current, left: 0, behavior: 'instant' });
     }
     if (intro === 'wait') {
       if (reducedMotion) {
