@@ -434,6 +434,7 @@ const LookbookToolbar: React.FC<{
 }> = ({ layout, size, gap, query, searchOpen, onSearchOpen, onQuery, onLayout, onSize, onGap }) => {
   const [promptI, setPromptI] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const slotRef = useRef<HTMLDivElement>(null);
   const prompt = SEARCH_PROMPTS[promptI];
 
   useEffect(() => {
@@ -444,6 +445,32 @@ const LookbookToolbar: React.FC<{
 
   useEffect(() => {
     if (searchOpen) inputRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const slot = slotRef.current;
+    const vv = window.visualViewport;
+    if (!slot || !vv) return;
+
+    const sync = () => {
+      const inset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      slot.style.setProperty('--look-keyboard', `${inset}px`);
+      slot.classList.toggle('is-keyboard', inset > 40);
+    };
+
+    sync();
+    vv.addEventListener('resize', sync);
+    vv.addEventListener('scroll', sync);
+    window.addEventListener('focusin', sync);
+    window.addEventListener('focusout', sync);
+    return () => {
+      vv.removeEventListener('resize', sync);
+      vv.removeEventListener('scroll', sync);
+      window.removeEventListener('focusin', sync);
+      window.removeEventListener('focusout', sync);
+      slot.style.removeProperty('--look-keyboard');
+      slot.classList.remove('is-keyboard');
+    };
   }, [searchOpen]);
 
   const toggleSearch = () => {
@@ -466,7 +493,7 @@ const LookbookToolbar: React.FC<{
   };
 
   return (
-    <div className="lookbook-toolbar-slot">
+    <div className="lookbook-toolbar-slot" ref={slotRef}>
       <div
         className={`lookbook-toolbar${searchOpen ? ' is-searching' : ''}`}
         role="toolbar"
@@ -875,12 +902,15 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           position: fixed;
           left: 0;
           right: 0;
-          bottom: 0;
+          bottom: var(--look-keyboard, 0px);
           z-index: 80;
           display: flex;
           justify-content: center;
           pointer-events: none;
           padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+        }
+        .lookbook-toolbar-slot.is-keyboard {
+          padding-bottom: 12px;
         }
         .look-search-empty {
           margin: 24px 0 0;
@@ -927,6 +957,19 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .lookbook-toolbar.is-searching .look-search-field {
           width: min(52vw, 260px);
           opacity: 1;
+        }
+        @media (max-width: 640px) {
+          .look-search-input,
+          .look-search-hint {
+            font-size: 16px;
+          }
+          .lookbook-toolbar.is-searching .look-tool-divider,
+          .lookbook-toolbar.is-searching .look-tool-group:not(:first-child) {
+            display: none;
+          }
+          .lookbook-toolbar.is-searching .look-search-field {
+            width: min(72vw, 280px);
+          }
         }
         .look-search-input {
           position: relative;
