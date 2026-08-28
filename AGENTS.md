@@ -29,12 +29,14 @@ A minimalist, high-performance portfolio showcasing:
 - `/about` - About
 - `/reading` - Reading
 - `/experiments` - Experiments index (`/playground` redirects here)
-- `/style` - Personal lookbook (masonry). Separate from Style Studio.
+- `/style` - Personal lookbook (mixed-ratio masonry). Hidden from the header; reach it by URL only. Separate from Style Studio.
 - CV/Resume information
 
 ### Adding a look
 1. Add an image to `public/images/looks/<slug>.jpg` (or `.png`)
 2. Prepend an entry in `data/looks.ts` (newest first)
+3. Set `aspect` to the next value in the cycle: 3/4, 4/5, 1/1, 5/4, 2/3, 4/3
+4. Set `objectPosition` to `'top'` for portraits (heads/caps) or `'center'` for knolls/flat lays
 
 ### No Login Required
 All content is publicly accessible. No authentication needed.
