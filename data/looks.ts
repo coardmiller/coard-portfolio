@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "shaggy-quiet-staff",
+    date: "2026-08-28",
+    caption: "Jamieson's Shaggy Dog ecru, olive pleats, Chelseas — no hat.",
+    src: "/images/looks/shaggy-quiet-staff.jpg",
+    alt: "Jamieson's of Shetland Shaggy Dog ecru crewneck alone over olive double-pleat cuffed trousers and brown Chelsea boots, plain white tile wall, head cropped, no cap.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "shaggy-quiet-street",
+    date: "2026-08-28",
+    caption: "Shaggy Dog ecru under navy chore, indigo trousers, Chelseas — bare head.",
+    src: "/images/looks/shaggy-quiet-street.jpg",
+    alt: "Ecru Shaggy Dog crew under open navy chore jacket, blue trousers, brown Chelseas, plain red brick wall, face turned down, no hat.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "shaggy-quiet-knoll",
+    date: "2026-08-28",
+    caption: "Shaggy Dog ecru knolling: 501s and suede loafers only — sparse.",
+    src: "/images/looks/shaggy-quiet-knoll.jpg",
+    alt: "Sparse overhead knolling on walnut floor: Jamieson's Shaggy Dog ecru crewneck, folded dark indigo 501s, brown suede penny loafers. No hat, no jacket, no props.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "shaggy-dog-staff",
     date: "2026-08-28",
     caption: "Jamieson's Shaggy Dog ecru, navy Paynter B7, olive pleats, Chelseas.",
