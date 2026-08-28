@@ -449,26 +449,20 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px) + var(--look-gap, 8px));
         }
 
-        .lookbook-wall.is-masonry {
-          column-count: var(--cols-base);
-          column-gap: var(--look-gap);
-        }
-        .lookbook-wall.is-grid {
+        .lookbook-wall {
           display: grid;
           grid-template-columns: repeat(var(--cols-base), minmax(0, 1fr));
           gap: var(--look-gap);
+          align-items: start;
         }
         @media (min-width: 768px) {
-          .lookbook-wall.is-masonry { column-count: var(--cols-md); }
-          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr)); }
+          .lookbook-wall { grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr)); }
         }
         @media (min-width: 1024px) {
-          .lookbook-wall.is-masonry { column-count: var(--cols-lg); }
-          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr)); }
+          .lookbook-wall { grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr)); }
         }
         @media (min-width: 1440px) {
-          .lookbook-wall.is-masonry { column-count: var(--cols-xl); }
-          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-xl), minmax(0, 1fr)); }
+          .lookbook-wall { grid-template-columns: repeat(var(--cols-xl), minmax(0, 1fr)); }
         }
 
         .look-tile {
@@ -487,10 +481,6 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           overflow: hidden;
           opacity: 0;
         }
-        .lookbook-wall.is-masonry .look-tile {
-          margin: 0 0 var(--look-gap);
-          break-inside: avoid;
-        }
         .lookbook-wall.is-staggered .look-tile {
           animation: lookRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
           animation-delay: var(--look-delay);
@@ -498,9 +488,6 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .lookbook-wall.is-ready .look-tile {
           opacity: 1;
           animation: none;
-        }
-        .lookbook-toolbar {
-          view-transition-name: lookbook-toolbar;
         }
         ::view-transition-old(root),
         ::view-transition-new(root) {
@@ -598,6 +585,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           align-items: center;
           padding: 4px 6px;
           border-radius: 9999px;
+          overflow: hidden;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
@@ -635,11 +623,18 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           height: 32px;
           padding: 0;
           border: 0;
+          border-radius: 9999px;
           background: transparent;
           color: inherit;
           cursor: pointer;
           opacity: 0.4;
-          transition: opacity 0.15s ease;
+          outline: none;
+          transition: opacity 0.15s ease, box-shadow 0.15s ease;
+        }
+        .look-tool-btn:focus,
+        .look-tool-btn:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 1.5px currentColor;
         }
         .look-tool-btn.is-active,
         .look-tool-btn:hover {
