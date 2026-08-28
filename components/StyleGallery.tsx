@@ -3,12 +3,42 @@ import { createPortal } from 'react-dom';
 import { looks, type Look } from '../data/looks';
 
 type Rect = { left: number; top: number; width: number; height: number };
+type LayoutMode = 'masonry' | 'grid';
+type SizeLevel = 0 | 1 | 2;
+type GapLevel = 0 | 1;
 
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 const DURATION_MS = 520;
 const SOURCE_ASPECT = 1536 / 1024;
 const ROW_TOLERANCE_PX = 24;
 const STAGGER_MS = 48;
+const STORAGE_KEY = 'coard-miller-lookbook';
+const GAP_PX = [8, 16] as const;
+const GRID_ASPECT = '4/5';
+const COLS: Record<SizeLevel, { base: number; md: number; lg: number; xl: number }> = {
+  0: { base: 3, md: 3, lg: 4, xl: 5 },
+  1: { base: 2, md: 2, lg: 3, xl: 4 },
+  2: { base: 2, md: 2, lg: 2, xl: 3 },
+};
+
+type LookbookPrefs = { layout: LayoutMode; size: SizeLevel; gap: GapLevel };
+
+const DEFAULT_PREFS: LookbookPrefs = { layout: 'masonry', size: 0, gap: 0 };
+
+function readPrefs(): LookbookPrefs {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return DEFAULT_PREFS;
+    const parsed = JSON.parse(raw) as Partial<LookbookPrefs>;
+    return {
+      layout: parsed.layout === 'grid' ? 'grid' : 'masonry',
+      size: parsed.size === 1 || parsed.size === 2 ? parsed.size : 0,
+      gap: Number(parsed.gap) > 0 ? 1 : 0,
+    };
+  } catch {
+    return DEFAULT_PREFS;
+  }
+}
 
 function visualRowDelays(wall: HTMLElement): Record<string, string> {
   const tiles = Array.from(wall.querySelectorAll<HTMLElement>('.look-tile'));
@@ -44,7 +74,6 @@ function visualRowDelays(wall: HTMLElement): Record<string, string> {
   });
   return delays;
 }
-
 
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(() =>
@@ -191,12 +220,123 @@ const LookExpand: React.FC<{
   );
 };
 
+const ToolBtn: React.FC<{
+  label: string;
+  pressed?: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}> = ({ label, pressed, disabled, onClick, children }) => (
+  <button
+    type="button"
+    aria-label={label}
+    aria-pressed={pressed}
+    disabled={disabled}
+    onClick={onClick}
+    className={`look-tool-btn${pressed ? ' is-active' : ''}`}
+  >
+    {children}
+  </button>
+);
+
+const IconMasonry = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="6" height="8" rx="0.5" fill="currentColor" />
+    <rect x="0" y="9.5" width="6" height="3.5" rx="0.5" fill="currentColor" />
+    <rect x="7" y="0" width="6" height="4.5" rx="0.5" fill="currentColor" />
+    <rect x="7" y="6" width="6" height="7" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGrid = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="0" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="0" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="7.5" width="5.5" height="5.5" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGapTight = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="4" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+    <rect x="7" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const IconGapLoose = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="1.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+    <rect x="9.5" y="1" width="2" height="11" rx="0.5" fill="currentColor" />
+  </svg>
+);
+
+const LookbookToolbar: React.FC<{
+  layout: LayoutMode;
+  size: SizeLevel;
+  gap: GapLevel;
+  onLayout: (layout: LayoutMode) => void;
+  onSize: (size: SizeLevel) => void;
+  onGap: (gap: GapLevel) => void;
+}> = ({ layout, size, gap, onLayout, onSize, onGap }) => (
+  <div className="lookbook-toolbar-slot">
+    <div className="lookbook-toolbar" role="toolbar" aria-label="Lookbook display">
+      <div className="look-tool-group">
+        <ToolBtn
+          label={layout === 'masonry' ? 'Switch to grid layout' : 'Switch to masonry layout'}
+          pressed
+          onClick={() => onLayout(layout === 'masonry' ? 'grid' : 'masonry')}
+        >
+          {layout === 'masonry' ? <IconMasonry /> : <IconGrid />}
+        </ToolBtn>
+        <ToolBtn
+          label={gap === 0 ? 'Switch to looser spacing' : 'Switch to tighter spacing'}
+          pressed
+          onClick={() => onGap(gap === 0 ? 1 : 0)}
+        >
+          {gap === 0 ? <IconGapTight /> : <IconGapLoose />}
+        </ToolBtn>
+      </div>
+
+      <div className="look-tool-divider" aria-hidden="true" />
+
+      <div className="look-tool-group">
+        <ToolBtn
+          label="Smaller tiles"
+          disabled={size <= 0}
+          onClick={() => onSize((size - 1) as SizeLevel)}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <rect x="1.5" y="5" width="9" height="2" rx="0.5" fill="currentColor" />
+          </svg>
+        </ToolBtn>
+        <ToolBtn
+          label="Larger tiles"
+          disabled={size >= 2}
+          onClick={() => onSize((size + 1) as SizeLevel)}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <rect x="1.5" y="5" width="9" height="2" rx="0.5" fill="currentColor" />
+            <rect x="5" y="1.5" width="2" height="9" rx="0.5" fill="currentColor" />
+          </svg>
+        </ToolBtn>
+      </div>
+    </div>
+  </div>
+);
+
 const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) => {
   const reducedMotion = usePrefersReducedMotion();
   const [active, setActive] = useState<{ look: Look; origin: Rect } | null>(null);
   const [delayById, setDelayById] = useState<Record<string, string> | null>(null);
+  const [prefs, setPrefs] = useState<LookbookPrefs>(readPrefs);
   const wallRef = useRef<HTMLDivElement>(null);
-  const didStaggerRef = useRef(false);
+  const prefsKey = `${prefs.layout}-${prefs.size}-${prefs.gap}`;
+  const prefsKeyRef = useRef(prefsKey);
+  if (prefsKeyRef.current !== prefsKey) {
+    prefsKeyRef.current = prefsKey;
+    setDelayById(null);
+  }
 
   const open = (look: Look, el: HTMLElement) => {
     setActive({ look, origin: measure(el) });
@@ -204,19 +344,33 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
 
   const close = useCallback(() => setActive(null), []);
 
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+  }, [prefs]);
+
   useLayoutEffect(() => {
-    if (reducedMotion || didStaggerRef.current) return;
+    if (reducedMotion || delayById) return;
     const wall = wallRef.current;
     if (!wall) return;
-    const delays = visualRowDelays(wall);
-    didStaggerRef.current = true;
-    setDelayById(delays);
-  }, [reducedMotion]);
+    setDelayById(visualRowDelays(wall));
+  }, [reducedMotion, delayById, prefsKey]);
+
+  const cols = COLS[prefs.size];
+  const wallStyle = {
+    '--look-gap': `${GAP_PX[prefs.gap]}px`,
+    '--cols-base': String(cols.base),
+    '--cols-md': String(cols.md),
+    '--cols-lg': String(cols.lg),
+    '--cols-xl': String(cols.xl),
+  } as React.CSSProperties;
 
   return (
-    <main className={`relative z-10 lookbook ${animationClass}`}>
+    <main className={`relative z-10 lookbook ${animationClass}`} style={wallStyle}>
       <div className="lookbook-pad">
-        <div ref={wallRef} className={`lookbook-wall${delayById ? ' is-staggered' : ''}`}>
+        <div
+          ref={wallRef}
+          className={`lookbook-wall is-${prefs.layout}${delayById ? ' is-staggered' : ''}`}
+        >
           {looks.map((look, index) => {
             const isActive = active?.look.id === look.id;
             return (
@@ -228,7 +382,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
                 className={`look-tile${isActive ? ' is-active' : ''}`}
                 style={
                   {
-                    '--aspect': look.aspect,
+                    '--aspect': prefs.layout === 'grid' ? GRID_ASPECT : look.aspect,
                     '--object-pos': look.objectPosition,
                     ...(delayById ? { '--look-delay': delayById[look.id] } : {}),
                   } as React.CSSProperties
@@ -248,6 +402,17 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         </div>
       </div>
 
+      {!active && (
+        <LookbookToolbar
+          layout={prefs.layout}
+          size={prefs.size}
+          gap={prefs.gap}
+          onLayout={(layout) => setPrefs((p) => ({ ...p, layout }))}
+          onSize={(size) => setPrefs((p) => ({ ...p, size }))}
+          onGap={(gap) => setPrefs((p) => ({ ...p, gap }))}
+        />
+      )}
+
       {active && (
         <LookExpand
           look={active.look}
@@ -259,24 +424,32 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
 
       <style>{`
         .lookbook-pad {
-          padding: 8px;
-        }
-        @media (min-width: 768px) {
-          .lookbook-pad { padding: 12px; }
+          padding-top: calc(48px + var(--look-gap, 8px));
+          padding-left: var(--look-gap, 8px);
+          padding-right: var(--look-gap, 8px);
+          padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px) + var(--look-gap, 8px));
         }
 
-        .lookbook-wall {
-          columns: 2;
-          column-gap: 8px;
+        .lookbook-wall.is-masonry {
+          column-count: var(--cols-base);
+          column-gap: var(--look-gap);
+        }
+        .lookbook-wall.is-grid {
+          display: grid;
+          grid-template-columns: repeat(var(--cols-base), minmax(0, 1fr));
+          gap: var(--look-gap);
         }
         @media (min-width: 768px) {
-          .lookbook-wall { columns: 3; column-gap: 12px; }
+          .lookbook-wall.is-masonry { column-count: var(--cols-md); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr)); }
         }
         @media (min-width: 1024px) {
-          .lookbook-wall { columns: 4; column-gap: 12px; }
+          .lookbook-wall.is-masonry { column-count: var(--cols-lg); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr)); }
         }
         @media (min-width: 1440px) {
-          .lookbook-wall { columns: 5; column-gap: 12px; }
+          .lookbook-wall.is-masonry { column-count: var(--cols-xl); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-xl), minmax(0, 1fr)); }
         }
 
         .look-tile {
@@ -286,22 +459,22 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           position: relative;
           display: block;
           width: 100%;
-          margin: 0 0 8px;
+          margin: 0;
           padding: 0;
           border: 0;
           background: transparent;
           cursor: zoom-in;
-          break-inside: avoid;
           aspect-ratio: var(--aspect);
           overflow: hidden;
           opacity: 0;
         }
+        .lookbook-wall.is-masonry .look-tile {
+          margin: 0 0 var(--look-gap);
+          break-inside: avoid;
+        }
         .lookbook-wall.is-staggered .look-tile {
           animation: lookRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
           animation-delay: var(--look-delay);
-        }
-        @media (min-width: 768px) {
-          .look-tile { margin-bottom: 12px; }
         }
         .look-tile img {
           position: absolute;
@@ -372,6 +545,81 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           display: block;
           user-select: none;
           pointer-events: none;
+        }
+
+        .lookbook-toolbar-slot {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 40;
+          display: flex;
+          justify-content: center;
+          pointer-events: none;
+          padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+        }
+        .lookbook-toolbar {
+          pointer-events: auto;
+          display: flex;
+          align-items: center;
+          padding: 4px 6px;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid #f3f4f6;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+          color: #111;
+          font-family: inherit;
+          user-select: none;
+        }
+        :root.dark .lookbook-toolbar {
+          background: rgba(26, 26, 26, 0.95);
+          border-color: rgba(255, 255, 255, 0.1);
+          box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5);
+          color: #f3f4f6;
+        }
+        .look-tool-group {
+          display: flex;
+          align-items: center;
+          gap: 0;
+        }
+        .look-tool-divider {
+          width: 1px;
+          height: 14px;
+          margin: 0 6px;
+          background: #f3f4f6;
+        }
+        :root.dark .look-tool-divider {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .look-tool-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          color: inherit;
+          cursor: pointer;
+          opacity: 0.4;
+          transition: opacity 0.15s ease;
+        }
+        .look-tool-btn.is-active,
+        .look-tool-btn:hover {
+          opacity: 1;
+        }
+        .look-tool-btn:disabled {
+          opacity: 0.2;
+          cursor: default;
+        }
+        .look-tool-btn:disabled:hover {
+          opacity: 0.2;
+        }
+        .look-tool-btn svg {
+          display: block;
         }
 
         @media (prefers-reduced-motion: reduce) {
