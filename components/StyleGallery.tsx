@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { createPortal, flushSync } from 'react-dom';
 import { looks, type Look } from '../data/looks';
 
 type Rect = { left: number; top: number; width: number; height: number };
@@ -329,14 +329,21 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   const reducedMotion = usePrefersReducedMotion();
   const [active, setActive] = useState<{ look: Look; origin: Rect } | null>(null);
   const [delayById, setDelayById] = useState<Record<string, string> | null>(null);
+  const [intro, setIntro] = useState<'wait' | 'stagger' | 'ready'>('wait');
   const [prefs, setPrefs] = useState<LookbookPrefs>(readPrefs);
   const wallRef = useRef<HTMLDivElement>(null);
-  const prefsKey = `${prefs.layout}-${prefs.size}-${prefs.gap}`;
-  const prefsKeyRef = useRef(prefsKey);
-  if (prefsKeyRef.current !== prefsKey) {
-    prefsKeyRef.current = prefsKey;
-    setDelayById(null);
-  }
+
+  const setPrefsAnimated = useCallback((update: (p: LookbookPrefs) => LookbookPrefs) => {
+    const apply = () => setPrefs(update);
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    if (!reducedMotion && typeof doc.startViewTransition === 'function') {
+      doc.startViewTransition(() => {
+        flushSync(apply);
+      });
+    } else {
+      apply();
+    }
+  }, [reducedMotion]);
 
   const open = (look: Look, el: HTMLElement) => {
     setActive({ look, origin: measure(el) });
@@ -349,11 +356,23 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   }, [prefs]);
 
   useLayoutEffect(() => {
-    if (reducedMotion || delayById) return;
+    if (intro !== 'wait') return;
+    if (reducedMotion) {
+      setIntro('ready');
+      return;
+    }
     const wall = wallRef.current;
     if (!wall) return;
     setDelayById(visualRowDelays(wall));
-  }, [reducedMotion, delayById, prefsKey]);
+    setIntro('stagger');
+  }, [reducedMotion, intro]);
+
+  useEffect(() => {
+    if (intro !== 'stagger' || !delayById) return;
+    const ms = Math.max(0, ...Object.values(delayById).map((d: string) => parseFloat(d) || 0)) + 750;
+    const t = window.setTimeout(() => setIntro('ready'), ms);
+    return () => window.clearTimeout(t);
+  }, [intro, delayById]);
 
   const cols = COLS[prefs.size];
   const wallStyle = {
@@ -369,7 +388,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
       <div className="lookbook-pad">
         <div
           ref={wallRef}
-          className={`lookbook-wall is-${prefs.layout}${delayById ? ' is-staggered' : ''}`}
+          className={`lookbook-wall is-${prefs.layout}${intro === 'stagger' ? ' is-staggered' : ''}${intro === 'ready' ? ' is-ready' : ''}`}
         >
           {looks.map((look, index) => {
             const isActive = active?.look.id === look.id;
@@ -384,7 +403,8 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
                   {
                     '--aspect': prefs.layout === 'grid' ? GRID_ASPECT : look.aspect,
                     '--object-pos': look.objectPosition,
-                    ...(delayById ? { '--look-delay': delayById[look.id] } : {}),
+                    ...(intro === 'stagger' && delayById ? { '--look-delay': delayById[look.id] } : {}),
+                    viewTransitionName: `look-${look.id}`,
                   } as React.CSSProperties
                 }
                 aria-label={look.alt}
@@ -392,8 +412,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
                 <img
                   src={look.src}
                   alt={look.alt}
-                  loading={index < 8 ? 'eager' : 'lazy'}
-                  decoding="async"
+                  loading={index < 12 ? 'eager' : 'lazy'}
                   draggable={false}
                 />
               </button>
@@ -407,9 +426,9 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           layout={prefs.layout}
           size={prefs.size}
           gap={prefs.gap}
-          onLayout={(layout) => setPrefs((p) => ({ ...p, layout }))}
-          onSize={(size) => setPrefs((p) => ({ ...p, size }))}
-          onGap={(gap) => setPrefs((p) => ({ ...p, gap }))}
+          onLayout={(layout) => setPrefsAnimated((p) => ({ ...p, layout }))}
+          onSize={(size) => setPrefsAnimated((p) => ({ ...p, size }))}
+          onGap={(gap) => setPrefsAnimated((p) => ({ ...p, gap }))}
         />
       )}
 
@@ -475,6 +494,21 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .lookbook-wall.is-staggered .look-tile {
           animation: lookRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
           animation-delay: var(--look-delay);
+        }
+        .lookbook-wall.is-ready .look-tile {
+          opacity: 1;
+          animation: none;
+        }
+        .lookbook-toolbar {
+          view-transition-name: lookbook-toolbar;
+        }
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none;
+        }
+        ::view-transition-group(*) {
+          animation-duration: 0.48s;
+          animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
         }
         .look-tile img {
           position: absolute;
