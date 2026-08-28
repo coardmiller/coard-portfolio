@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "ecru-shetland-forest-cords",
+    date: "2026-08-28",
+    caption: "Navy Paynter, oatmeal shetland, forest cords, Braves cap, loafers.",
+    src: "/images/looks/ecru-shetland-forest-cords.jpg",
+    alt: "Navy Paynter chore worn open over an oatmeal shetland crewneck, forest green corduroy trousers, brown loafers, navy Atlanta Braves cap, white tile shop-staff snap.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "ochre-shetland-indigo",
+    date: "2026-08-28",
+    caption: "Ochre shetland, dark indigo 501s, Blundstones, Braves cap.",
+    src: "/images/looks/ochre-shetland-indigo.jpg",
+    alt: "Mustard ochre shetland crewneck, dark indigo jeans, brown Blundstone Chelsea boots, navy Atlanta Braves cap, brick street, face hidden by brim.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "new-colors-knolling",
+    date: "2026-08-28",
+    caption: "New-color rotation: oatmeal, ochre, forest cord, dark indigo, navy Paynter, Braves cap.",
+    src: "/images/looks/new-colors-knolling.jpg",
+    alt: "Overhead knolling of navy Paynter, oatmeal and ochre shetlands, forest green cords, dark indigo 501s, ecru oxford, navy Braves cap, brown loafers and Blundstones on grey wool.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "paynter-navy-grey-crew",
     date: "2026-08-28",
     caption: "Navy Paynter chore, grey crew, khaki chinos, Blundstones.",
