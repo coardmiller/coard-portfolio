@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "fall-stroller-m65",
+    date: "2026-08-28",
+    caption: "Fall morning walk. Olive M-65, navy quarter-zip, khaki chinos, Blundstones, NY cap.",
+    src: "/images/looks/fall-stroller-m65.jpg",
+    alt: "Olive M-65, navy quarter-zip, khaki chinos, boots, NY cap beside a stroller",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "fall-stroller-street",
+    date: "2026-08-28",
+    caption: "Same kit walking. Jacket open.",
+    src: "/images/looks/fall-stroller-street.jpg",
+    alt: "Olive field jacket, navy quarter-zip, khaki chinos, Blundstones, NY cap on a fall street",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "fall-stroller-knolling",
+    date: "2026-08-28",
+    caption: "Knolling: M-65, navy quarter-zip, chambray, khaki chinos, Blundstones, NY cap.",
+    src: "/images/looks/fall-stroller-knolling.jpg",
+    alt: "Overhead fall walk kit with M-65, fleece, chambray, chinos, Blundstones",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "chambray-olive-pleats",
     date: "2026-08-28",
     caption: "Faded chambray OCBD, olive double-pleat cuffs, brown loafers. No denim.",
