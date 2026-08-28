@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "shaggy-dog-staff",
+    date: "2026-08-28",
+    caption: "Jamieson's Shaggy Dog ecru, navy Paynter B7, olive pleats, Chelseas.",
+    src: "/images/looks/shaggy-dog-staff.jpg",
+    alt: "Jamieson's of Shetland Shaggy Dog ecru crewneck under an open navy Paynter Batch 7 chore, olive double-pleat cuffed trousers, brown Chelsea boots, navy Atlanta Braves cap, white tile shop-staff snap, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "shaggy-dog-street",
+    date: "2026-08-28",
+    caption: "Shaggy Dog ecru under navy chore, 501s, Chelseas, Braves cap — street.",
+    src: "/images/looks/shaggy-dog-street.jpg",
+    alt: "Ecru Jamieson's Shaggy Dog crewneck under a navy chore jacket on a brick shopfront, medium indigo straight jeans, brown Chelsea boots, navy Atlanta Braves cap, face under brim, overcast street.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "shaggy-dog-knolling",
+    date: "2026-08-28",
+    caption: "Shaggy Dog ecru knolling with navy Paynter, tan cords, loafers, Braves cap.",
+    src: "/images/looks/shaggy-dog-knolling.jpg",
+    alt: "Overhead knolling of Jamieson's Shaggy Dog ecru crewneck with folded navy Paynter chore, tan five-pocket cords, brown suede penny loafers, brown belt, and navy Atlanta Braves cap on pale stone tile.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "paynter-b7-staff",
     date: "2026-08-28",
     caption: "Batch 7 navy Paynter, grey Ivy crew, olive pleats, Chelseas — around town.",
