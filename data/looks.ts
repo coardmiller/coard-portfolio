@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "chambray-olive-pleats",
+    date: "2026-08-28",
+    caption: "Faded chambray OCBD, olive double-pleat cuffs, brown loafers. No denim.",
+    src: "/images/looks/chambray-olive-pleats.jpg",
+    alt: "Chambray shirt, olive pleated cuffed trousers, brown loafers",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "chambray-tan-cords",
+    date: "2026-08-28",
+    caption: "Chambray, olive chore, tan cords, loafers.",
+    src: "/images/looks/chambray-tan-cords.jpg",
+    alt: "Chambray, olive jacket, tan corduroy trousers, loafers on brick",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "chambray-olive-or-cords-knolling",
+    date: "2026-08-28",
+    caption: "Knolling: chambray with olive pleats or tan cords. Light 501s stay out.",
+    src: "/images/looks/chambray-olive-or-cords-knolling.jpg",
+    alt: "Overhead chambray, olive pleats, tan cords, loafers",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "rainy-arc-tee-501s-blazers",
     date: "2026-08-28",
     caption: "A worn look.",
