@@ -29,7 +29,7 @@ A minimalist, high-performance portfolio showcasing:
 - `/about` - About
 - `/reading` - Reading
 - `/experiments` - Experiments index (`/playground` redirects here)
-- `/style` - Personal look gallery (WebGL). Separate from Style Studio.
+- `/style` - Personal lookbook (masonry). Separate from Style Studio.
 - CV/Resume information
 
 ### Adding a look
