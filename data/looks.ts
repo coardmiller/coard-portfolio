@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "grey-crew-khaki-chinos",
+    date: "2026-08-28",
+    caption: "Heather grey crew, khaki chinos, Blundstones. Untucked.",
+    src: "/images/looks/grey-crew-khaki-chinos.jpg",
+    alt: "Heather grey crewneck, khaki chinos, brown Chelsea boots",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "grey-crew-m65-street",
+    date: "2026-08-28",
+    caption: "Grey crew under an olive M-65, jeans, Blundstones, NY cap.",
+    src: "/images/looks/grey-crew-m65-street.jpg",
+    alt: "Grey sweatshirt under olive field jacket, jeans, boots, navy cap",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "grey-crew-knolling",
+    date: "2026-08-28",
+    caption: "Knolling: grey crew, M-65, khaki chinos, Blundstones, NY cap.",
+    src: "/images/looks/grey-crew-knolling.jpg",
+    alt: "Overhead grey crewneck, olive M-65, khaki chinos, Blundstones, NY cap",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "fall-stroller-m65",
     date: "2026-08-28",
     caption: "Fall morning walk. Olive M-65, navy quarter-zip, khaki chinos, Blundstones, NY cap.",
