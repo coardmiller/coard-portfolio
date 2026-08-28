@@ -21,6 +21,46 @@ const COLS: Record<SizeLevel, { base: number; md: number; lg: number; xl: number
   2: { base: 2, md: 2, lg: 2, xl: 3 },
 };
 
+
+function colCountFor(size: SizeLevel): number {
+  const w = window.innerWidth;
+  const cols = COLS[size];
+  if (w >= 1440) return cols.xl;
+  if (w >= 1024) return cols.lg;
+  if (w >= 768) return cols.md;
+  return cols.base;
+}
+
+function clearMasonryPack(wall: HTMLElement) {
+  wall.style.height = '';
+  for (const tile of wall.querySelectorAll<HTMLElement>('.look-tile')) {
+    tile.style.position = '';
+    tile.style.left = '';
+    tile.style.top = '';
+    tile.style.width = '';
+  }
+}
+
+function packMasonry(wall: HTMLElement, cols: number, gap: number) {
+  const tiles = Array.from(wall.querySelectorAll<HTMLElement>('.look-tile'));
+  const totalW = wall.clientWidth;
+  if (totalW <= 0 || tiles.length === 0 || cols < 1) return;
+  const colW = (totalW - gap * (cols - 1)) / cols;
+  const heights = Array(cols).fill(0);
+  for (const tile of tiles) {
+    tile.style.position = 'absolute';
+    tile.style.width = `${colW}px`;
+  }
+  for (const tile of tiles) {
+    const col = heights.indexOf(Math.min(...heights));
+    const h = tile.getBoundingClientRect().height;
+    tile.style.left = `${col * (colW + gap)}px`;
+    tile.style.top = `${heights[col]}px`;
+    heights[col] += h + gap;
+  }
+  wall.style.height = `${Math.max(0, ...heights) - gap}px`;
+}
+
 type LookbookPrefs = { layout: LayoutMode; size: SizeLevel; gap: GapLevel };
 
 const DEFAULT_PREFS: LookbookPrefs = { layout: 'masonry', size: 0, gap: 0 };
@@ -356,16 +396,35 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   }, [prefs]);
 
   useLayoutEffect(() => {
-    if (intro !== 'wait') return;
-    if (reducedMotion) {
-      setIntro('ready');
-      return;
-    }
     const wall = wallRef.current;
     if (!wall) return;
-    setDelayById(visualRowDelays(wall));
-    setIntro('stagger');
-  }, [reducedMotion, intro]);
+    const gap = GAP_PX[prefs.gap];
+    if (prefs.layout === 'masonry') {
+      packMasonry(wall, colCountFor(prefs.size), gap);
+    } else {
+      clearMasonryPack(wall);
+    }
+    if (intro === 'wait') {
+      if (reducedMotion) {
+        setIntro('ready');
+      } else {
+        setDelayById(visualRowDelays(wall));
+        setIntro('stagger');
+      }
+    }
+    const ro = new ResizeObserver(() => {
+      if (prefs.layout === 'masonry') packMasonry(wall, colCountFor(prefs.size), gap);
+    });
+    ro.observe(wall);
+    const onLoad = () => {
+      if (prefs.layout === 'masonry') packMasonry(wall, colCountFor(prefs.size), gap);
+    };
+    wall.addEventListener('load', onLoad, true);
+    return () => {
+      ro.disconnect();
+      wall.removeEventListener('load', onLoad, true);
+    };
+  }, [reducedMotion, intro, prefs.layout, prefs.size, prefs.gap]);
 
   useEffect(() => {
     if (intro !== 'stagger' || !delayById) return;
@@ -421,7 +480,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         </div>
       </div>
 
-      {!active && (
+      {!active && createPortal(
         <LookbookToolbar
           layout={prefs.layout}
           size={prefs.size}
@@ -429,7 +488,8 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           onLayout={(layout) => setPrefsAnimated((p) => ({ ...p, layout }))}
           onSize={(size) => setPrefsAnimated((p) => ({ ...p, size }))}
           onGap={(gap) => setPrefsAnimated((p) => ({ ...p, gap }))}
-        />
+        />,
+        document.body
       )}
 
       {active && (
@@ -450,19 +510,21 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         }
 
         .lookbook-wall {
+          position: relative;
+        }
+        .lookbook-wall.is-grid {
           display: grid;
           grid-template-columns: repeat(var(--cols-base), minmax(0, 1fr));
           gap: var(--look-gap);
-          align-items: start;
         }
         @media (min-width: 768px) {
-          .lookbook-wall { grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr)); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr)); }
         }
         @media (min-width: 1024px) {
-          .lookbook-wall { grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr)); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr)); }
         }
         @media (min-width: 1440px) {
-          .lookbook-wall { grid-template-columns: repeat(var(--cols-xl), minmax(0, 1fr)); }
+          .lookbook-wall.is-grid { grid-template-columns: repeat(var(--cols-xl), minmax(0, 1fr)); }
         }
 
         .look-tile {
@@ -489,6 +551,9 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           opacity: 1;
           animation: none;
         }
+        .lookbook-toolbar {
+          view-transition-name: lookbook-toolbar;
+        }
         ::view-transition-old(root),
         ::view-transition-new(root) {
           animation: none;
@@ -496,6 +561,17 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         ::view-transition-group(*) {
           animation-duration: 0.48s;
           animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        ::view-transition-group(lookbook-toolbar) {
+          z-index: 1000;
+          overflow: hidden;
+          border-radius: 9999px;
+        }
+        ::view-transition-old(lookbook-toolbar),
+        ::view-transition-new(lookbook-toolbar) {
+          overflow: hidden;
+          border-radius: 9999px;
+          height: 100%;
         }
         .look-tile img {
           position: absolute;
@@ -573,7 +649,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           left: 0;
           right: 0;
           bottom: 0;
-          z-index: 40;
+          z-index: 80;
           display: flex;
           justify-content: center;
           pointer-events: none;
