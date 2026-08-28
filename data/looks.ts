@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "golf-quiet-staff",
+    date: "2026-08-28",
+    caption: "Golf: light blue OCBD, navy sweater over shoulders, khaki chinos, white shoes.",
+    src: "/images/looks/golf-quiet-staff.jpg",
+    alt: "Adult man, head cropped: light blue oxford, navy sweater tied over shoulders, khaki chinos, white and brown golf shoes, overcast club terrace, no hat.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "golf-quiet-fairway",
+    date: "2026-08-28",
+    caption: "Golf: navy chore, white polo, olive chinos, Chelseas — cool morning.",
+    src: "/images/looks/golf-quiet-fairway.jpg",
+    alt: "Adult man on fairway path: navy men's chore open over white polo, olive chinos, brown Chelseas, face turned away, no hat, quiet course green.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "golf-quiet-knoll",
+    date: "2026-08-28",
+    caption: "Golf knolling: navy polo, navy crew, khaki chinos, white shoes, belt.",
+    src: "/images/looks/golf-quiet-knoll.jpg",
+    alt: "Sparse overhead knolling on pale stone: navy polo, navy crewneck, khaki chinos, white leather golf shoes, brown belt. No hat, no props.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "shaggy-quiet-staff",
     date: "2026-08-28",
     caption: "Jamieson's Shaggy Dog ecru, olive pleats, Chelseas — no hat.",
