@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "paynter-navy-grey-crew",
+    date: "2026-08-28",
+    caption: "Navy Paynter chore, grey crew, khaki chinos, Blundstones.",
+    src: "/images/looks/paynter-navy-grey-crew.jpg",
+    alt: "Navy Paynter three-pocket chore worn open over a heather grey crewneck, khaki chinos, brown Blundstone Chelsea boots, white tile shop-staff snap, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "paynter-navy-chambray-cords",
+    date: "2026-08-28",
+    caption: "Navy Paynter, chambray OCBD, tan cords, loafers.",
+    src: "/images/looks/paynter-navy-chambray-cords.jpg",
+    alt: "Navy Paynter chore worn open over a medium-blue chambray shirt, tan corduroy trousers, brown loafers, brick street, face turned away.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "paynter-navy-knolling",
+    date: "2026-08-28",
+    caption: "Navy Paynter fall rotation: grey crew, chambray, khaki, olive pleats, Blundstones, loafers.",
+    src: "/images/looks/paynter-navy-knolling.jpg",
+    alt: "Overhead knolling of a navy Paynter three-pocket chore jacket with grey crew, chambray shirt, khaki chinos, olive pleated trousers, brown Blundstones and brown loafers on grey wool.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "grey-crew-khaki-chinos",
     date: "2026-08-28",
     caption: "Heather grey crew, khaki chinos, Blundstones. Untucked.",
