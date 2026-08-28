@@ -241,10 +241,10 @@ const ToolBtn: React.FC<{
 
 const IconMasonry = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
-    <rect x="0" y="0" width="6" height="8" rx="0.5" fill="currentColor" />
-    <rect x="0" y="9.5" width="6" height="3.5" rx="0.5" fill="currentColor" />
-    <rect x="7" y="0" width="6" height="4.5" rx="0.5" fill="currentColor" />
-    <rect x="7" y="6" width="6" height="7" rx="0.5" fill="currentColor" />
+    <rect x="0" y="0" width="5.5" height="8" rx="0.5" fill="currentColor" />
+    <rect x="0" y="10" width="5.5" height="3" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="0" width="5.5" height="4.5" rx="0.5" fill="currentColor" />
+    <rect x="7.5" y="6.5" width="5.5" height="6.5" rx="0.5" fill="currentColor" />
   </svg>
 );
 
