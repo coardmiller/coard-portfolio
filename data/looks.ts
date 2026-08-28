@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "rainy-arc-tee-501s-blazers",
+    date: "2026-08-28",
+    caption: "A worn look.",
+    src: "/images/looks/rainy-arc-tee-501s-blazers.jpg",
+    alt: "Navy Arc'teryx shell, white tee, light wash 501s, white Nike Blazer mids",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "rainy-arc-chambray-501s-blazers",
+    date: "2026-08-28",
+    caption: "A worn look.",
+    src: "/images/looks/rainy-arc-chambray-501s-blazers.jpg",
+    alt: "Navy Arc'teryx, chambray, light 501s, white Blazer mids on a wet street",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "rainy-arc-501s-blazers-knolling",
+    date: "2026-08-28",
+    caption: "The kit, knolled.",
+    src: "/images/looks/rainy-arc-501s-blazers-knolling.jpg",
+    alt: "Overhead of navy rain shell, light-wash Levi's, white Blazer mids",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "look-01",
     date: "Aug 2026",
     caption: "The kit, knolled.",

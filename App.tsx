@@ -320,8 +320,7 @@ const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isExperimentDetailPage = location.pathname.startsWith('/experiments/') && location.pathname !== '/experiments';
-  const isStylePage = location.pathname === '/style';
-  const hideHeader = isExperimentDetailPage || isStylePage;
+  const hideHeader = isExperimentDetailPage;
   
   // Settings State
   const [theme, setTheme] = useState<ThemeMode>(() => {
