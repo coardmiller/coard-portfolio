@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { looks, type Look } from '../data/looks';
 
@@ -7,6 +7,44 @@ type Rect = { left: number; top: number; width: number; height: number };
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 const DURATION_MS = 520;
 const SOURCE_ASPECT = 1536 / 1024;
+const ROW_TOLERANCE_PX = 24;
+const STAGGER_MS = 48;
+
+function visualRowDelays(wall: HTMLElement): Record<string, string> {
+  const tiles = Array.from(wall.querySelectorAll<HTMLElement>('.look-tile'));
+  const measured = tiles.map((el) => {
+    const rect = el.getBoundingClientRect();
+    return { el, top: rect.top, left: rect.left };
+  });
+
+  measured.sort((a, b) => a.top - b.top || a.left - b.left);
+
+  const ordered: typeof measured = [];
+  let row: typeof measured = [];
+  let rowTop = 0;
+
+  for (const item of measured) {
+    if (row.length > 0 && Math.abs(item.top - rowTop) >= ROW_TOLERANCE_PX) {
+      row.sort((a, b) => a.left - b.left);
+      ordered.push(...row);
+      row = [item];
+      rowTop = item.top;
+    } else {
+      if (row.length === 0) rowTop = item.top;
+      row.push(item);
+    }
+  }
+  row.sort((a, b) => a.left - b.left);
+  ordered.push(...row);
+
+  const delays: Record<string, string> = {};
+  ordered.forEach((item, i) => {
+    const id = item.el.dataset.lookId;
+    if (id) delays[id] = `${i * STAGGER_MS}ms`;
+  });
+  return delays;
+}
+
 
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(() =>
@@ -156,6 +194,9 @@ const LookExpand: React.FC<{
 const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) => {
   const reducedMotion = usePrefersReducedMotion();
   const [active, setActive] = useState<{ look: Look; origin: Rect } | null>(null);
+  const [delayById, setDelayById] = useState<Record<string, string> | null>(null);
+  const wallRef = useRef<HTMLDivElement>(null);
+  const didStaggerRef = useRef(false);
 
   const open = (look: Look, el: HTMLElement) => {
     setActive({ look, origin: measure(el) });
@@ -163,10 +204,19 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
 
   const close = useCallback(() => setActive(null), []);
 
+  useLayoutEffect(() => {
+    if (reducedMotion || didStaggerRef.current) return;
+    const wall = wallRef.current;
+    if (!wall) return;
+    const delays = visualRowDelays(wall);
+    didStaggerRef.current = true;
+    setDelayById(delays);
+  }, [reducedMotion]);
+
   return (
     <main className={`relative z-10 lookbook ${animationClass}`}>
       <div className="lookbook-pad">
-        <div className="lookbook-wall">
+        <div ref={wallRef} className={`lookbook-wall${delayById ? ' is-staggered' : ''}`}>
           {looks.map((look, index) => {
             const isActive = active?.look.id === look.id;
             return (
@@ -180,7 +230,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
                   {
                     '--aspect': look.aspect,
                     '--object-pos': look.objectPosition,
-                    animationDelay: `${Math.min(index, 24) * 32}ms`,
+                    ...(delayById ? { '--look-delay': delayById[look.id] } : {}),
                   } as React.CSSProperties
                 }
                 aria-label={look.alt}
@@ -232,6 +282,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .look-tile {
           --aspect: 1/1;
           --object-pos: top;
+          --look-delay: 0ms;
           position: relative;
           display: block;
           width: 100%;
@@ -243,7 +294,11 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           break-inside: avoid;
           aspect-ratio: var(--aspect);
           overflow: hidden;
+          opacity: 0;
+        }
+        .lookbook-wall.is-staggered .look-tile {
           animation: lookRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+          animation-delay: var(--look-delay);
         }
         @media (min-width: 768px) {
           .look-tile { margin-bottom: 12px; }
@@ -320,7 +375,9 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .look-tile {
+          .look-tile,
+          .lookbook-wall.is-staggered .look-tile {
+            opacity: 1;
             animation: none;
           }
           .look-tile img {
