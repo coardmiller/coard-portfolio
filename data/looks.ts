@@ -19,33 +19,6 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
-    id: "golf-hot-staff",
-    date: "2026-08-28",
-    caption: "85° golf: white Peter Millar polo, khaki pants, white PM hat.",
-    src: "/images/looks/golf-hot-staff.jpg",
-    alt: "Adult man on club terrace in heat: white Peter Millar polo, light khaki pants, brown belt, white golf hat, no jacket, course green behind.",
-    aspect: "3/4",
-    objectPosition: "top",
-  },
-  {
-    id: "golf-hot-fairway",
-    date: "2026-08-28",
-    caption: "85° golf: light blue Peter Millar polo, stone pants, white bucket hat.",
-    src: "/images/looks/golf-hot-fairway.jpg",
-    alt: "Adult man on tee box in summer: light blue Peter Millar polo, light khaki pants, white golf shoes, white bucket hat, iron in hand, fairway behind, no outer layer.",
-    aspect: "4/5",
-    objectPosition: "top",
-  },
-  {
-    id: "golf-hot-knoll",
-    date: "2026-08-28",
-    caption: "85° golf knolling: white PM polo, khaki, white hat, white shoes, belt.",
-    src: "/images/looks/golf-hot-knoll.jpg",
-    alt: "Sparse overhead knolling: white Peter Millar polo, khaki trousers, white golf hat, white golf shoes, brown belt on pale stone. Hot-weather kit only.",
-    aspect: "1/1",
-    objectPosition: "center",
-  },
-  {
     id: "shaggy-quiet-staff",
     date: "2026-08-28",
     caption: "Jamieson's Shaggy Dog ecru, olive pleats, Chelseas — no hat.",
