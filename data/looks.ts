@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "work-green-polo-tan-cords",
+    date: "2026-09-02",
+    caption: "Coard, office. Forest green polo, tan cords, loafers.",
+    src: "/images/looks/work-green-polo-tan-cords.jpg",
+    alt: "Forest green cotton pique polo tucked into tan 5-pocket corduroy trousers, brown loafers, clean apartment with oak bookshelf and linen curtain, head cropped, no cap.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "work-paynter-green-polo-cords",
+    date: "2026-09-02",
+    caption: "Coard, if the AC is cold. Navy Paynter over forest green polo and tan cords.",
+    src: "/images/looks/work-paynter-green-polo-cords.jpg",
+    alt: "Navy Paynter chore worn open over a forest green polo, tan cords, brown loafers, apartment interior, face turned away, no cap.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "work-green-polo-cords-knolling",
+    date: "2026-09-02",
+    caption: "Coard work kit: forest green polo, tan cords, navy Paynter, loafers.",
+    src: "/images/looks/work-green-polo-cords-knolling.jpg",
+    alt: "Overhead knolling of a forest green polo, tan corduroy trousers, navy chore jacket, brown loafers, and brown belt on an oak floor beside a linen curtain.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "work-paynter-olive-pleats",
     date: "2026-09-01",
     caption: "Coard, office. Navy Paynter, white OCBD, olive pleats, loafers.",
