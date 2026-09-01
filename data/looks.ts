@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "heat-polo-khaki-shorts",
+    date: "2026-09-01",
+    caption: "Coard, 95\u00b0 Charlotte. Navy pique polo, khaki chino shorts, Braves cap, loafers.",
+    src: "/images/looks/heat-polo-khaki-shorts.jpg",
+    alt: "Navy cotton pique polo, khaki 7-8 inch chino shorts, navy Atlanta Braves cap, brown loafers, white tile shop-staff snap, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "heat-ocbd-olive-shorts",
+    date: "2026-09-01",
+    caption: "Coard, hot day. White OCBD, olive chino shorts, Birkenstock Bostons, Braves cap.",
+    src: "/images/looks/heat-ocbd-olive-shorts.jpg",
+    alt: "White oxford button-down with rolled sleeves, olive chino shorts, taupe Birkenstock Boston clogs, navy Atlanta Braves cap, brick street, face hidden by brim.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "heat-knolling",
+    date: "2026-09-01",
+    caption: "Coard heat kit: navy polo, white OCBD, khaki and olive shorts, Braves cap, loafers, Bostons.",
+    src: "/images/looks/heat-knolling.jpg",
+    alt: "Overhead knolling of navy polo, white OCBD, khaki and olive chino shorts, navy Braves cap, brown loafers and taupe Birkenstock Bostons on linen.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "shaggy-quiet-staff",
     date: "2026-08-28",
     caption: "Jamieson's Shaggy Dog ecru, olive pleats, Chelseas — no hat.",
