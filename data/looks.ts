@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "work-paynter-olive-pleats",
+    date: "2026-09-01",
+    caption: "Coard, office. Navy Paynter, white OCBD, olive pleats, loafers.",
+    src: "/images/looks/work-paynter-olive-pleats.jpg",
+    alt: "Navy Paynter chore worn open over a tucked white oxford, olive double-pleat cuffed trousers, brown loafers, office interior, head cropped, no cap.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "work-ocbd-khakis-commute",
+    date: "2026-09-01",
+    caption: "Coard, 95\u00b0 commute. White OCBD, khaki chinos, Blundstones. No jacket.",
+    src: "/images/looks/work-ocbd-khakis-commute.jpg",
+    alt: "White oxford tucked into khaki chinos, brown Chelsea boots, walking away on a brick sidewalk, no jacket, no cap.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "work-knolling",
+    date: "2026-09-01",
+    caption: "Coard work kit: navy Paynter, white OCBD, navy merino, olive pleats, khaki chinos, loafers, Blundstones.",
+    src: "/images/looks/work-knolling.jpg",
+    alt: "Overhead knolling of a navy three-pocket chore, white OCBD, navy merino crew, olive trousers, khaki chinos, brown loafers, brown Chelsea boots, and a brown belt on grey wool.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "heat-polo-khaki-shorts",
     date: "2026-09-01",
     caption: "Coard, 95\u00b0 Charlotte. Navy pique polo, khaki chino shorts, Braves cap, loafers.",
