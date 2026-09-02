@@ -19,6 +19,24 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "levis-sage-tee-gray-vans",
+    date: "2026-09-02",
+    caption: "Coard. Sage Levi's tee, light khakis, gray Vans Authentics.",
+    src: "/images/looks/levis-sage-tee-gray-vans.jpg",
+    alt: "Faded sage Levi's t-shirt tucked into light khaki trousers, gray canvas Vans Authentics, apartment interior, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "levis-sage-tee-old-skool",
+    date: "2026-09-02",
+    caption: "Coard. Sage tee, khakis, gray Old Skools. The louder Vans.",
+    src: "/images/looks/levis-sage-tee-old-skool.jpg",
+    alt: "Sage t-shirt, khaki chinos, gray Vans Old Skool with white side stripe, street, face turned away.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
     id: "levis-sage-tee-khakis-tuck",
     date: "2026-09-02",
     caption: "Coard. Faded sage Levi's tee tucked into light khakis, loafers.",
