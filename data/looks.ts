@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "levis-sage-tee-light-501s",
+    date: "2026-09-02",
+    caption: "Coard. Sage Levi's tee, light 501s, gray Vans. Untucked.",
+    src: "/images/looks/levis-sage-tee-light-501s.jpg",
+    alt: "Faded sage Levi's t-shirt worn untucked over light-wash 501s, gray canvas Vans, apartment interior, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "levis-sage-tee-501s-paynter",
+    date: "2026-09-02",
+    caption: "Coard. Navy Paynter over sage tee and light 501s.",
+    src: "/images/looks/levis-sage-tee-501s-paynter.jpg",
+    alt: "Navy Paynter chore worn open over a sage t-shirt, light-wash 501s, sneakers, street, face turned away.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "levis-sage-tee-501s-knolling",
+    date: "2026-09-02",
+    caption: "Coard fallback kit: sage tee, light 501s, Paynter, Vans, Blundstones.",
+    src: "/images/looks/levis-sage-tee-501s-knolling.jpg",
+    alt: "Overhead knolling of a sage Levi's t-shirt, light-wash 501s, navy Paynter, gray Vans, and brown Blundstones on oak floor.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "levis-sage-tee-gray-vans",
     date: "2026-09-02",
     caption: "Coard. Sage Levi's tee, light khakis, gray Vans Authentics.",
