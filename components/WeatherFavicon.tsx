@@ -3,63 +3,148 @@ import { useEffect } from 'react';
 const LAT = 35.2271;
 const LON = -80.8431;
 const REFRESH_MS = 30 * 60 * 1000;
+const CACHE_KEY = 'coard-miller-charlotte-weather';
+const UA = 'coardmiller.com weather favicon';
 
-function svgFor(code: number, isDay: boolean): string {
-  const stroke = '#111111';
-  const sun = `<circle cx="16" cy="16" r="6" fill="#f4b942"/>
-    <g stroke="#f4b942" stroke-width="2" stroke-linecap="round">
-      <path d="M16 4v3M16 25v3M4 16h3M25 16h3M7.2 7.2l2.1 2.1M22.7 22.7l2.1 2.1M7.2 24.8l2.1-2.1M22.7 9.3l2.1-2.1"/>
+type Sky = 'sun' | 'moon' | 'partly' | 'cloud' | 'rain' | 'storm' | 'snow' | 'fog';
+
+function kindFromText(text: string, isDay: boolean): Sky {
+  const t = text.toLowerCase();
+  if (/thunder|t-?storm/.test(t)) return 'storm';
+  if (/snow|sleet|flurries|ice/.test(t)) return 'snow';
+  if (/fog|mist|haze/.test(t)) return 'fog';
+  if (/rain|shower|drizzle/.test(t)) return 'rain';
+  if (/overcast|cloudy/.test(t) && !/partly|mostly sunny|mostly clear/.test(t)) return 'cloud';
+  if (/partly|mostly cloudy|mostly sunny/.test(t)) return 'partly';
+  if (/clear|sunny|fair/.test(t)) return isDay ? 'sun' : 'moon';
+  return isDay ? 'sun' : 'moon';
+}
+
+function kindFromWmo(code: number, isDay: boolean): Sky {
+  if (code === 45 || code === 48) return 'fog';
+  if ([95, 96, 99].includes(code)) return 'storm';
+  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return 'snow';
+  if (code >= 51) return 'rain';
+  if (code >= 3) return 'cloud';
+  if (code === 2) return 'partly';
+  return isDay ? 'sun' : 'moon';
+}
+
+function svgFor(kind: Sky): string {
+  const sun = `<circle cx="16" cy="14" r="6.2" fill="#f5b942"/>
+    <g stroke="#f5b942" stroke-width="2.4" stroke-linecap="round">
+      <path d="M16 2.6v2.6M16 22.8v2.6M3.8 14h2.6M25.6 14h2.6M6.6 4.6l1.9 1.9M23.5 21.5l1.9 1.9M6.6 23.4l1.9-1.9M23.5 6.5l1.9-1.9"/>
     </g>`;
-  const moon = `<path fill="#c9d4e8" d="M18 6.5a9.5 9.5 0 1 0 7.4 15.3A8 8 0 0 1 18 6.5z"/>`;
-  const cloud = `<path fill="#8ea0b5" d="M10 22h13.5a5 5 0 0 0 .4-10 7 7 0 0 0-13.2 1.8A4.5 4.5 0 0 0 10 22z"/>`;
-  const rain = `<g stroke="#4a7fd4" stroke-width="1.8" stroke-linecap="round">
-      <path d="M12 24.5l-1 3.2M16.5 24.5l-1 3.2M21 24.5l-1 3.2"/>
+  const moon = `<path fill="#d7e2f2" d="M19 4.8a10 10 0 1 0 6.8 16.2A8.4 8.4 0 0 1 19 4.8z"/>`;
+  const cloud = `<path fill="#7f93aa" d="M8.4 21.6h16.2a5.3 5.3 0 0 0 .3-10.6 7.6 7.6 0 0 0-14.4 2A4.8 4.8 0 0 0 8.4 21.6z"/>`;
+  const rain = `<g stroke="#3f74c8" stroke-width="2.2" stroke-linecap="round">
+      <path d="M11.4 24.2l-1.1 3.6M16.4 24.2l-1.1 3.6M21.4 24.2l-1.1 3.6"/>
     </g>`;
   const snow = `<g fill="#9ec7ea">
-      <circle cx="12" cy="26" r="1.3"/><circle cx="16.5" cy="27.2" r="1.3"/><circle cx="21" cy="26" r="1.3"/>
+      <circle cx="11.6" cy="26.2" r="1.5"/><circle cx="16.4" cy="27.4" r="1.5"/><circle cx="21.2" cy="26.2" r="1.5"/>
     </g>`;
-  const bolt = `<path fill="#f4b942" d="M17.5 20l-2.4 6.8 6.2-8.2h-3.8l2-5.6-6.4 7z"/>`;
-  const fog = `<g stroke="${stroke}" stroke-width="1.8" stroke-linecap="round" opacity="0.7">
-      <path d="M7 18h18M6 21.5h20M8 25h16"/>
+  const bolt = `<path fill="#f5b942" d="M17.8 19.2l-2.6 7.2 6.6-8.6h-4l2.1-5.8-7 7.2z"/>`;
+  const fog = `<g stroke="#6b7280" stroke-width="2.2" stroke-linecap="round">
+      <path d="M6 16.5h20M5 20.4h22M7 24.3h18"/>
     </g>`;
 
-  let body = isDay ? sun : moon;
-  if (code === 45 || code === 48) body = fog;
-  else if ([95, 96, 99].includes(code)) body = cloud + bolt;
-  else if ((code >= 71 && code <= 77) || code === 85 || code === 86) body = cloud + snow;
-  else if (code >= 51) body = cloud + rain;
-  else if (code >= 2) body = (isDay ? `<g opacity="0.55">${sun}</g>` : moon) + cloud;
+  const body =
+    kind === 'moon' ? moon :
+    kind === 'fog' ? fog :
+    kind === 'storm' ? cloud + bolt :
+    kind === 'snow' ? cloud + snow :
+    kind === 'rain' ? cloud + rain :
+    kind === 'cloud' ? cloud :
+    kind === 'partly' ? `<g transform="translate(0 -2)">${sun}</g>${cloud}` :
+    sun;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${body}</svg>`;
 }
 
 function setIcon(svg: string) {
   const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
-  let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.head.appendChild(link);
+  const apply = (rel: string) => {
+    let link = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = rel;
+      document.head.appendChild(link);
+    }
+    link.type = 'image/svg+xml';
+    link.href = href;
+  };
+  apply('icon');
+  apply('shortcut icon');
+  apply('apple-touch-icon');
+}
+
+async function fromNws(): Promise<Sky> {
+  const points = await fetch(`https://api.weather.gov/points/${LAT},${LON}`, {
+    headers: { Accept: 'application/geo+json', 'User-Agent': UA },
+  });
+  if (!points.ok) throw new Error('points');
+  const pointJson = await points.json();
+  const hourlyUrl = pointJson?.properties?.forecastHourly;
+  if (!hourlyUrl) throw new Error('hourly url');
+  const hourly = await fetch(hourlyUrl, {
+    headers: { Accept: 'application/geo+json', 'User-Agent': UA },
+  });
+  if (!hourly.ok) throw new Error('hourly');
+  const data = await hourly.json();
+  const period = data?.properties?.periods?.[0];
+  const text = String(period?.shortForecast || '');
+  const isDay = Boolean(period?.isDaytime);
+  return kindFromText(text, isDay);
+}
+
+async function fromOpenMeteo(): Promise<Sky> {
+  const res = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=weather_code,is_day&timezone=America/New_York`
+  );
+  if (!res.ok) throw new Error('meteo');
+  const data = await res.json();
+  const code = Number(data?.current?.weather_code);
+  const isDay = Number(data?.current?.is_day) === 1;
+  return kindFromWmo(Number.isFinite(code) ? code : 0, isDay);
+}
+
+function readCache(): Sky | null {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { kind?: Sky; at?: number };
+    if (!parsed.kind || !parsed.at) return null;
+    if (Date.now() - parsed.at > REFRESH_MS * 2) return null;
+    return parsed.kind;
+  } catch {
+    return null;
   }
-  link.type = 'image/svg+xml';
-  link.href = href;
+}
+
+function writeCache(kind: Sky) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ kind, at: Date.now() }));
+  } catch {
+    /* ignore */
+  }
 }
 
 export default function WeatherFavicon() {
   useEffect(() => {
     let cancelled = false;
+    const paint = (kind: Sky) => {
+      if (!cancelled) setIcon(svgFor(kind));
+    };
+    const cached = readCache();
+    paint(cached ?? 'sun');
+
     const run = async () => {
       try {
-        const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=weather_code,is_day&timezone=America/New_York`
-        );
-        const data = await res.json();
-        if (cancelled) return;
-        const code = Number(data?.current?.weather_code);
-        const isDay = Number(data?.current?.is_day) === 1;
-        setIcon(svgFor(Number.isFinite(code) ? code : 0, isDay));
+        const kind = await fromNws().catch(() => fromOpenMeteo());
+        writeCache(kind);
+        paint(kind);
       } catch {
-        if (!cancelled) setIcon(svgFor(0, true));
+        paint(cached ?? 'sun');
       }
     };
     void run();
@@ -70,5 +155,4 @@ export default function WeatherFavicon() {
     };
   }, []);
   return null;
-};
-
+}

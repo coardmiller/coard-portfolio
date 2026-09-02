@@ -684,29 +684,17 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   }, [prefs.layout, prefs.size, prefs.gap]);
 
   const shuffleLooks = useCallback(() => {
-    pendingScrollRef.current = window.scrollY;
-    const apply = () => setOrder((prev) => {
-      const ids = (prev ?? looks.map((look) => look.id)).slice();
-      return shuffleList(ids);
-    });
-    const restore = () => {
-      const y = pendingScrollRef.current;
-      if (y == null) return;
+    const y = window.scrollY;
+    setOrder((prev) => shuffleList((prev ?? looks.map((look) => look.id)).slice()));
+    requestAnimationFrame(() => {
       window.scrollTo({ top: y, left: 0, behavior: 'instant' });
-    };
-    const doc = document as Document & {
-      startViewTransition?: (cb: () => void) => { finished: Promise<unknown> };
-    };
-    if (!reducedMotion && typeof doc.startViewTransition === 'function') {
-      const vt = doc.startViewTransition(() => {
-        flushSync(apply);
-        restore();
-      });
-      void vt.finished.then(restore).catch(restore);
-    } else {
-      apply();
-    }
-  }, [reducedMotion]);
+      const wall = wallRef.current;
+      if (!wall) return;
+      if (prefs.layout === 'masonry') {
+        packMasonry(wall, colCountFor(prefs.size), GAP_PX[prefs.gap]);
+      }
+    });
+  }, [prefs.layout, prefs.size, prefs.gap]);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
