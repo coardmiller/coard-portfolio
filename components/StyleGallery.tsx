@@ -152,16 +152,15 @@ function measure(el: Element): Rect {
   return { left: r.left, top: r.top, width: r.width, height: r.height };
 }
 
-const PANEL_W = 320;
-const TOOLBAR_H = 80;
+function stripName(text: string): string {
+  return text.replace(/\b(Coard|0xDrog)\.?\s*/gi, '').replace(/\s{2,}/g, ' ').trim();
+}
 
 function destRect(panelOpen: boolean): Rect {
-  const wide = window.innerWidth >= 720;
-  const panel = panelOpen && wide ? PANEL_W : 0;
-  const padX = 20;
-  const padTop = 20;
-  const padBottom = TOOLBAR_H + (panelOpen && !wide ? 220 : 0);
-  const maxW = Math.max(160, window.innerWidth - padX * 2 - panel);
+  const padX = 16;
+  const padTop = 16;
+  const padBottom = panelOpen ? 168 : 72;
+  const maxW = Math.max(160, window.innerWidth - padX * 2);
   const maxH = Math.max(160, window.innerHeight - padTop - padBottom);
   let width = maxW;
   let height = width / SOURCE_ASPECT;
@@ -171,22 +170,22 @@ function destRect(panelOpen: boolean): Rect {
   }
   return {
     left: padX + (maxW - width) / 2,
-    top: padTop + (maxH - height) / 2,
+    top: padTop + Math.max(0, (maxH - height) / 2 - (panelOpen ? 18 : 0)),
     width,
     height,
   };
 }
 
 function lookKeywords(look: Look): string[] {
-  if (look.keywords && look.keywords.length) return look.keywords;
+  if (look.keywords && look.keywords.length) {
+    return look.keywords.map(stripName).filter(Boolean).filter((k) => k.toLowerCase() !== 'coard');
+  }
   const stop = new Set([
-    'coard', 'a', 'an', 'the', 'and', 'or', 'over', 'with', 'into', 'on', 'of',
-    'to', 'for', 'in', 'if', 'is', 'kit', 'look',
+    'coard', '0xdrog', 'a', 'an', 'the', 'and', 'or', 'over', 'with', 'into', 'on', 'of',
+    'to', 'for', 'in', 'if', 'is', 'kit', 'look', 'the', 'louder', 'old', 'skool',
   ]);
-  const raw = [
-    ...look.id.split('-'),
-    ...look.caption.replace(/[.,]/g, ' ').split(/\s+/),
-  ];
+  const source = stripName(`${look.id.replace(/-/g, ' ')} ${look.prompt || look.alt}`);
+  const raw = source.replace(/[.,]/g, ' ').split(/\s+/);
   const seen = new Set<string>();
   const out: string[] = [];
   for (const token of raw) {
@@ -196,7 +195,7 @@ function lookKeywords(look: Look): string[] {
     seen.add(low);
     out.push(cleaned);
   }
-  return out.slice(0, 14);
+  return out.slice(0, 10);
 }
 
 const LookExpand: React.FC<{
@@ -213,8 +212,7 @@ const LookExpand: React.FC<{
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
   const keywords = lookKeywords(look);
-  const promptText = look.prompt || look.caption;
-  const promptLabel = look.prompt ? 'Prompt' : 'Caption';
+  const promptText = stripName(look.prompt || look.alt);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -334,7 +332,7 @@ const LookExpand: React.FC<{
         </div>
         {panelOpen && (
           <div className="look-expand-panel-body">
-            <p className="look-expand-kicker">{promptLabel}</p>
+            <p className="look-expand-kicker">Prompt</p>
             <p className="look-expand-prompt">{promptText}</p>
             {keywords.length > 0 && (
               <>
@@ -720,7 +718,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         )}
       </div>
 
-      {createPortal(
+      {!active && createPortal(
         <LookbookToolbar
           layout={prefs.layout}
           size={prefs.size}
@@ -895,47 +893,49 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .look-expand-panel {
           position: fixed;
           z-index: 10000;
-          right: 12px;
-          top: 12px;
+          left: 20px;
+          right: 72px;
+          bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+          top: auto;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
-          gap: 8px;
-          max-width: min(320px, calc(100vw - 24px));
+          align-items: stretch;
+          gap: 0;
+          max-width: none;
           cursor: default;
         }
         .look-expand-panel-tools {
+          position: fixed;
+          right: 16px;
+          bottom: calc(16px + env(safe-area-inset-bottom, 0px));
           display: flex;
           align-items: center;
           padding: 4px;
           border-radius: 9999px;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid #f3f4f6;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+          background: transparent;
+          border: 0;
+          box-shadow: none;
+          color: #111;
         }
         :root.dark .look-expand-panel-tools {
-          background: rgba(26, 26, 26, 0.95);
-          border-color: rgba(255, 255, 255, 0.1);
+          background: transparent;
+          border: 0;
           color: #f3f4f6;
         }
         .look-expand-panel-body {
-          width: min(300px, calc(100vw - 24px));
-          max-height: calc(100vh - 160px);
+          width: 100%;
+          max-height: 28vh;
           overflow: auto;
-          padding: 16px 16px 18px;
-          border-radius: 18px;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid #f3f4f6;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+          padding: 0 4px 8px 0;
+          border-radius: 0;
+          background: transparent;
+          border: 0;
+          box-shadow: none;
           color: #111;
         }
         :root.dark .look-expand-panel-body {
-          background: rgba(26, 26, 26, 0.95);
-          border-color: rgba(255, 255, 255, 0.1);
+          background: transparent;
+          border: 0;
           color: #f3f4f6;
         }
         .look-expand-kicker {
@@ -957,36 +957,22 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .look-expand-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
+          gap: 6px 10px;
           margin: 0;
           padding: 0;
           list-style: none;
         }
         .look-expand-tags li {
-          padding: 4px 9px;
-          border-radius: 9999px;
-          background: #f3f4f6;
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
           font-size: 12px;
           line-height: 1.2;
+          color: #6b7280;
         }
         :root.dark .look-expand-tags li {
-          background: rgba(255, 255, 255, 0.08);
-        }
-        @media (max-width: 719px) {
-          .look-expand-panel {
-            left: 12px;
-            right: 12px;
-            top: auto;
-            bottom: calc(72px + env(safe-area-inset-bottom, 0px));
-            align-items: stretch;
-          }
-          .look-expand-panel-tools {
-            align-self: flex-end;
-          }
-          .look-expand-panel-body {
-            width: 100%;
-            max-height: 28vh;
-          }
+          background: transparent;
+          color: #9ca3af;
         }
 
         .lookbook-toolbar-slot {
@@ -994,7 +980,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           left: 0;
           right: 0;
           bottom: 0;
-          z-index: 10050;
+          z-index: 80;
           display: flex;
           justify-content: center;
           pointer-events: none;
