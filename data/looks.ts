@@ -27,6 +27,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-light-501s.jpg",
     alt: "Faded sage Levi's t-shirt worn untucked over light-wash 501s, gray canvas Vans, apartment interior, head cropped.",
     aspect: "3/4",
+    prompt: "Match Japanese shop-staff refs. Ricoh GR IIIx 28mm, grain, no flash. Head cropped at nose, no baseball cap, feet at frame bottom.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light. Real room.\n\nTHIS outfit: faded sage oversized Levi's crewneck t-shirt with small chest logo, UN TUCKED, hem at the fly not mid-thigh. Light-wash Levi's 501 jeans, straight, slightly faded, NOT khaki, NOT dark indigo, NOT chambray shirt. Brown belt optional. Gray Vans Authentics (pewter canvas, white sole) or brown Blundstones. English country Ivy gone slightly skate weekend. Real wrinkles. Not CGI.",
+    keywords: ["Levi's", "sage tee", "501", "light-wash denim", "Vans Authentic", "Blundstone", "untucked"],
     objectPosition: "top",
   },
   {
@@ -36,6 +38,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-501s-paynter.jpg",
     alt: "Navy Paynter chore worn open over a sage t-shirt, light-wash 501s, sneakers, street, face turned away.",
     aspect: "4/5",
+    prompt: "Match street refs. 35mm Portra 400, grain. Face turned away, no cap, shoes visible.\n\nNavy Paynter three-pocket chore OPEN over faded sage Levi's oversized tee UN TUCKED (crewneck, not polo). Light-wash Levi's 501s. Gray Vans or brown Blundstones. NOT chambray, NOT khaki, NOT tucked. English country Ivy weekend. Real wrinkles. Not CGI.",
+    keywords: ["Paynter", "Levi's", "sage tee", "501", "Vans", "Blundstone", "untucked"],
     objectPosition: "top",
   },
   {
@@ -45,6 +49,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-501s-knolling.jpg",
     alt: "Overhead knolling of a sage Levi's t-shirt, light-wash 501s, navy Paynter, gray Vans, and brown Blundstones on oak floor.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Oak floor.\n\nFaded sage Levi's oversized tee from the photo; light-wash 501s; navy Paynter; gray Vans Authentics; brown Blundstones as alt. NO khaki pants, no chambray, no tuck instruction needed. English country Ivy weekend kit. Not CGI.",
+    keywords: ["Levi's", "Paynter", "501", "Vans Authentic", "Blundstone"],
     objectPosition: "center",
   },
   {
@@ -54,6 +60,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-gray-vans.jpg",
     alt: "Faded sage Levi's t-shirt tucked into light khaki trousers, gray canvas Vans Authentics, apartment interior, head cropped.",
     aspect: "3/4",
+    prompt: "Match Japanese shop-staff refs. Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no baseball cap, feet at frame bottom.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light. Real room.\n\nTHIS outfit: faded sage oversized Levi's tee with small chest logo, TUCKED into light stone khaki trousers, brown belt. Footwear: gray canvas Vans Authentic or low Old Skool (pewter/cool gray, white sole, gum optional). Not Dunks, not bright. English country Ivy gone slightly JP weekend. Real wrinkles. Not CGI.",
+    keywords: ["Levi's", "khaki trousers", "Vans Authentic", "Vans Old Skool", "gray canvas", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -63,6 +71,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-old-skool.jpg",
     alt: "Sage t-shirt, khaki chinos, gray Vans Old Skool with white side stripe, street, face turned away.",
     aspect: "4/5",
+    prompt: "Match street refs. 35mm Portra 400, grain. Face turned away, no cap, SHOES clearly visible.\n\nNavy Paynter chore OPEN over faded sage Levi's oversized tee (crewneck not polo). Light khaki trousers. Gray Vans low-tops (pewter canvas, white sidewall). Weekend skate-Ivy mix. Real wrinkles. Not CGI.",
+    keywords: ["Paynter", "Levi's", "sage tee", "khaki trousers", "gray Vans", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -72,6 +82,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-khakis-tuck.jpg",
     alt: "Faded sage oversized Levi's t-shirt with small chest logo tucked into light khaki trousers, brown belt and loafers, apartment interior, head cropped.",
     aspect: "3/4",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped at nose, NO baseball cap, feet at frame bottom.\n\nSETTING: Clean elevated NYC apartment: smooth white walls, oak floor, oak bookshelf, linen curtain, soft cool window daylight. Real room.\n\nWear THESE exact garments from the product photo: faded sage/olive oversized heavyweight cotton Levi's t-shirt with small tonal Levi's chest logo, TUCKED into light stone khaki cotton trousers (the actual pair: slightly wrinkled, straight, not skinny). Brown leather belt. Brown leather loafers. The tee volume is controlled by the tuck. English country Ivy. Real wrinkles matching the photo. Not CGI, not AI smooth.",
+    keywords: ["Levi's", "sage cotton t-shirt", "khaki cotton trousers", "brown leather belt", "brown leather loafers", "Ricoh GR IIIx", "NYC apartment"],
     objectPosition: "top",
   },
   {
@@ -81,6 +93,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-paynter.jpg",
     alt: "Navy Paynter chore worn open over a faded sage t-shirt, light khaki trousers, brown boots, street, face turned away.",
     aspect: "4/5",
+    prompt: "Match the street refs. Real 35mm Portra 400, grain. Face turned away, no cap, shoes visible.\n\nNavy Paynter three-pocket chore OPEN over THIS exact faded sage Levi's oversized tee (small chest logo, crewneck, NOT a polo) left slightly loose, hem at the fly covering most of the logo under the jacket. Light stone khaki trousers from the photo. Brown Blundstones or the brown leather sandals/Bostons from the edge of their photo. English country Ivy. Real wrinkles. Not CGI.",
+    keywords: ["Paynter", "Levi's", "sage tee", "khaki trousers", "Blundstone", "Birkenstock Boston", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -90,6 +104,8 @@ export const looks: Look[] = [
     src: "/images/looks/levis-sage-tee-knolling.jpg",
     alt: "Overhead knolling of a faded sage Levi's t-shirt, light khaki trousers, navy Paynter chore, brown belt, loafers, and suede Bostons on oak floor.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Oak floor.\n\nThe exact faded sage Levi's oversized tee from the photo (chest logo, red tab at side seam), the exact light khaki trousers, navy Paynter chore, brown belt, brown loafers, tan leather sandals or Bostons. Not a generic forest polo. English country Ivy. Not CGI.",
+    keywords: ["Levi's", "Paynter", "sage tee", "khaki trousers", "loafers", "Boston", "oak floor knolling"],
     objectPosition: "center",
   },
   {

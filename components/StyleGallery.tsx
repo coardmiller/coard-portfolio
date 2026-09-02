@@ -157,9 +157,10 @@ function stripName(text: string): string {
 }
 
 function destRect(panelOpen: boolean): Rect {
+  const mobile = window.innerWidth < 720;
   const padX = 16;
   const padTop = 16;
-  const padBottom = panelOpen ? 168 : 72;
+  const padBottom = panelOpen ? (mobile ? 96 : 168) : 72;
   const maxW = Math.max(160, window.innerWidth - padX * 2);
   const maxH = Math.max(160, window.innerHeight - padTop - padBottom);
   let width = maxW;
@@ -170,7 +171,7 @@ function destRect(panelOpen: boolean): Rect {
   }
   return {
     left: padX + (maxW - width) / 2,
-    top: padTop + Math.max(0, (maxH - height) / 2 - (panelOpen ? 18 : 0)),
+    top: padTop + Math.max(0, (maxH - height) / 2 - (panelOpen && !mobile ? 12 : 0)),
     width,
     height,
   };
@@ -205,6 +206,7 @@ const LookExpand: React.FC<{
   onClose: () => void;
 }> = ({ look, origin, reducedMotion, onClose }) => {
   const [panelOpen, setPanelOpen] = useState(true);
+  const [promptOpen, setPromptOpen] = useState(false);
   const [rect, setRect] = useState<Rect>(reducedMotion ? destRect(true) : origin);
   const [open, setOpen] = useState(reducedMotion);
   const [closing, setClosing] = useState(false);
@@ -314,7 +316,7 @@ const LookExpand: React.FC<{
       </div>
       {!closing && (
       <aside
-        className={`look-expand-panel${panelOpen ? ' is-open' : ''}`}
+        className={`look-expand-panel${panelOpen ? ' is-open' : ''}${promptOpen ? ' is-prompt-open' : ''}`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="look-expand-panel-tools">
@@ -333,7 +335,19 @@ const LookExpand: React.FC<{
         {panelOpen && (
           <div className="look-expand-panel-body">
             <p className="look-expand-kicker">Prompt</p>
-            <p className="look-expand-prompt">{promptText}</p>
+            <p
+              className={`look-expand-prompt${promptOpen ? ' is-open' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-expanded={promptOpen}
+              onClick={() => setPromptOpen((open) => !open)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setPromptOpen((open) => !open);
+                }
+              }}
+            >{promptText}</p>
             {keywords.length > 0 && (
               <>
                 <p className="look-expand-kicker">Keywords</p>
@@ -904,6 +918,25 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           max-width: none;
           cursor: default;
         }
+        @media (max-width: 719px) {
+          .look-expand-panel.is-open {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 72px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+            background: linear-gradient(to top, #ffffff 0%, #ffffff 42%, rgba(255, 255, 255, 0) 100%);
+          }
+          .look-expand-panel.is-open.is-prompt-open {
+            padding-top: 28vh;
+            background: linear-gradient(to top, #ffffff 0%, #ffffff 58%, rgba(255, 255, 255, 0) 100%);
+          }
+          :root.dark .look-expand-panel.is-open {
+            background: linear-gradient(to top, #121212 0%, #121212 42%, rgba(18, 18, 18, 0) 100%);
+          }
+          :root.dark .look-expand-panel.is-open.is-prompt-open {
+            background: linear-gradient(to top, #121212 0%, #121212 58%, rgba(18, 18, 18, 0) 100%);
+          }
+        }
         .look-expand-panel-tools {
           position: fixed;
           right: 16px;
@@ -924,8 +957,8 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         }
         .look-expand-panel-body {
           width: 100%;
-          max-height: 28vh;
-          overflow: auto;
+          max-height: none;
+          overflow: visible;
           padding: 0 4px 8px 0;
           border-radius: 0;
           background: transparent;
@@ -953,6 +986,18 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           margin: 0;
           font-size: 13px;
           line-height: 1.45;
+          white-space: pre-wrap;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 5;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .look-expand-prompt.is-open {
+          display: block;
+          -webkit-line-clamp: unset;
+          max-height: 48vh;
+          overflow: auto;
         }
         .look-expand-tags {
           display: flex;
