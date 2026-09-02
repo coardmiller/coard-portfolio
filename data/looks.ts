@@ -142,6 +142,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-paynter-olive-pleats.jpg",
     alt: "Navy Paynter chore worn open over a tucked white oxford, olive double-pleat cuffed trousers, brown loafers, office interior, head cropped, no cap.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, indoor office-adjacent overcast window light, grain, no flash. Straight-on full-body, head cropped at the nose (NO baseball cap, no hat at all), feet at frame bottom, white tile or pale office wall, slightly dirty grout.\n\nEnglish country Ivy WORK / office outfit: NAVY Paynter three-pocket chore jacket (cotton canvas, corozo buttons) worn OPEN. White oxford cloth button-down tucked in. Olive/sage double-pleated cuffed trousers, regular fit, pressed crease. Brown leather penny loafers, dark socks. Brown belt. NO baseball cap, no Yankees, no Braves, no M-65, no shorts, no light-wash jeans, no chambray. Real wrinkles. Anonymous. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "white OCBD", "olive double-pleat trousers", "penny loafers", "brown belt", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -169,6 +171,8 @@ export const looks: Look[] = [
     src: "/images/looks/heat-polo-khaki-shorts.jpg",
     alt: "Navy cotton pique polo, khaki 7-8 inch chino shorts, navy Atlanta Braves cap, brown loafers, white tile shop-staff snap, head cropped.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, harsh late-summer overcast-to-bright daylight, grain, no flash. Straight-on full-body, head cropped at the nose by an Atlanta Braves baseball cap brim, feet at frame bottom, white tile wall, slightly dirty grout.\n\nHOT weather outdoor outfit, 95F, English country Ivy summer: NO jacket, NO chore, NO M-65, NO waxed Barbour, NO corduroy, NO sweatshirt. Navy cotton pique polo (matte cotton, not tech golf knit, no logo). Khaki chino shorts, 7 to 8 inch inseam, regular fit, not gym shorts, not golf tech. Brown leather loafers, no socks. Atlanta Braves navy cap with white script A (NOT Yankees, no NY logo). Hands in pockets. Real wrinkles, sweat-real, not pressed CGI. Anonymous. Not CGI, not AI smooth, not influencer portrait.",
+    keywords: ["navy cotton pique polo", "khaki chino shorts", "brown loafers", "Atlanta Braves cap", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -178,6 +182,8 @@ export const looks: Look[] = [
     src: "/images/looks/heat-ocbd-olive-shorts.jpg",
     alt: "White oxford button-down with rolled sleeves, olive chino shorts, taupe Birkenstock Boston clogs, navy Atlanta Braves cap, brick street, face hidden by brim.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, hot early-September afternoon, slightly washed highlights, grain, brick shopfront. 3/4 to full body, face hidden by cap brim, shoes visible.\n\nHOT 95F outdoor English country Ivy: white or ecru oxford cloth button-down, sleeves rolled, untucked, two buttons open. Olive chino shorts 7-8 inch inseam (NOT denim, NOT light-wash 501s, NOT gym shorts). Taupe Birkenstock Boston clogs. Atlanta Braves navy cap with white A (NOT Yankees). No jacket, no chambray, no jeans. Real wrinkles, heat, not CGI, not AI smooth.",
+    keywords: ["white OCBD", "olive chino shorts", "Birkenstock Boston", "Atlanta Braves cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -187,6 +193,8 @@ export const looks: Look[] = [
     src: "/images/looks/heat-knolling.jpg",
     alt: "Overhead knolling of navy polo, white OCBD, khaki and olive chino shorts, navy Braves cap, brown loafers and taupe Birkenstock Bostons on linen.",
     aspect: "1/1",
+    prompt: "Match the photography of the reference knolling pins exactly. Real overhead 50mm Kodak Portra 400, pale linen or grey wool, window light from the left, grain. Slightly messy.\n\nHOT-day kit only: navy cotton pique polo; white OCBD; khaki chino shorts 7-8 inch; olive chino shorts 7-8 inch; navy Atlanta Braves cap with white A (NOT Yankees); brown loafers; taupe Birkenstock Bostons. NO jacket, NO olive M-65, NO Paynter, NO cords, NO chambray, NO light-wash jeans, NO grey crew. English country Ivy summer heat. Not CGI, not AI smooth.",
+    keywords: ["navy pique polo", "white OCBD", "khaki shorts", "olive shorts", "Braves cap", "loafers", "Birkenstock Boston"],
     objectPosition: "center",
   },
   {
@@ -277,6 +285,8 @@ export const looks: Look[] = [
     src: "/images/looks/ecru-shetland-forest-cords.jpg",
     alt: "Navy Paynter chore worn open over an oatmeal shetland crewneck, forest green corduroy trousers, brown loafers, navy Atlanta Braves cap, white tile shop-staff snap.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, overcast daylight, grain, no flash. Straight-on full-body, head cropped at the nose by an Atlanta Braves baseball cap brim, feet at frame bottom, white tile wall, slightly dirty grout.\n\nOutfit: NAVY Paynter three-pocket chore jacket (cotton canvas, corozo buttons, boxy) worn OPEN. Under it an oatmeal/ecru marled Shetland crewneck (not heather grey, not a hoodie). FOREST GREEN wide-wale corduroy trousers, regular fit, cuffed. Brown leather loafers. Atlanta Braves navy cap with the white script A (NOT New York Yankees, no NY logo). Hands in pockets. English country Ivy. Real wrinkles. Anonymous. Not CGI, not AI smooth, not influencer portrait.",
+    keywords: ["Paynter", "oatmeal Shetland", "forest green corduroy", "brown loafers", "Atlanta Braves cap", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -286,6 +296,8 @@ export const looks: Look[] = [
     src: "/images/looks/ochre-shetland-indigo.jpg",
     alt: "Mustard ochre shetland crewneck, dark indigo jeans, brown Blundstone Chelsea boots, navy Atlanta Braves cap, brick street, face hidden by brim.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference Barbour People street photo exactly. Real 35mm Kodak Portra 400, fall overcast, muted grade, grain, brick shopfront. 3/4 to full body, face hidden by cap brim, shoes visible.\n\nOutfit: mustard/ochre Shetland wool crewneck (warm yellow-brown, not grey, not navy). Dark indigo Levi's 501s (NOT light-wash). Brown Blundstone Chelsea boots. Atlanta Braves navy baseball cap with white A (NOT Yankees NY). No jacket, no olive M-65, no green chore. English country Ivy fall street. Real knit texture, real denim fade. Not CGI, not AI smooth.",
+    keywords: ["ochre Shetland", "Levi's 501", "dark indigo", "Blundstone", "Atlanta Braves cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -295,6 +307,8 @@ export const looks: Look[] = [
     src: "/images/looks/new-colors-knolling.jpg",
     alt: "Overhead knolling of navy Paynter, oatmeal and ochre shetlands, forest green cords, dark indigo 501s, ecru oxford, navy Braves cap, brown loafers and Blundstones on grey wool.",
     aspect: "1/1",
+    prompt: "Match the photography of the reference knolling/flatlay pins exactly. Real overhead 50mm Kodak Portra 400, grey wool blanket, window light from the left, grain. Slightly messy, not a catalog grid.\n\nLaid out: navy Paynter three-pocket chore; oatmeal/ecru Shetland crew; mustard/ochre Shetland; forest green corduroy trousers; dark indigo 501s; ecru oxford button-down; navy Atlanta Braves cap with white A (NOT Yankees); brown loafers; brown Blundstones. NO olive field jacket, no grey sweatshirt, no khaki chinos, no light-wash jeans, no NY cap. Fall English country Ivy new-color rotation. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "oatmeal Shetland", "ochre Shetland", "forest corduroy", "Levi's 501", "ecru OCBD", "Braves cap", "loafers", "Blundstone"],
     objectPosition: "center",
   },
   {
@@ -304,6 +318,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-navy-grey-crew.jpg",
     alt: "Navy Paynter three-pocket chore worn open over a heather grey crewneck, khaki chinos, brown Blundstone Chelsea boots, white tile shop-staff snap, head cropped.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap. Real Ricoh GR IIIx 28mm, overcast fall, grain, no flash. Straight-on full-body, head cropped at the nose, feet at frame bottom, white tile wall.\n\nNAVY Paynter three-pocket chore jacket (British workwear, garment-dyed navy cotton canvas or moleskin, four-button front, corozo nut buttons, one chest patch pocket, two hip patch pockets, boxy regular fit, NOT olive, NOT M-65, NOT Barbour, NOT Arc'teryx). Worn OPEN over a heather grey crewneck sweatshirt. Khaki chinos, brown Blundstone Chelsea boots, brown belt. No green jacket anywhere. English country Ivy. Anonymous, no face. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "navy cotton canvas/moleskin", "corozo buttons", "heather grey crewneck", "khaki chinos", "Blundstone", "brown belt", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -313,6 +329,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-navy-chambray-cords.jpg",
     alt: "Navy Paynter chore worn open over a medium-blue chambray shirt, tan corduroy trousers, brown loafers, brick street, face turned away.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference Barbour People street photo. Real 35mm Kodak Portra 400, fall overcast, muted grade, grain, brick. 3/4 to full body, face turned away, shoes visible.\n\nNAVY Paynter chore jacket (three patch pockets, navy cotton, corozo buttons, boxy) worn open over faded medium-blue chambray OCBD. TAN corduroy trousers (NOT light-wash jeans). Brown loafers. No olive field jacket. English country Ivy fall. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "navy cotton", "chambray OCBD", "tan corduroy", "brown loafers", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -322,6 +340,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-navy-knolling.jpg",
     alt: "Overhead knolling of a navy Paynter three-pocket chore jacket with grey crew, chambray shirt, khaki chinos, olive pleated trousers, brown Blundstones and brown loafers on grey wool.",
     aspect: "1/1",
+    prompt: "Match the photography of the reference knolling pin. Real overhead 50mm Portra 400, grey wool, window light, grain. Slightly messy.\n\nNAVY Paynter three-pocket chore jacket laid open (navy canvas, patch pockets, corozo buttons). Beside it: heather grey crew, chambray shirt, khaki chinos, olive pleated trousers as alternate bottom, brown Blundstones, brown loafers as alternate. NO olive M-65, no green work jacket. Fall rotation. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "grey crew", "chambray", "khaki chinos", "olive pleats", "Blundstone", "loafers"],
     objectPosition: "center",
   },
   {
