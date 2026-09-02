@@ -8,6 +8,7 @@ import Noise from './components/Noise';
 import Parallax from './components/Parallax';
 import Preloader from './components/Preloader';
 import { Project, ViewMode, ThemeMode } from './types';
+import WeatherFavicon from './components/WeatherFavicon';
 
 // Lazy-load routes that aren't needed on initial page load
 const About = lazy(() => import('./components/About'));
@@ -397,6 +398,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#121212] text-black dark:text-gray-200 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black font-sans antialiased transition-colors duration-500 relative">
+      <WeatherFavicon />
       {noiseEnabled && <Noise />}
       <ScrollToTop />
       
