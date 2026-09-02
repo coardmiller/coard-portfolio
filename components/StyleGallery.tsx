@@ -158,9 +158,11 @@ function stripName(text: string): string {
 
 function destRect(panelOpen: boolean): Rect {
   const mobile = window.innerWidth < 720;
-  const sidebar = panelOpen && !mobile ? 360 : 0;
-  const padX = 16;
-  const padTop = 16;
+  const rail = 420;
+  const gutter = 28;
+  const sidebar = panelOpen && !mobile ? rail + gutter : 0;
+  const padX = 24;
+  const padTop = 24;
   const padBottom = panelOpen && mobile ? 96 : 56;
   const maxW = Math.max(160, window.innerWidth - padX * 2 - sidebar);
   const maxH = Math.max(160, window.innerHeight - padTop - padBottom);
@@ -176,6 +178,17 @@ function destRect(panelOpen: boolean): Rect {
     width,
     height,
   };
+}
+
+function shuffleList<T>(items: T[]): T[] {
+  const next = items.slice();
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = next[i];
+    next[i] = next[j];
+    next[j] = tmp;
+  }
+  return next;
 }
 
 function lookKeywords(look: Look): string[] {
@@ -310,9 +323,11 @@ const LookExpand: React.FC<{
         onTransitionEnd={handleTransitionEnd}
       >
         <img
+          className={closing ? 'is-closing' : ''}
           src={look.src}
           alt={look.alt}
           draggable={false}
+          style={{ objectPosition: closing ? (look.objectPosition || 'top') : 'center' }}
         />
       </div>
       {!closing && (
@@ -454,6 +469,15 @@ const IconSearch = () => (
   </svg>
 );
 
+const IconShuffle = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <path
+      fill="currentColor"
+      d="M8.15 1.1h3.55v3.55H10.4V3.52L8.38 5.54 7.4 4.56 9.42 2.54H8.15V1.1ZM1.3 2.2h2.7l1.62 1.62-.98.98L3.5 3.66H1.3V2.2Zm6.85 5.5 2.25 2.25v-1.3h1.3v3.55H8.15v-1.3h1.22L7.4 8.68l.98-.98ZM1.3 9.34h2.42l4.4-4.4.98.98-4.4 4.4H1.3V9.34Z"
+    />
+  </svg>
+);
+
 const LookbookToolbar: React.FC<{
   layout: LayoutMode;
   size: SizeLevel;
@@ -462,10 +486,11 @@ const LookbookToolbar: React.FC<{
   searchOpen: boolean;
   onSearchOpen: (open: boolean) => void;
   onQuery: (query: string) => void;
+  onShuffle: () => void;
   onLayout: (layout: LayoutMode) => void;
   onSize: (size: SizeLevel) => void;
   onGap: (gap: GapLevel) => void;
-}> = ({ layout, size, gap, query, searchOpen, onSearchOpen, onQuery, onLayout, onSize, onGap }) => {
+}> = ({ layout, size, gap, query, searchOpen, onSearchOpen, onQuery, onShuffle, onLayout, onSize, onGap }) => {
   const [promptI, setPromptI] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const prompt = SEARCH_PROMPTS[promptI];
@@ -538,6 +563,9 @@ const LookbookToolbar: React.FC<{
         <div className="look-tool-divider" aria-hidden="true" />
 
         <div className="look-tool-group">
+          <ToolBtn label="Shuffle looks" onClick={onShuffle}>
+            <IconShuffle />
+          </ToolBtn>
           <ToolBtn
             label={layout === 'masonry' ? 'Switch to grid layout' : 'Switch to masonry layout'}
             pressed
@@ -590,9 +618,15 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
   const [prefs, setPrefs] = useState<LookbookPrefs>(readPrefs);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
+  const [order, setOrder] = useState<string[] | null>(null);
   const wallRef = useRef<HTMLDivElement>(null);
   const pendingScrollRef = useRef<number | null>(null);
-  const visibleLooks = useMemo(() => looks.filter((look) => lookMatches(look, query)), [query]);
+  const visibleLooks = useMemo(() => {
+    const filtered = looks.filter((look) => lookMatches(look, query));
+    if (!order) return filtered;
+    const rank = new Map(order.map((id, i) => [id, i]));
+    return filtered.slice().sort((a, b) => (rank.get(a.id) ?? 1e9) - (rank.get(b.id) ?? 1e9));
+  }, [query, order]);
 
   const setPrefsAnimated = useCallback((update: (p: LookbookPrefs) => LookbookPrefs) => {
     pendingScrollRef.current = window.scrollY;
@@ -636,7 +670,43 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
     setActive({ look, origin: measure(el) });
   };
 
-  const close = useCallback(() => setActive(null), []);
+  const close = useCallback(() => {
+    setActive(null);
+    requestAnimationFrame(() => {
+      const wall = wallRef.current;
+      if (!wall) return;
+      if (prefs.layout === 'masonry') {
+        packMasonry(wall, colCountFor(prefs.size), GAP_PX[prefs.gap]);
+      } else {
+        clearMasonryPack(wall);
+      }
+    });
+  }, [prefs.layout, prefs.size, prefs.gap]);
+
+  const shuffleLooks = useCallback(() => {
+    pendingScrollRef.current = window.scrollY;
+    const apply = () => setOrder((prev) => {
+      const ids = (prev ?? looks.map((look) => look.id)).slice();
+      return shuffleList(ids);
+    });
+    const restore = () => {
+      const y = pendingScrollRef.current;
+      if (y == null) return;
+      window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    };
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => { finished: Promise<unknown> };
+    };
+    if (!reducedMotion && typeof doc.startViewTransition === 'function') {
+      const vt = doc.startViewTransition(() => {
+        flushSync(apply);
+        restore();
+      });
+      void vt.finished.then(restore).catch(restore);
+    } else {
+      apply();
+    }
+  }, [reducedMotion]);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
@@ -674,7 +744,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
       ro.disconnect();
       wall.removeEventListener('load', onLoad, true);
     };
-  }, [reducedMotion, intro, prefs.layout, prefs.size, prefs.gap, query]);
+  }, [reducedMotion, intro, prefs.layout, prefs.size, prefs.gap, query, order, active, visibleLooks.length]);
 
   useEffect(() => {
     if (intro !== 'stagger' || !delayById) return;
@@ -742,6 +812,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           searchOpen={searchOpen}
           onSearchOpen={setSearchOpen}
           onQuery={setQuery}
+          onShuffle={shuffleLooks}
           onLayout={(layout) => setPrefsAnimated((p) => ({ ...p, layout }))}
           onSize={(size) => setPrefsAnimated((p) => ({ ...p, size }))}
           onGap={(gap) => setPrefsAnimated((p) => ({ ...p, gap }))}
@@ -905,6 +976,9 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           user-select: none;
           pointer-events: none;
         }
+        .look-expand-frame img.is-closing {
+          object-fit: cover;
+        }
         .look-expand-panel {
           position: fixed;
           z-index: 10000;
@@ -921,20 +995,26 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           transition: padding 0.52s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @media (min-width: 720px) {
+          .look-expand-panel,
           .look-expand-panel.is-open {
             left: auto;
-            right: 24px;
-            top: 40px;
+            right: 28px;
+            top: 32px;
             bottom: 72px;
-            width: min(380px, 36vw);
-            max-height: calc(100vh - 112px);
+            width: 400px;
+            max-width: min(400px, calc(36vw));
+            max-height: calc(100vh - 104px);
             overflow: auto;
+            overflow-wrap: anywhere;
+            word-break: break-word;
             padding: 0;
             background: transparent;
           }
           .look-expand-prompt {
             max-height: none;
             overflow: visible;
+            overflow-wrap: anywhere;
+            word-break: break-word;
             cursor: text;
             mask-image: none;
             -webkit-mask-image: none;
