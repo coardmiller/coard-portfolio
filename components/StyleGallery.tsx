@@ -917,6 +917,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           gap: 0;
           max-width: none;
           cursor: default;
+          transition: padding 0.52s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @media (max-width: 719px) {
           .look-expand-panel.is-open {
@@ -987,17 +988,18 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           font-size: 13px;
           line-height: 1.45;
           white-space: pre-wrap;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 5;
+          max-height: 6.2em;
           overflow: hidden;
           cursor: pointer;
+          transition: max-height 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+          mask-image: linear-gradient(to bottom, #000 58%, transparent);
+          -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent);
         }
         .look-expand-prompt.is-open {
-          display: block;
-          -webkit-line-clamp: unset;
           max-height: 48vh;
           overflow: auto;
+          mask-image: none;
+          -webkit-mask-image: none;
         }
         .look-expand-tags {
           display: flex;
