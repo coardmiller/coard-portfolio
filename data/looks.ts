@@ -19,6 +19,33 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "green-tee-khakis-tuck",
+    date: "2026-09-02",
+    caption: "Coard. Forest green tee tucked into khaki chinos, loafers.",
+    src: "/images/looks/green-tee-khakis-tuck.jpg",
+    alt: "Forest green heavyweight t-shirt tucked into khaki chinos with a brown belt and brown loafers, apartment with oak bookshelf and linen curtain, head cropped.",
+    aspect: "3/4",
+    objectPosition: "top",
+  },
+  {
+    id: "green-tee-khakis-paynter",
+    date: "2026-09-02",
+    caption: "Coard. Navy Paynter over a forest green tee, khaki chinos, Blundstones.",
+    src: "/images/looks/green-tee-khakis-paynter.jpg",
+    alt: "Navy Paynter chore worn open over a forest green t-shirt, khaki chinos, brown Chelsea boots, brick street, face turned away, no cap.",
+    aspect: "4/5",
+    objectPosition: "top",
+  },
+  {
+    id: "green-tee-khakis-knolling",
+    date: "2026-09-02",
+    caption: "Coard kit: forest green tee, khaki chinos, navy Paynter, loafers, Blundstones.",
+    src: "/images/looks/green-tee-khakis-knolling.jpg",
+    alt: "Overhead knolling of a forest green t-shirt, khaki chinos, navy chore jacket, brown belt, loafers, and a Chelsea boot on an oak floor.",
+    aspect: "1/1",
+    objectPosition: "center",
+  },
+  {
     id: "work-green-polo-tan-cords",
     date: "2026-09-02",
     caption: "Coard, office. Forest green polo, tan cords, loafers.",
