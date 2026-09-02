@@ -926,11 +926,19 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
             right: 24px;
             top: 40px;
             bottom: 72px;
-            width: min(340px, 34vw);
+            width: min(380px, 36vw);
             max-height: calc(100vh - 112px);
             overflow: auto;
             padding: 0;
             background: transparent;
+          }
+          .look-expand-prompt {
+            max-height: none;
+            overflow: visible;
+            cursor: text;
+            mask-image: none;
+            -webkit-mask-image: none;
+            user-select: text;
           }
         }
         @media (max-width: 719px) {
