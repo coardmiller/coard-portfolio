@@ -158,10 +158,11 @@ function stripName(text: string): string {
 
 function destRect(panelOpen: boolean): Rect {
   const mobile = window.innerWidth < 720;
+  const sidebar = panelOpen && !mobile ? 360 : 0;
   const padX = 16;
   const padTop = 16;
-  const padBottom = panelOpen ? (mobile ? 96 : 168) : 72;
-  const maxW = Math.max(160, window.innerWidth - padX * 2);
+  const padBottom = panelOpen && mobile ? 96 : 56;
+  const maxW = Math.max(160, window.innerWidth - padX * 2 - sidebar);
   const maxH = Math.max(160, window.innerHeight - padTop - padBottom);
   let width = maxW;
   let height = width / SOURCE_ASPECT;
@@ -171,7 +172,7 @@ function destRect(panelOpen: boolean): Rect {
   }
   return {
     left: padX + (maxW - width) / 2,
-    top: padTop + Math.max(0, (maxH - height) / 2 - (panelOpen && !mobile ? 12 : 0)),
+    top: padTop + Math.max(0, (maxH - height) / 2),
     width,
     height,
   };
@@ -918,6 +919,19 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           max-width: none;
           cursor: default;
           transition: padding 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (min-width: 720px) {
+          .look-expand-panel.is-open {
+            left: auto;
+            right: 24px;
+            top: 40px;
+            bottom: 72px;
+            width: min(340px, 34vw);
+            max-height: calc(100vh - 112px);
+            overflow: auto;
+            padding: 0;
+            background: transparent;
+          }
         }
         @media (max-width: 719px) {
           .look-expand-panel.is-open {

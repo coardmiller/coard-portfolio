@@ -115,6 +115,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-green-polo-tan-cords.jpg",
     alt: "Forest green cotton pique polo tucked into tan 5-pocket corduroy trousers, brown loafers, clean apartment with oak bookshelf and linen curtain, head cropped, no cap.",
     aspect: "3/4",
+    prompt: "Match Japanese shop-staff refs. Ricoh GR IIIx 28mm, grain, no flash. Head cropped at nose, NO baseball cap, feet at frame bottom.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light. Real room.\n\nTHIS outfit: forest green cotton pique polo TUCKED into tan 5-pocket fine-wale corduroy trousers (NOT khaki chinos, NOT denim). Brown leather belt. Brown leather penny loafers, dark socks. Hands in pockets. English country Ivy WORK. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["forest green pique polo", "tan corduroy", "penny loafers", "brown leather belt", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -124,6 +126,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-paynter-green-polo-cords.jpg",
     alt: "Navy Paynter chore worn open over a forest green polo, tan cords, brown loafers, apartment interior, face turned away, no cap.",
     aspect: "4/5",
+    prompt: "Match interior refs. Real 35mm Portra 400, grain. Face turned away, no cap, shoes visible.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light.\n\nNavy Paynter three-pocket chore OPEN over a forest green cotton pique polo (not a tee). Tan 5-pocket corduroy trousers. Brown leather penny loafers. NO baseball cap, NOT khaki, NOT jeans. English country Ivy office. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "forest green polo", "tan corduroy", "penny loafers", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -133,6 +137,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-green-polo-cords-knolling.jpg",
     alt: "Overhead knolling of a forest green polo, tan corduroy trousers, navy chore jacket, brown loafers, and brown belt on an oak floor beside a linen curtain.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Oak floor beside a linen curtain.\n\nForest green cotton pique polo; tan 5-pocket corduroy trousers; navy Paynter three-pocket chore; brown leather penny loafers; brown leather belt. NO khaki, no jeans. English country Ivy work kit. Not CGI, not AI smooth.",
+    keywords: ["forest green polo", "tan corduroy", "Paynter", "penny loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -153,6 +159,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-ocbd-khakis-commute.jpg",
     alt: "White oxford tucked into khaki chinos, brown Chelsea boots, walking away on a brick sidewalk, no jacket, no cap.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, hot early-September afternoon, slightly washed highlights, grain, brick sidewalk. Full body walking away, face not visible, shoes visible.\n\nHOT 95F commute English country Ivy: white oxford cloth button-down TUCKED, sleeves rolled. Khaki chino trousers, brown belt. Brown Blundstone Chelsea boots. NO jacket, NO chore, NO Paynter, NO M-65, NO baseball cap. Real wrinkles, heat. Not CGI, not AI smooth.",
+    keywords: ["white OCBD", "khaki chinos", "Blundstone", "brown belt", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -162,6 +170,8 @@ export const looks: Look[] = [
     src: "/images/looks/work-knolling.jpg",
     alt: "Overhead knolling of a navy three-pocket chore, white OCBD, navy merino crew, olive trousers, khaki chinos, brown loafers, brown Chelsea boots, and a brown belt on grey wool.",
     aspect: "1/1",
+    prompt: "Match the photography of the reference knolling pins exactly. Real overhead 50mm Kodak Portra 400, grey wool, window light from the left, grain. Slightly messy.\n\nWORK kit: navy Paynter three-pocket chore; white OCBD; navy merino crewneck; olive double-pleat trousers; khaki chinos as alt bottom; brown loafers; brown Blundstone Chelsea boots; brown belt. NO shorts, no chambray. English country Ivy office rotation. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "white OCBD", "navy merino", "olive pleats", "khaki chinos", "loafers", "Blundstone"],
     objectPosition: "center",
   },
   {
@@ -204,6 +214,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-quiet-staff.jpg",
     alt: "Jamieson's of Shetland Shaggy Dog ecru crewneck alone over olive double-pleat cuffed trousers and brown Chelsea boots, plain white tile wall, head cropped, no cap.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, overcast daylight, grain, no flash. Straight-on full-body, head cropped at the nose, NO baseball cap, no hat at all, feet at frame bottom, white tile wall, slightly dirty grout.\n\nTHIS outfit ALONE: Jamieson's of Shetland Shaggy Dog ecru/cream hairy wool crewneck (fuzzy brushed Shetland, ribbed collar/cuffs/hem). Olive double-pleat cuffed trousers. Brown Chelsea boots. NO jacket, NO Paynter, NO jeans. Quiet English country Ivy. Real knit texture. Anonymous. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "ecru Shetland", "olive double-pleat trousers", "Chelsea boots", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -213,6 +225,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-quiet-street.jpg",
     alt: "Adult man in Jamieson's Shaggy Dog ecru under open navy men's chore jacket, medium indigo straight 501s, brown Chelsea boots, plain brick wall, face turned away, no hat.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, overcast, muted grade, grain, brick wall. Full body, adult man, face turned away, no hat, shoes visible.\n\nJamieson's Shaggy Dog ecru crewneck under OPEN navy men's three-pocket chore jacket. Medium indigo straight Levi's 501s. Brown Chelsea boots. NO baseball cap, no Braves, no Yankees. English country Ivy street. Real knit and denim texture. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "navy chore", "Levi's 501", "Chelsea boots", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -222,6 +236,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-quiet-knoll.jpg",
     alt: "Sparse overhead knolling on walnut floor: Jamieson's Shaggy Dog ecru crewneck, folded dark indigo 501s, brown suede penny loafers. No hat, no jacket, no props.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Walnut / dark oak floor. Sparse.\n\nONLY: Jamieson's Shaggy Dog ecru crewneck; folded dark indigo Levi's 501s; brown suede penny loafers. NO hat, no jacket, no Paynter, no props. Sparse English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "Levi's 501", "suede penny loafers"],
     objectPosition: "center",
   },
   {
@@ -231,6 +247,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-dog-staff.jpg",
     alt: "Jamieson's of Shetland Shaggy Dog ecru crewneck under an open navy Paynter Batch 7 chore, olive double-pleat cuffed trousers, brown Chelsea boots, navy Atlanta Braves cap, white tile shop-staff snap, head cropped.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, overcast daylight, grain, no flash. Straight-on full-body, head cropped at the nose by an Atlanta Braves baseball cap brim, feet at frame bottom, white tile wall, slightly dirty grout.\n\nJamieson's of Shetland Shaggy Dog ecru crewneck under an OPEN navy Paynter Batch 7 three-pocket chore. Olive double-pleat cuffed trousers. Brown Chelsea boots. Atlanta Braves navy cap with white script A (NOT Yankees, no NY logo). English country Ivy. Real wrinkles and knit texture. Anonymous. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "Paynter Batch 7", "olive double-pleat trousers", "Chelsea boots", "Atlanta Braves cap", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -240,6 +258,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-dog-street.jpg",
     alt: "Ecru Jamieson's Shaggy Dog crewneck under a navy chore jacket on a brick shopfront, medium indigo straight jeans, brown Chelsea boots, navy Atlanta Braves cap, face under brim, overcast street.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, overcast, muted grade, grain, brick shopfront. Full body, face hidden by cap brim, shoes visible.\n\nEcru Jamieson's Shaggy Dog crewneck under OPEN navy three-pocket chore (NOT sherpa-lined, NOT Carhartt). Medium indigo straight 501s. Brown Chelsea boots. Atlanta Braves navy cap with white A (NOT Yankees). English country Ivy street. Real knit and canvas texture. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "navy chore", "Levi's 501", "Chelsea boots", "Atlanta Braves cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -249,6 +269,8 @@ export const looks: Look[] = [
     src: "/images/looks/shaggy-dog-knolling.jpg",
     alt: "Overhead knolling of Jamieson's Shaggy Dog ecru crewneck with folded navy Paynter chore, tan five-pocket cords, brown suede penny loafers, brown belt, and navy Atlanta Braves cap on pale stone tile.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Pale stone tile.\n\nJamieson's Shaggy Dog ecru crewneck; folded navy Paynter chore; tan five-pocket cords; brown suede penny loafers; brown belt; navy Atlanta Braves cap with white A (NOT Yankees). English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Jamieson's Shaggy Dog", "Paynter", "tan corduroy", "suede loafers", "Atlanta Braves cap"],
     objectPosition: "center",
   },
   {
@@ -258,6 +280,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-b7-staff.jpg",
     alt: "Owned Paynter Jacket Co. Batch No. 7 navy three-pocket chore worn open over a heather grey Ivy crewneck, olive double-pleat cuffed trousers, brown Chelsea boots, navy Atlanta Braves cap, white tile shop-staff snap, head cropped.",
     aspect: "3/4",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, indoor overcast, grain, no flash. Straight-on full-body, head cropped at the nose by an Atlanta Braves baseball cap brim, feet at frame bottom, white tile wall, slightly dirty grout.\n\nOwned Paynter Jacket Co. Batch No. 7 NAVY three-pocket chore (cotton canvas, corozo buttons) worn OPEN over a heather grey Ivy crewneck. Olive double-pleat cuffed trousers. Brown Chelsea boots. Atlanta Braves navy cap with white script A (NOT Yankees). English country Ivy around town. Real wrinkles. Anonymous. Not CGI, not AI smooth.",
+    keywords: ["Paynter Batch 7", "heather grey crewneck", "olive double-pleat trousers", "Chelsea boots", "Atlanta Braves cap", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -267,6 +291,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-b7-street.jpg",
     alt: "Owned Paynter Batch 7 navy chore over a light blue oxford, medium indigo straight jeans, grey New Balance 574s, navy Atlanta Braves cap, brick shopfront street, face under brim, grocery bag.",
     aspect: "4/5",
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, overcast, grain, brick shopfront. Full body, face hidden by cap brim, shoes visible.\n\nOwned Paynter Batch 7 navy three-pocket chore OPEN over a light blue oxford cloth button-down. Medium indigo straight Levi's 501s. Grey New Balance 574s (suede/mesh, NOT Blundstones, NOT loafers). Atlanta Braves navy cap with white A (NOT Yankees). Brown paper grocery bag optional. English country Ivy street. Not CGI, not AI smooth.",
+    keywords: ["Paynter Batch 7", "light blue OCBD", "Levi's 501", "New Balance 574", "Atlanta Braves cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -276,6 +302,8 @@ export const looks: Look[] = [
     src: "/images/looks/paynter-b7-knolling.jpg",
     alt: "Overhead knolling of owned Paynter Batch 7 navy three-pocket chore with ecru oxford, tan five-pocket cords, brown suede penny loafers, brown belt, and navy Atlanta Braves cap on pale stone tile.",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Pale stone tile.\n\nOwned Paynter Batch 7 navy three-pocket chore; ecru oxford button-down; tan five-pocket cords; brown suede penny loafers; brown belt; navy Atlanta Braves cap with white A (NOT Yankees). English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Paynter Batch 7", "ecru OCBD", "tan corduroy", "suede loafers", "Atlanta Braves cap"],
     objectPosition: "center",
   },
   {
@@ -351,6 +379,9 @@ export const looks: Look[] = [
     src: "/images/looks/grey-crew-khaki-chinos.jpg",
     alt: "Heather grey crewneck, khaki chinos, brown Chelsea boots",
     aspect: "3/4",
+
+    prompt: "Match the photography of the reference Japanese shop-staff snap. Real Ricoh GR IIIx 28mm, overcast, grain, no flash. Straight-on full-body, head cropped at the nose, feet at frame bottom, white tile wall.\n\nHeather grey heavyweight crewneck sweatshirt (Champion reverse-weave or L.L.Bean, NO logo across the chest, NO hoodie), khaki chinos, brown Blundstone Chelsea boots, brown belt, navy NY cap optional. English country Ivy weekend. Anonymous, no face. Not CGI, not AI smooth, not gym wear.",
+    keywords: ["heather grey crewneck", "khaki chinos", "Blundstone", "brown belt", "L.L.Bean", "Champion reverse-weave", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -360,6 +391,9 @@ export const looks: Look[] = [
     src: "/images/looks/grey-crew-m65-street.jpg",
     alt: "Grey sweatshirt under olive field jacket, jeans, boots, navy cap",
     aspect: "4/5",
+
+    prompt: "Match the photography of the reference Barbour People street photo. Real 35mm Kodak Portra 400, overcast fall, muted grade, grain, brick. 3/4 to full body, face hidden by navy cap, shoes visible.\n\nHeather grey crewneck sweatshirt under an olive M-65 or chore worn OPEN, khaki chinos or mid-blue 501s (not light-wash with chambray; jeans ok with grey sweat), brown Blundstones. No giant logo. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["heather grey crewneck", "olive M-65", "khaki chinos", "Levi's 501", "Blundstone", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -369,6 +403,9 @@ export const looks: Look[] = [
     src: "/images/looks/grey-crew-knolling.jpg",
     alt: "Overhead grey crewneck, olive M-65, khaki chinos, Blundstones, NY cap",
     aspect: "1/1",
+
+    prompt: "Match the photography of the reference knolling pin. Real overhead 50mm Portra 400, grey wool, window light, grain. Slightly messy.\n\nHeather grey crewneck sweatshirt (no logo), khaki chinos, olive M-65, brown Blundstones, navy NY cap. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["heather grey crewneck", "khaki chinos", "olive M-65", "Blundstone", "NY cap"],
     objectPosition: "center",
   },
   {
@@ -378,6 +415,9 @@ export const looks: Look[] = [
     src: "/images/looks/fall-stroller-m65.jpg",
     alt: "Olive M-65, navy quarter-zip, khaki chinos, boots, NY cap beside a stroller",
     aspect: "3/4",
+
+    prompt: "Match the photography of the reference Japanese shop-staff snap. Real Ricoh GR IIIx 28mm, cool overcast fall morning, grain, no flash. Straight-on full-body, head cropped at the nose, feet at frame bottom, pale plaster wall, a few brown leaves on pavement.\n\nSaturday fall morning walk pushing a stroller, English country Ivy, practical: olive M-65 field jacket worn OPEN (not Barbour, not Arc'teryx), navy L.L.Bean-style quarter-zip fleece, faded medium chambray or white tee at the collar, khaki chinos (NOT light-wash 501s, NOT olive dress pleats), brown Blundstone Chelsea boots, navy NY cap, brown belt. Hands free, jacket not below mid-thigh. Anonymous, no face. Not CGI, not AI smooth.",
+    keywords: ["olive M-65", "navy quarter-zip", "chambray", "khaki chinos", "Blundstone", "NY cap", "brown belt", "L.L.Bean", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -387,6 +427,9 @@ export const looks: Look[] = [
     src: "/images/looks/fall-stroller-street.jpg",
     alt: "Olive field jacket, navy quarter-zip, khaki chinos, Blundstones, NY cap on a fall street",
     aspect: "4/5",
+
+    prompt: "Match the photography of the reference Barbour People street photo. Real 35mm Kodak Portra 400, fall morning overcast, muted grade, grain, brick, grey stone, a few leaves. 3/4 to full body, face hidden by navy cap, walking as if pushing a stroller (hands forward at waist height is ok, or one hand in pocket). Shoes visible.\n\nOlive chore or M-65 open, navy quarter-zip, khaki chinos, brown Blundstones, NY cap. Cool morning that will warm. English country Ivy dad walk, not athleisure, not gorpcore. Not CGI, not AI smooth.",
+    keywords: ["olive M-65", "navy quarter-zip", "khaki chinos", "Blundstone", "NY cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -396,6 +439,9 @@ export const looks: Look[] = [
     src: "/images/looks/fall-stroller-knolling.jpg",
     alt: "Overhead fall walk kit with M-65, fleece, chambray, chinos, Blundstones",
     aspect: "1/1",
+
+    prompt: "Match the photography of the reference knolling pin. Real overhead 50mm Portra 400, grey wool, window light, grain. Slightly messy.\n\nFall stroller capsule: olive M-65, navy quarter-zip fleece, chambray shirt, khaki chinos, brown Blundstone Chelseas, navy NY cap. No stroller in the flatlay. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["olive M-65", "navy quarter-zip", "chambray", "khaki chinos", "Blundstone", "NY cap"],
     objectPosition: "center",
   },
   {
@@ -405,6 +451,9 @@ export const looks: Look[] = [
     src: "/images/looks/chambray-olive-pleats.jpg",
     alt: "Chambray shirt, olive pleated cuffed trousers, brown loafers",
     aspect: "3/4",
+
+    prompt: "Match the photography of the reference Japanese shop-staff snap. Real Ricoh GR IIIx 28mm, overcast daylight, grain, no flash. Straight-on full-body, head cropped at the nose, feet at frame bottom, white tile wall.\n\nFaded medium-blue chambray OCBD tucked, sleeves rolled once. Olive sage DOUBLE-PLEATED cuffed trousers (NOT light-wash jeans, NOT denim). Brown leather belt, brown Tecovas-style loafers. No second denim. English country Ivy. Anonymous, no face. Not CGI, not AI smooth.",
+    keywords: ["chambray OCBD", "olive double-pleat trousers", "brown belt", "Tecovas loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -414,6 +463,9 @@ export const looks: Look[] = [
     src: "/images/looks/chambray-tan-cords.jpg",
     alt: "Chambray, olive jacket, tan corduroy trousers, loafers on brick",
     aspect: "4/5",
+
+    prompt: "Match the photography of the reference Barbour People street photo. Real 35mm Kodak Portra 400, overcast, muted grade, grain. 3/4 to full body, face turned away, brick, shoes visible.\n\nFaded blue chambray OCBD, tan camel corduroy 5-pocket trousers (NOT light wash jeans), brown loafers, brown belt. Optional olive chore or no jacket. No denim-on-denim. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["chambray OCBD", "tan corduroy", "brown loafers", "brown belt", "olive chore", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -423,6 +475,9 @@ export const looks: Look[] = [
     src: "/images/looks/chambray-olive-or-cords-knolling.jpg",
     alt: "Overhead chambray, olive pleats, tan cords, loafers",
     aspect: "1/1",
+
+    prompt: "Match the photography of the reference knolling pin. Real overhead 50mm Portra 400, grey wool, window light, grain. Slightly messy.\n\nFaded blue chambray OCBD, olive double-pleat cuffed trousers, tan cords as the alternate bottom, brown loafers, brown belt. NO light-wash jeans in the frame. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["chambray OCBD", "olive pleats", "tan cords", "brown loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -432,6 +487,9 @@ export const looks: Look[] = [
     src: "/images/looks/rainy-arc-tee-501s-blazers.jpg",
     alt: "Navy Arc'teryx, white tee, light 501s, white Nike Blazers with black swoosh",
     aspect: "3/4",
+
+    prompt: "Match the photography of the reference Japanese shop-staff snap. Real Ricoh GR IIIx 28mm, overcast rainy daylight, wet pavement, cool grey-green grade, grain, no flash. Straight-on full-body, head cropped at the nose, feet at frame bottom, white tile wall.\n\nOutfit: navy Arc'teryx rain shell (matte, Beta-style), worn unzipped. Under it: plain WHITE crewneck tee ONLY. No chambray, no denim shirt, no second blue. Light-wash Levi's 501s, regular straight, small cuff. White Nike Blazer Mid high-tops with a BLACK swoosh (black Nike swoosh on white leather, not navy swoosh). Hands in pockets. Rainy Charlotte. Anonymous, no face. Not CGI, not AI smooth.",
+    keywords: ["Arc'teryx", "white tee", "Levi's 501", "Nike Blazer Mid", "black swoosh", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -441,6 +499,9 @@ export const looks: Look[] = [
     src: "/images/looks/rainy-arc-tee-501s-blazers-street.jpg",
     alt: "Walking in navy rain shell, white tee, light 501s, black-swoosh Blazers",
     aspect: "4/5",
+
+    prompt: "Match the photography of the reference Barbour People street photo. Real 35mm Kodak Portra 400, rainy overcast, muted grade, grain, wet brick street. 3/4 to full body, face turned away or navy cap, shoes visible.\n\nNavy Arc'teryx rain jacket, WHITE tee underneath (NOT chambray, NOT light-wash shirt), light-wash Levi's 501s, white Nike Blazer Mid high-tops with BLACK swoosh. Walking wet sidewalk. No denim-on-denim. Not CGI, not AI smooth.",
+    keywords: ["Arc'teryx", "white tee", "Levi's 501", "Nike Blazer Mid", "black swoosh", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -450,6 +511,9 @@ export const looks: Look[] = [
     src: "/images/looks/rainy-arc-tee-501s-blazers-knolling.jpg",
     alt: "Overhead navy Arc'teryx, white tee, light 501s, black-swoosh Blazers",
     aspect: "1/1",
+
+    prompt: "Match the photography of the reference knolling pin. Real overhead 50mm Portra 400, grey wool, window light, grain. Slightly messy.\n\nNavy Arc'teryx rain shell, white tee (not chambray), light-wash Levi's 501s, white Nike Blazer Mid high-tops with a BLACK swoosh clearly visible. No second denim. Rainy-day kit. Not CGI, not AI smooth.",
+    keywords: ["Arc'teryx", "white tee", "Levi's 501", "Nike Blazer Mid", "black swoosh"],
     objectPosition: "center",
   },
   {
