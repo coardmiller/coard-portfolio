@@ -115,8 +115,9 @@ export const looks: Look[] = [
     src: "/images/looks/work-green-polo-tan-cords.jpg",
     alt: "Forest green cotton pique polo tucked into tan 5-pocket corduroy trousers, brown loafers, clean apartment with oak bookshelf and linen curtain, head cropped, no cap.",
     aspect: "3/4",
-    prompt: "Match Japanese shop-staff refs. Ricoh GR IIIx 28mm, grain, no flash. Head cropped at nose, NO baseball cap, feet at frame bottom.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light. Real room.\n\nTHIS outfit: forest green cotton pique polo TUCKED into tan 5-pocket fine-wale corduroy trousers (NOT khaki chinos, NOT denim). Brown leather belt. Brown leather penny loafers, dark socks. Hands in pockets. English country Ivy WORK. Real wrinkles. Not CGI, not AI smooth.",
-    keywords: ["forest green pique polo", "tan corduroy", "penny loafers", "brown leather belt", "Ricoh GR IIIx"],
+
+    prompt: "Match the photography of the reference Japanese shop-staff snap: real Ricoh GR IIIx 28mm, grain, no flash. Head cropped at the nose, NO hat, NO baseball cap, feet at frame bottom, hands in pockets.\n\nSETTING: Clean elevated NYC apartment interior, not a studio. Smooth white walls, good oak wood floor, neat oak bookshelf to one side, linen curtain, soft cool window daylight from the left. Tidy design-conscious home. Real room, slight lived-in dust, not an architectural render, not seamless white cyclorama.\n\nWORK outfit: solid FOREST GREEN cotton pique polo (matte cotton, not tech golf knit, no logo, not kelly/neon). TAN 5-pocket corduroy trousers, regular fit, not skinny. Brown leather belt. Brown leather penny loafers, dark socks. NO jacket, no olive chore, no M-65, no Braves cap, no Yankees cap. English country Ivy office. Real wrinkles. Anonymous. Not CGI, not AI smooth, not influencer portrait.",
+    keywords: ["forest green cotton pique polo", "tan 5-pocket corduroy", "brown belt", "penny loafers", "NYC apartment", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -126,8 +127,9 @@ export const looks: Look[] = [
     src: "/images/looks/work-paynter-green-polo-cords.jpg",
     alt: "Navy Paynter chore worn open over a forest green polo, tan cords, brown loafers, apartment interior, face turned away, no cap.",
     aspect: "4/5",
-    prompt: "Match interior refs. Real 35mm Portra 400, grain. Face turned away, no cap, shoes visible.\n\nSETTING: NYC apartment, white walls, oak floor, oak bookshelf, linen curtain, cool window light.\n\nNavy Paynter three-pocket chore OPEN over a forest green cotton pique polo (not a tee). Tan 5-pocket corduroy trousers. Brown leather penny loafers. NO baseball cap, NOT khaki, NOT jeans. English country Ivy office. Real wrinkles. Not CGI, not AI smooth.",
-    keywords: ["Paynter", "forest green polo", "tan corduroy", "penny loafers", "Portra 400"],
+
+    prompt: "Match the photography of the reference street/interior pins. Real 35mm Kodak Portra 400, grain, soft cool window daylight, no flash. 3/4 to full body, face turned away, NO baseball cap, shoes visible.\n\nSETTING: Same clean elevated NYC apartment. Smooth white walls, wood floor, oak bookshelf, linen curtain, window light. Real room not studio.\n\nWORK: NAVY Paynter three-pocket chore worn OPEN over a solid forest green cotton pique polo (not tech fabric). TAN 5-pocket corduroy trousers. Brown loafers. Brown belt. NO olive jacket (too much green), no cap. AC-office layer for 98F outside. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "forest green pique polo", "tan corduroy", "brown loafers", "brown belt"],
     objectPosition: "top",
   },
   {
@@ -137,8 +139,9 @@ export const looks: Look[] = [
     src: "/images/looks/work-green-polo-cords-knolling.jpg",
     alt: "Overhead knolling of a forest green polo, tan corduroy trousers, navy chore jacket, brown loafers, and brown belt on an oak floor beside a linen curtain.",
     aspect: "1/1",
-    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Oak floor beside a linen curtain.\n\nForest green cotton pique polo; tan 5-pocket corduroy trousers; navy Paynter three-pocket chore; brown leather penny loafers; brown leather belt. NO khaki, no jeans. English country Ivy work kit. Not CGI, not AI smooth.",
-    keywords: ["forest green polo", "tan corduroy", "Paynter", "penny loafers", "brown belt"],
+
+    prompt: "Match the photography of the knolling refs. Real overhead 50mm Portra 400, window from the left, grain. Ground: wood floor or grey wool, NYC apartment, linen curtain edge in frame optional.\n\nLaid out: forest green cotton pique polo; tan 5-pocket corduroy trousers; navy Paynter chore as optional layer; brown loafers; brown belt. NO cap, no olive field jacket, no chambray, no light-wash jeans. Work tomorrow kit. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["forest green pique polo", "tan corduroy", "Paynter", "loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -148,6 +151,7 @@ export const looks: Look[] = [
     src: "/images/looks/work-paynter-olive-pleats.jpg",
     alt: "Navy Paynter chore worn open over a tucked white oxford, olive double-pleat cuffed trousers, brown loafers, office interior, head cropped, no cap.",
     aspect: "3/4",
+
     prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, indoor office-adjacent overcast window light, grain, no flash. Straight-on full-body, head cropped at the nose (NO baseball cap, no hat at all), feet at frame bottom, white tile or pale office wall, slightly dirty grout.\n\nEnglish country Ivy WORK / office outfit: NAVY Paynter three-pocket chore jacket (cotton canvas, corozo buttons) worn OPEN. White oxford cloth button-down tucked in. Olive/sage double-pleated cuffed trousers, regular fit, pressed crease. Brown leather penny loafers, dark socks. Brown belt. NO baseball cap, no Yankees, no Braves, no M-65, no shorts, no light-wash jeans, no chambray. Real wrinkles. Anonymous. Not CGI, not AI smooth.",
     keywords: ["Paynter", "white OCBD", "olive double-pleat trousers", "penny loafers", "brown belt", "Ricoh GR IIIx"],
     objectPosition: "top",
@@ -159,8 +163,9 @@ export const looks: Look[] = [
     src: "/images/looks/work-ocbd-khakis-commute.jpg",
     alt: "White oxford tucked into khaki chinos, brown Chelsea boots, walking away on a brick sidewalk, no jacket, no cap.",
     aspect: "4/5",
-    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, hot early-September afternoon, slightly washed highlights, grain, brick sidewalk. Full body walking away, face not visible, shoes visible.\n\nHOT 95F commute English country Ivy: white oxford cloth button-down TUCKED, sleeves rolled. Khaki chino trousers, brown belt. Brown Blundstone Chelsea boots. NO jacket, NO chore, NO Paynter, NO M-65, NO baseball cap. Real wrinkles, heat. Not CGI, not AI smooth.",
-    keywords: ["white OCBD", "khaki chinos", "Blundstone", "brown belt", "Portra 400"],
+
+    prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, hot September overcast, grain, brick. 3/4 to full body, face turned away, NO cap, shoes visible.\n\nEnglish country Ivy work commute in 95F heat: NO jacket. White OCBD, sleeves rolled, tucked into khaki chinos, brown belt, brown Blundstone Chelsea boots. NO baseball cap, no Yankees, no Braves, no shorts, no chambray, no light-wash 501s, no olive field jacket. Real wrinkles, heat. Not CGI, not AI smooth.",
+    keywords: ["white OCBD", "khaki chinos", "brown belt", "Blundstone", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -170,8 +175,9 @@ export const looks: Look[] = [
     src: "/images/looks/work-knolling.jpg",
     alt: "Overhead knolling of a navy three-pocket chore, white OCBD, navy merino crew, olive trousers, khaki chinos, brown loafers, brown Chelsea boots, and a brown belt on grey wool.",
     aspect: "1/1",
-    prompt: "Match the photography of the reference knolling pins exactly. Real overhead 50mm Kodak Portra 400, grey wool, window light from the left, grain. Slightly messy.\n\nWORK kit: navy Paynter three-pocket chore; white OCBD; navy merino crewneck; olive double-pleat trousers; khaki chinos as alt bottom; brown loafers; brown Blundstone Chelsea boots; brown belt. NO shorts, no chambray. English country Ivy office rotation. Not CGI, not AI smooth.",
-    keywords: ["Paynter", "white OCBD", "navy merino", "olive pleats", "khaki chinos", "loafers", "Blundstone"],
+
+    prompt: "Match the photography of the reference knolling pins exactly. Real overhead 50mm Kodak Portra 400, grey wool, window light from the left, grain. Slightly messy.\n\nWork kit: navy Paynter three-pocket chore; white OCBD; navy merino crew (thin, not a hoodie); olive double-pleat cuffed trousers; khaki chinos; brown loafers; brown Blundstones; brown belt. NO baseball cap, no Yankees, no Braves hat, no shorts, no chambray, no light-wash jeans, no olive M-65. English country Ivy office. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "white OCBD", "navy merino", "olive pleats", "khaki chinos", "loafers", "Blundstone", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -181,6 +187,7 @@ export const looks: Look[] = [
     src: "/images/looks/heat-polo-khaki-shorts.jpg",
     alt: "Navy cotton pique polo, khaki 7-8 inch chino shorts, navy Atlanta Braves cap, brown loafers, white tile shop-staff snap, head cropped.",
     aspect: "3/4",
+
     prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, harsh late-summer overcast-to-bright daylight, grain, no flash. Straight-on full-body, head cropped at the nose by an Atlanta Braves baseball cap brim, feet at frame bottom, white tile wall, slightly dirty grout.\n\nHOT weather outdoor outfit, 95F, English country Ivy summer: NO jacket, NO chore, NO M-65, NO waxed Barbour, NO corduroy, NO sweatshirt. Navy cotton pique polo (matte cotton, not tech golf knit, no logo). Khaki chino shorts, 7 to 8 inch inseam, regular fit, not gym shorts, not golf tech. Brown leather loafers, no socks. Atlanta Braves navy cap with white script A (NOT Yankees, no NY logo). Hands in pockets. Real wrinkles, sweat-real, not pressed CGI. Anonymous. Not CGI, not AI smooth, not influencer portrait.",
     keywords: ["navy cotton pique polo", "khaki chino shorts", "brown loafers", "Atlanta Braves cap", "Ricoh GR IIIx"],
     objectPosition: "top",
@@ -192,6 +199,7 @@ export const looks: Look[] = [
     src: "/images/looks/heat-ocbd-olive-shorts.jpg",
     alt: "White oxford button-down with rolled sleeves, olive chino shorts, taupe Birkenstock Boston clogs, navy Atlanta Braves cap, brick street, face hidden by brim.",
     aspect: "4/5",
+
     prompt: "Match the photography of the reference street photo exactly. Real 35mm Kodak Portra 400, hot early-September afternoon, slightly washed highlights, grain, brick shopfront. 3/4 to full body, face hidden by cap brim, shoes visible.\n\nHOT 95F outdoor English country Ivy: white or ecru oxford cloth button-down, sleeves rolled, untucked, two buttons open. Olive chino shorts 7-8 inch inseam (NOT denim, NOT light-wash 501s, NOT gym shorts). Taupe Birkenstock Boston clogs. Atlanta Braves navy cap with white A (NOT Yankees). No jacket, no chambray, no jeans. Real wrinkles, heat, not CGI, not AI smooth.",
     keywords: ["white OCBD", "olive chino shorts", "Birkenstock Boston", "Atlanta Braves cap", "Portra 400"],
     objectPosition: "top",
@@ -203,8 +211,9 @@ export const looks: Look[] = [
     src: "/images/looks/heat-knolling.jpg",
     alt: "Overhead knolling of navy polo, white OCBD, khaki and olive chino shorts, navy Braves cap, brown loafers and taupe Birkenstock Bostons on linen.",
     aspect: "1/1",
+
     prompt: "Match the photography of the reference knolling pins exactly. Real overhead 50mm Kodak Portra 400, pale linen or grey wool, window light from the left, grain. Slightly messy.\n\nHOT-day kit only: navy cotton pique polo; white OCBD; khaki chino shorts 7-8 inch; olive chino shorts 7-8 inch; navy Atlanta Braves cap with white A (NOT Yankees); brown loafers; taupe Birkenstock Bostons. NO jacket, NO olive M-65, NO Paynter, NO cords, NO chambray, NO light-wash jeans, NO grey crew. English country Ivy summer heat. Not CGI, not AI smooth.",
-    keywords: ["navy pique polo", "white OCBD", "khaki shorts", "olive shorts", "Braves cap", "loafers", "Birkenstock Boston"],
+    keywords: ["navy pique polo", "white OCBD", "khaki chino shorts", "olive chino shorts", "Atlanta Braves cap", "loafers", "Birkenstock Boston"],
     objectPosition: "center",
   },
   {
@@ -523,6 +532,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-01.jpg",
     alt: "Flat lay of chambray, white oxford, navy polo, khaki and olive shorts, belt, and loafers",
     aspect: "3/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Beige low-pile carpet.\n\nLight-blue chambray button-down folded (chest pocket, white buttons); white linen or oxford button-down; navy long-sleeve knit polo; khaki chino shorts; olive chino shorts; coiled dark brown leather belt with brass buckle; dark brown Paraboot penny loafers. English country Ivy summer kit. Real fabric texture. Not CGI, not AI smooth.",
+    keywords: ["chambray shirt", "white linen oxford", "navy knit polo", "khaki chino shorts", "olive chino shorts", "Paraboot loafers", "brown leather belt"],
     objectPosition: "center",
   },
   {
@@ -532,6 +543,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-02.jpg",
     alt: "Oxford cloth and chinos against a white tiled wall",
     aspect: "4/5",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face turned away, no cap, shoes visible.\n\nWhite linen or light cotton OCBD, sleeves rolled, TUCKED. Olive chino shorts, mid-thigh. Thin dark brown leather belt. Brown leather penny loafers, no socks. Walking a cobblestone alley between red-brick walls, hands in pockets. English country Ivy summer. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["white linen OCBD", "olive chino shorts", "brown leather belt", "penny loafers", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -541,6 +554,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-03.jpg",
     alt: "Field jacket and cap on wet brick",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped at nose, no baseball cap, feet at frame bottom.\n\nLight-blue oxford cloth button-down, sleeves rolled, top buttons open, TUCKED into khaki chino shorts (7-8 inch). Slim dark brown leather belt. Dark brown penny loafers, no socks. Silver watch with brown strap. White subway tile wall, grey stone base, overcast daylight. English country Ivy summer. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["light blue OCBD", "khaki chino shorts", "brown leather belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -550,6 +565,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-04.jpg",
     alt: "Flat lay of an olive field jacket, chambray, khakis, Yankees cap, canvas tote, and Chelsea boots",
     aspect: "5/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey textured carpet.\n\nOlive M-65 field jacket (four flap pockets, epaulets); folded light-blue chambray OCBD; khaki chino trousers; navy New York Yankees cap with white NY; cream canvas J. Press tote; brown leather Chelsea boots. Fall Americana kit. Not CGI, not AI smooth.",
+    keywords: ["M-65", "chambray OCBD", "khaki chinos", "Yankees cap", "J. Press tote", "Chelsea boots"],
     objectPosition: "center",
   },
   {
@@ -559,6 +576,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-05.jpg",
     alt: "Blue chore coat over a white oxford",
     aspect: "2/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Head cropped, shoes visible.\n\nOlive cotton-twill M-65 worn OPEN over a tucked light-blue OCBD. Khaki chinos, double-cuffed above the boot. Dark brown leather belt. Brown Chelsea boots. Cream canvas tote with olive handles in one hand, other hand in jacket pocket. Wet grey sidewalk, white masonry wall. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["M-65", "light blue OCBD", "khaki chinos", "Chelsea boots", "canvas tote", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -568,6 +587,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-06.jpg",
     alt: "Summer oxford and olive shorts on a city sidewalk",
     aspect: "4/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, rainy overcast, grain. Face under brim, shoes visible.\n\nNavy Yankees cap with white NY. Olive cotton field jacket. Light-blue OCBD tucked into khaki chinos, cuffed. Dark brown belt. Brown Chelsea boots. Off-white L.L.Bean-style canvas tote with forest-green handles. Walking wet stone pavers, brick shopfronts. English country Ivy rain. Not CGI, not AI smooth.",
+    keywords: ["Yankees cap", "olive field jacket", "light blue OCBD", "khaki chinos", "Chelsea boots", "L.L.Bean tote"],
     objectPosition: "top",
   },
   {
@@ -577,6 +598,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-07.jpg",
     alt: "Flat lay of a blue chore coat, white oxford, tan and olive trousers, belt, and loafers",
     aspect: "3/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Light grey carpet.\n\nWashed blue cotton-canvas chore (three patch pockets, dark buttons); folded ecru/white oxford or linen shirt; tan wide-wale corduroy trousers; olive pleated cotton trousers; coiled brown leather belt; dark brown penny loafers. Heritage workwear rotation. Not CGI, not AI smooth.",
+    keywords: ["blue chore coat", "ecru oxford", "tan corduroy", "olive pleats", "penny loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -586,6 +609,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-08.jpg",
     alt: "White linen and khaki loafers, standing",
     aspect: "4/5",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face turned away, shoes visible.\n\nFaded blue cotton chore OPEN, white pocket square in the breast pocket. Olive-and-cream vertical-stripe button-down. High-waist olive double-pleat trousers, cuffed. Thin dark brown belt. Mahogany penny loafers, dark socks. Navy baseball cap. Red brick, dark green shutters, stone sidewalk. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["blue chore coat", "striped oxford", "olive double-pleat trousers", "penny loafers", "navy cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -595,6 +620,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-09.jpg",
     alt: "Waxed jacket and Chelsea boots outdoors",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nFaded cornflower-blue cotton-twill chore, hands in hip patch pockets. White OCBD tucked into tan fine-wale corduroy trousers. Dark brown leather belt, silver buckle. Polished brown penny loafers. White square-tile wall, grey stone pavement, even daylight. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["blue chore coat", "white OCBD", "tan corduroy", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -604,6 +631,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-10.jpg",
     alt: "Flat lay of olive trousers, white oxford, navy sweater, loafers, belt, and glasses",
     aspect: "5/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool carpet.\n\nOlive heavy pleated trousers with cuff; folded white J.Crew OCBD; navy Drake's wool crewneck; brown Tecovas penny loafers; coiled dark brown belt with brass buckle; round tortoise glasses. Quiet Ivy kit. Not CGI, not AI smooth.",
+    keywords: ["olive pleats", "J.Crew OCBD", "Drake's crewneck", "Tecovas loafers", "brown belt", "tortoise glasses"],
     objectPosition: "center",
   },
   {
@@ -613,6 +642,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-11.jpg",
     alt: "Navy polo and khaki shorts in daylight",
     aspect: "2/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nWhite OCBD, two buttons open, TUCKED. Olive cotton-drill double-pleat trousers with pressed crease and wide cuff. Medium-brown leather belt, silver buckle. Worn tan-brown penny loafers, dark ribbed socks. One hand in pocket. Cream limestone wall, dark wood door, ivy planter. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["white OCBD", "olive double-pleat trousers", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -622,6 +653,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-12.jpg",
     alt: "Olive field jacket, tote, and boots on a wet street",
     aspect: "4/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, dusk, grain. Face turned away, shoes visible.\n\nNavy wool V-neck over a light-blue OCBD collar. Tobacco brown corduroy trousers. Dark brown leather lace-up boots. Standing from behind at a brick wine-bar window, warm interior light, hands in back pockets. English country Ivy evening. Not CGI, not AI smooth.",
+    keywords: ["navy V-neck", "light blue OCBD", "tobacco corduroy", "leather boots", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -631,6 +664,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-13.jpg",
     alt: "Heritage menswear worn on a cobblestone street",
     aspect: "3/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, late-afternoon grain. Face under brim, shoes visible.\n\nLight-blue-and-white vertical-stripe OCBD, sleeves rolled, tucked. Tan fine-wale corduroy trousers. Dark brown leather belt. Brown penny loafers, no socks. Navy baseball cap with small gold crest. Walking a red-brick courtyard, hands in pockets. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["striped OCBD", "tan corduroy", "penny loafers", "navy cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -640,6 +675,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-14.jpg",
     alt: "Flat lay of a white linen shirt, tan trousers, loafers, belt, and glasses",
     aspect: "4/5",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Light grey carpet.\n\nRumpled white linen button-down (chest pocket); folded tan corduroy trousers; dark brown penny loafers; coiled dark brown leather belt; tortoise glasses. Sparse summer-into-fall kit. Not CGI, not AI smooth.",
+    keywords: ["white linen shirt", "tan corduroy", "penny loafers", "brown belt", "tortoise glasses"],
     objectPosition: "center",
   },
   {
@@ -649,6 +686,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-15.jpg",
     alt: "Field jacket and cap on wet brick",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nWhite linen button-down, sleeves rolled, collar open, TUCKED into camel fine-wale corduroy trousers. Slim dark brown belt. Dark brown penny loafers. Hands in pockets. White square-tile shop wall, wood door, boutique window, bright daylight. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["white linen shirt", "camel corduroy", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -658,6 +697,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-16.jpg",
     alt: "Flat lay of Chelsea boots, olive trousers, white oxford, navy sweater, and a field jacket",
     aspect: "5/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool.\n\nOlive waxed-cotton Barbour laid open (corduroy collar, tartan lining); charcoal or navy crewneck; white OCBD; olive double-pleat cuffed twill trousers; brown Chelsea boots with shoe trees; coiled dark brown belt. British heritage rotation. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "waxed cotton", "navy crewneck", "white OCBD", "olive pleats", "Chelsea boots"],
     objectPosition: "center",
   },
   {
@@ -667,6 +708,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-17.jpg",
     alt: "Blue chore coat over a white oxford",
     aspect: "2/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face down, shoes visible.\n\nOlive waxed-cotton jacket (brown corduroy collar, bellows pockets) OPEN. White OCBD tucked. Olive double-pleat cuffed trousers. Dark brown penny loafers. Worn olive cap optional. Hands in jacket pockets. Brick shopfront, dark green door. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "waxed cotton", "white OCBD", "olive double-pleat trousers", "penny loafers", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -676,6 +719,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-18.jpg",
     alt: "Summer oxford and olive shorts on a city sidewalk",
     aspect: "4/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nNavy textured wool crewneck over a white OCBD collar tucked at the neck. Sage/olive double-pleat wool-flannel trousers, crease, substantial cuff. Slim dark brown belt. Polished dark brown leather derbies or loafers. Hands in pockets. White vertical tile wall, silver handrail. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["navy wool crewneck", "white OCBD", "olive double-pleat trousers", "brown derbies", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -685,6 +730,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-19.jpg",
     alt: "Flat lay of an olive waxed jacket, navy sweater, white shirt, tan trousers, and Chelsea boots",
     aspect: "3/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Dark grey wool.\n\nOlive Barbour waxed jacket (corduroy collar, quilted/tartan lining); navy chunky wool crew; white OCBD; tan fine-wale corduroy trousers; brown Chelsea boots with trees; coiled dark brown belt. Fall heritage kit. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy wool crew", "white OCBD", "tan corduroy", "Chelsea boots", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -694,6 +741,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-20.jpg",
     alt: "White linen and khaki loafers, standing",
     aspect: "4/5",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Face under brim, shoes visible.\n\nNavy Polo baseball cap with small red logo. Olive waxed Barbour (corduroy collar) OPEN over a navy crewneck and a blue-and-white striped OCBD hem. Slim navy cotton trousers. Dark brown penny loafers, no socks. Leaning a tan-brick corner, hands in pockets, ankles crossed. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy crewneck", "striped OCBD", "navy trousers", "penny loafers", "Polo cap"],
     objectPosition: "top",
   },
   {
@@ -703,6 +752,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-21.jpg",
     alt: "Waxed jacket and Chelsea boots outdoors",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive waxed jacket OPEN (brown corduroy collar, tartan peek). Navy dense wool crew over a white OCBD. Tan fine-wale corduroy trousers. Slim dark brown belt. Polished brown Chelsea boots. Hands in jacket pockets. White square-tile wall, grey curb. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy crewneck", "white OCBD", "tan corduroy", "Chelsea boots", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -712,6 +763,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-22.jpg",
     alt: "Flat lay of a white oxford, navy sweater, tan trousers, belt, and loafers",
     aspect: "5/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool.\n\nFolded white Alex Mill cotton-linen button-down; navy lambswool crewneck; khaki cotton chinos; dark brown penny loafers with patina; coiled dark brown belt, brass buckle. Quiet Ivy weekday kit. Not CGI, not AI smooth.",
+    keywords: ["Alex Mill", "white linen shirt", "navy crewneck", "khaki chinos", "penny loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -721,6 +774,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-23.jpg",
     alt: "Navy polo and khaki shorts in daylight",
     aspect: "2/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face under brim, shoes visible.\n\nNavy baseball cap with white script. Olive cotton chore OPEN over an open white OCBD and a white crew tee. Tobacco wide-wale corduroy trousers, cuffed. Dark brown leather cap-toe boots. Leaning a red-brick pillar by a dark green shopfront, hands in pockets, ankles crossed. English country Ivy workwear. Not CGI, not AI smooth.",
+    keywords: ["olive chore", "white OCBD", "white tee", "tobacco corduroy", "cap-toe boots", "navy cap"],
     objectPosition: "top",
   },
   {
@@ -730,6 +785,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-24.jpg",
     alt: "Olive field jacket, tote, and boots on a wet street",
     aspect: "4/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nWhite linen or textured cotton button-down, sleeves rolled, two buttons open, TUCKED into navy cotton-twill chinos with deep cuffs. Medium-brown leather belt, brass buckle. Polished brown penny loafers, no socks. Watch with brown strap. Hands in pockets. White square-tile wall, grey sidewalk. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["white linen shirt", "navy chinos", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -739,6 +796,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-25.jpg",
     alt: "Flat lay of a navy fleece, tan corduroy, sneakers, glasses, and a canvas tote",
     aspect: "3/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Heather grey wool blanket.\n\nNavy L.L.Bean fleece quarter-zip over a white OCBD collar; folded tan wide-wale corduroy trousers; grey New Balance 574s (suede/mesh, white N); cream L.L.Bean Boat and Tote with hunter-green handles; coiled chocolate leather belt, brass buckle; round tortoise glasses. Weekend kit. Not CGI, not AI smooth.",
+    keywords: ["L.L.Bean fleece", "white OCBD", "tan corduroy", "New Balance 574", "Boat and Tote", "tortoise glasses"],
     objectPosition: "center",
   },
   {
@@ -748,6 +807,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-26.jpg",
     alt: "Oxford cloth and chinos against a white tiled wall",
     aspect: "4/5",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, overcast, grain. Face down, shoes visible.\n\nOlive wide-wale corduroy overshirt OPEN over a navy wool crew. Light-wash straight 501s, double-cuffed. Navy baseball cap. Marled grey chunky wool socks. Taupe suede Birkenstock Bostons. Hands in jean pockets. Tan stucco wall, fallen leaves, dark pavement. English country Ivy weekend. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["olive corduroy shirt", "navy crewneck", "Levi's 501", "Birkenstock Boston", "navy cap", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -757,6 +818,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-27.jpg",
     alt: "Field jacket and cap on wet brick",
     aspect: "1/1",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Face under brim, shoes visible.\n\nOlive waxed Barbour OPEN (corduroy collar) over a black or navy crewneck. Cream/off-white pleated straight trousers. Polished brown Chelsea boots. Cream baseball cap with small dark logo. Leaning a red-brick corner, hands in pockets, ankles crossed, autumn leaves on stone pavers. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy crewneck", "cream pleated trousers", "Chelsea boots", "cream cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -766,6 +829,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-28.jpg",
     alt: "Navy knit and tobacco corduroy in warm light",
     aspect: "5/4",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive waxed field jacket OPEN (corduroy collar) over a medium-wash denim trucker and a white crew tee. Charcoal wool-flannel trousers, sharp crease. White leather low-top sneakers. Hands in jacket pockets. White subway-tile wall, a few dry leaves. Layered workwear-meets-tailoring. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["waxed field jacket", "denim trucker", "white tee", "charcoal wool trousers", "white sneakers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -775,6 +840,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-29.jpg",
     alt: "Blue chore coat over a white oxford",
     aspect: "2/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, feet at frame bottom.\n\nShaggy rust/burnt-orange mohair crewneck. Cream fine-wale corduroy straight trousers. Dark brown leather moc-toe shoes (Paraboot Michael type), white socks. Cream canvas tote with brown leather trim in one hand. Thin dark brown belt. White tile wall, autumn leaves on asphalt. English country Ivy knit. Real texture. Not CGI, not AI smooth.",
+    keywords: ["mohair crewneck", "cream corduroy", "Paraboot Michael", "canvas tote", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -784,6 +851,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-30.jpg",
     alt: "Summer oxford and olive shorts on a city sidewalk",
     aspect: "4/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face under brim, shoes visible.\n\nNavy Polo cap with small white logo. Light-blue-and-white micro-stripe short-sleeve polo, navy-tipped collar, tucked. Slim navy trousers. Brown penny loafers, no socks. Leaning a red-brick corner by a shopfront, hands in pockets, ankles crossed. English country Ivy summer. Not CGI, not AI smooth.",
+    keywords: ["striped polo", "navy trousers", "penny loafers", "Polo cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -793,6 +862,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-31.jpg",
     alt: "Flat lay of a striped polo, navy shorts, brown loafers, and a leather belt",
     aspect: "3/4",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool.\n\nNavy Peter Millar polo with thin white horizontal stripes, navy collar with white tipping, small crown logo; folded navy cotton chino shorts or chinos; medium-brown penny loafers with patina; coiled dark brown belt, brass buckle. Preppy heat kit. Not CGI, not AI smooth.",
+    keywords: ["Peter Millar polo", "navy shorts", "penny loafers", "brown leather belt"],
     objectPosition: "center",
   },
   {
@@ -802,6 +873,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-32.jpg",
     alt: "White linen and khaki loafers, standing",
     aspect: "4/5",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nShort-sleeve cotton polo, thin blue-and-white vertical stripes, solid navy collar and cuffs with white tipping, TUCKED into slim navy chinos. Medium-brown leather belt, silver buckle. Dark mahogany penny loafers, no socks. Hands in pockets. Off-white square tiles, JP street furniture, grey sidewalk. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["striped polo", "navy chinos", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -811,6 +884,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-33.jpg",
     alt: "Waxed jacket and Chelsea boots outdoors",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nShort-sleeve polo with bold navy-and-white vertical stripes, TUCKED into tan fine-wale corduroy trousers. Dark brown leather belt, silver buckle. Dark brown penny loafers, no socks. Silver link watch. Hands in pockets. White square-tile Tokyo wall, blue Jingumae street sign. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["striped polo", "tan corduroy", "penny loafers", "brown belt", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -820,6 +895,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-34.jpg",
     alt: "Striped oxford and navy trousers against brick",
     aspect: "5/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Face under brim, shoes visible.\n\nNavy baseball cap. Olive waxed field jacket OPEN (brown corduroy collar) over a navy polo. Straight navy cotton trousers. Dark brown suede Chelsea boots. Leaning a weathered brick corner, hands in jacket pockets, ankles crossed, dark green door. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy polo", "navy trousers", "suede Chelsea boots", "navy cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -829,6 +906,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-35.jpg",
     alt: "Flat lay of an olive field jacket, navy polo, navy trousers, loafers, and belt",
     aspect: "2/3",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool.\n\nOlive waxed jacket (corduroy collar, tartan lining); folded navy pique polo; folded navy cotton trousers; brown penny loafers; coiled dark brown belt, brass buckle. Tonal navy-and-olive kit. Not CGI, not AI smooth.",
+    keywords: ["waxed jacket", "navy pique polo", "navy trousers", "penny loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -838,6 +917,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-36.jpg",
     alt: "Olive field jacket, tote, and boots on a wet street",
     aspect: "4/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive cotton-pique polo, two-button placket, TUCKED into slim navy chinos. Thin dark brown leather belt, silver buckle. Dark brown penny loafers, no socks. Watch with brown strap. Hands in pockets. Off-white textured wall, grey asphalt, manhole. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["olive pique polo", "navy chinos", "brown belt", "penny loafers", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -847,6 +928,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-37.jpg",
     alt: "Heritage menswear worn on a cobblestone street",
     aspect: "3/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face under brim, shoes visible.\n\nNavy Polo cap with red logo. Olive waxed jacket OPEN (corduroy collar, tartan peek) over an olive polo tucked into slim navy chinos. Medium-brown leather belt. Polished brown Chelsea boots. Leaning a soot-stained brick corner, hands in pockets, ankles crossed, shoe-shop window. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "olive polo", "navy chinos", "Chelsea boots", "Polo cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -856,6 +939,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-38.jpg",
     alt: "Oxford cloth and chinos against a white tiled wall",
     aspect: "4/5",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face looking down, shoes visible.\n\nLight-blue-and-white vertical pinstripe cotton shirt, sleeves rolled, white crew undershirt at the collar. Charcoal wool-flannel trousers, slim-straight, cropped above the ankle. Dark brown penny loafers, no socks. Sitting on weathered wooden porch steps, terracotta plant behind. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["striped oxford", "charcoal wool trousers", "penny loafers", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -865,6 +950,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-39.jpg",
     alt: "Field jacket and cap on wet brick",
     aspect: "1/1",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, warm side light, grain. Cropped neck to chest.\n\nLight-blue-and-white thin vertical-stripe OCBD, button-down collar, two buttons open, chest pocket, under an OPEN navy wool or cashmere cardigan. Textured off-white plaster wall. English country Ivy layering. Real knit texture. Not CGI, not AI smooth.",
+    keywords: ["striped OCBD", "navy cardigan", "oxford cloth", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -874,6 +961,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-40.jpg",
     alt: "Navy knit and tobacco corduroy in warm light",
     aspect: "5/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400 / Ricoh GR IIIx 28mm grain. Shot from behind, shoes visible.\n\nNavy baseball cap with yellow embroidery on the back. Olive waxed field jacket. Light-blue striped OCBD at the collar. Straight cream cotton trousers, slightly cropped. Dark brown Chelsea boots. Walking a flagstone sidewalk, brick wall, black drainpipe, dark green shopfront. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["olive field jacket", "striped OCBD", "cream trousers", "Chelsea boots", "navy cap"],
     objectPosition: "top",
   },
   {
@@ -883,6 +972,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-41.jpg",
     alt: "Blue chore coat over a white oxford",
     aspect: "2/3",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face turned away.\n\nOlive cotton-twill chore OPEN over a forest-green wool crew and a blue-and-white fine-stripe OCBD. Dark indigo straight jeans, small cuff. Dark brown leather derbies. One hand in pocket. Textured dusty-rose studio wall, soft side light. English country Ivy workwear. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["olive chore coat", "forest green crewneck", "striped OCBD", "indigo jeans", "leather derbies", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -892,6 +983,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-42.jpg",
     alt: "Summer oxford and olive shorts on a city sidewalk",
     aspect: "4/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nNavy wool crewneck over a blue-and-white vertical-stripe OCBD (collar in, cuffs turned over the knit). Light-wash straight 501s, brown leather belt. Dark brown Chelsea boots. Silver watch, brown strap. Hands in jean pockets. Off-white stucco wall, grey curb. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["navy crewneck", "striped OCBD", "Levi's 501", "Chelsea boots", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -901,6 +994,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-43.jpg",
     alt: "Quilted jacket and cap on an alley wall",
     aspect: "3/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, grain. Face under brim, shoes visible.\n\nNavy Yankees-style cap with white logo. Blue-and-white thin vertical-stripe OCBD, sleeves rolled, tucked. Tan corduroy trousers. Slim dark brown belt. Dark brown penny loafers. Olive cotton jacket or overshirt draped over one arm. Leaning a weathered brick corner by a dark green shopfront. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["striped OCBD", "tan corduroy", "penny loafers", "Yankees cap", "olive jacket", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -910,6 +1005,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-44.jpg",
     alt: "Flat lay of an olive waxed jacket, striped oxford, navy knit, tan corduroy, and tassel loafers",
     aspect: "4/5",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool rug.\n\nOlive Barbour waxed jacket (corduroy collar, tartan lining); folded J. Press blue-and-white striped OCBD; navy textured wool crew; tan medium-wale corduroy trousers; dark brown Alden tassel loafers; coiled brown leather belt, brass buckle. Ivy heritage kit. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "J. Press striped OCBD", "navy wool crew", "tan corduroy", "Alden tassel loafers", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -919,6 +1016,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-45.jpg",
     alt: "Waxed jacket and Chelsea boots outdoors",
     aspect: "1/1",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive waxed jacket OPEN (brown corduroy collar) over a blue-and-white thin vertical-stripe OCBD, tucked. Tan mid-wale corduroy trousers. Dark brown leather belt, silver buckle. Dark brown penny loafers. Hands in trouser pockets. Corrugated off-white wall, weathered concrete, asphalt. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "striped OCBD", "tan corduroy", "penny loafers", "brown belt", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -928,6 +1027,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-46.jpg",
     alt: "Striped oxford and navy trousers against brick",
     aspect: "5/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Face under brim, shoes visible.\n\nNavy baseball cap. Olive waxed jacket OPEN (corduroy collar, bellows pockets) over a cream OCBD, tucked. Tan wide-wale corduroy trousers. Dark brown leather belt. Dark brown penny loafers. Leaning a dark brick corner, hands in jacket pockets, ankles crossed, black shopfront. English country Ivy. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "cream OCBD", "tan corduroy", "penny loafers", "navy cap", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -937,6 +1038,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-47.jpg",
     alt: "Flat lay of an olive waxed jacket, navy sweater, plaid shirt, white oxford, tan corduroy, and Chelsea boots",
     aspect: "2/3",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Grey wool.\n\nOlive Barbour waxed jacket laid open (corduroy collar, tartan lining) with a folded navy Drake's wool crew inside; folded white Drake's OCBD; tan corduroy trousers; polished brown Chelsea boots with wooden trees; coiled dark brown belt, brass buckle. Full heritage rotation. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "Drake's crewneck", "white OCBD", "tan corduroy", "Chelsea boots", "brown belt"],
     objectPosition: "center",
   },
   {
@@ -946,6 +1049,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-48.jpg",
     alt: "Olive field jacket, tote, and boots on a wet street",
     aspect: "4/3",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive waxed jacket OPEN (brown corduroy collar) over a navy fine-gauge crew and a white OCBD collar. Tan wide-wale corduroy trousers. Dark brown Chelsea boots. Hands in jacket pockets. Vertical off-white tile over weathered concrete. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy crewneck", "white OCBD", "tan corduroy", "Chelsea boots", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -955,6 +1060,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-49.jpg",
     alt: "Heritage menswear worn on a cobblestone street",
     aspect: "3/4",
+    prompt: "Match the street refs. Real 35mm Kodak Portra 400, overcast, grain. Head cropped or down, shoes visible.\n\nOlive cotton or moleskin chore OPEN over a cream OCBD, tucked. Tan wide-wale corduroy trousers. Dark brown leather belt, silver buckle. Dark brown penny loafers. Hands in pockets. Dark-stained wooden porch, white railing, soft autumn trees behind. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["olive chore coat", "cream OCBD", "tan corduroy", "penny loafers", "brown belt", "Portra 400"],
     objectPosition: "top",
   },
   {
@@ -964,6 +1071,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-50.jpg",
     alt: "Oxford cloth and chinos against a white tiled wall",
     aspect: "4/5",
+    prompt: "Match the photography of the Japanese shop-staff refs. Real Ricoh GR IIIx 28mm, grain, no flash. Head cropped, no cap, feet at frame bottom.\n\nOlive waxed jacket OPEN (brown corduroy collar) over a navy crewneck and white OCBD collar. Tan wide-wale corduroy trousers. Polished dark brown Chelsea boots. Hands in pockets. Red-brick sidewalk, navy door with brass hardware, black shutters. English country Ivy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["Barbour", "navy crewneck", "white OCBD", "tan corduroy", "Chelsea boots", "Ricoh GR IIIx"],
     objectPosition: "top",
   },
   {
@@ -973,6 +1082,8 @@ export const looks: Look[] = [
     src: "/images/looks/look-51.jpg",
     alt: "Flat lay of a navy sweater, white oxford, olive jacket, Chelsea boots, tan trousers, cap, belt, and watch",
     aspect: "1/1",
+    prompt: "Match knolling refs. Overhead 50mm Portra, window left, grain. Light wood table.\n\nOlive waxed field jacket (corduroy collar, tartan peek); folded navy wool crewneck; folded white OCBD; tan wide-wale corduroy trousers; worn brown Chelsea boots; coiled dark brown belt; navy cotton baseball cap; field watch on olive NATO strap. Complete heritage kit. Not CGI, not AI smooth.",
+    keywords: ["navy sweater", "white OCBD", "olive waxed jacket", "Chelsea boots", "tan corduroy", "navy cap", "brown belt"],
     objectPosition: "center",
   }
 ];
