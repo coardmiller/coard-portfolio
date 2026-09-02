@@ -152,9 +152,17 @@ function measure(el: Element): Rect {
   return { left: r.left, top: r.top, width: r.width, height: r.height };
 }
 
-function destRect(): Rect {
-  const maxW = window.innerWidth * 0.94;
-  const maxH = window.innerHeight * 0.94;
+const PANEL_W = 320;
+const TOOLBAR_H = 80;
+
+function destRect(panelOpen: boolean): Rect {
+  const wide = window.innerWidth >= 720;
+  const panel = panelOpen && wide ? PANEL_W : 0;
+  const padX = 20;
+  const padTop = 20;
+  const padBottom = TOOLBAR_H + (panelOpen && !wide ? 220 : 0);
+  const maxW = Math.max(160, window.innerWidth - padX * 2 - panel);
+  const maxH = Math.max(160, window.innerHeight - padTop - padBottom);
   let width = maxW;
   let height = width / SOURCE_ASPECT;
   if (height > maxH) {
@@ -162,11 +170,33 @@ function destRect(): Rect {
     width = height * SOURCE_ASPECT;
   }
   return {
-    left: (window.innerWidth - width) / 2,
-    top: (window.innerHeight - height) / 2,
+    left: padX + (maxW - width) / 2,
+    top: padTop + (maxH - height) / 2,
     width,
     height,
   };
+}
+
+function lookKeywords(look: Look): string[] {
+  if (look.keywords && look.keywords.length) return look.keywords;
+  const stop = new Set([
+    'coard', 'a', 'an', 'the', 'and', 'or', 'over', 'with', 'into', 'on', 'of',
+    'to', 'for', 'in', 'if', 'is', 'kit', 'look',
+  ]);
+  const raw = [
+    ...look.id.split('-'),
+    ...look.caption.replace(/[.,]/g, ' ').split(/\s+/),
+  ];
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const token of raw) {
+    const cleaned = token.trim().replace(/^[^A-Za-z0-9']+|[^A-Za-z0-9']+$/g, '');
+    const low = cleaned.toLowerCase();
+    if (cleaned.length < 3 || stop.has(low) || seen.has(low)) continue;
+    seen.add(low);
+    out.push(cleaned);
+  }
+  return out.slice(0, 14);
 }
 
 const LookExpand: React.FC<{
@@ -175,12 +205,16 @@ const LookExpand: React.FC<{
   reducedMotion: boolean;
   onClose: () => void;
 }> = ({ look, origin, reducedMotion, onClose }) => {
-  const [rect, setRect] = useState<Rect>(reducedMotion ? destRect() : origin);
+  const [panelOpen, setPanelOpen] = useState(true);
+  const [rect, setRect] = useState<Rect>(reducedMotion ? destRect(true) : origin);
   const [open, setOpen] = useState(reducedMotion);
   const [closing, setClosing] = useState(false);
   const closingRef = useRef(false);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
+  const keywords = lookKeywords(look);
+  const promptText = look.prompt || look.caption;
+  const promptLabel = look.prompt ? 'Prompt' : 'Caption';
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -218,7 +252,7 @@ const LookExpand: React.FC<{
       requestAnimationFrame(() => {
         if (!cancelled) {
           setOpen(true);
-          setRect(destRect());
+          setRect(destRect(true));
         }
       });
     });
@@ -233,6 +267,14 @@ const LookExpand: React.FC<{
     const t = window.setTimeout(() => onCloseRef.current(), DURATION_MS + 80);
     return () => window.clearTimeout(t);
   }, [closing]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (!closingRef.current) setRect(destRect(panelOpen));
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [panelOpen]);
 
   const handleTransitionEnd = (event: React.TransitionEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) return;
@@ -270,9 +312,44 @@ const LookExpand: React.FC<{
           src={look.src}
           alt={look.alt}
           draggable={false}
-          style={{ objectPosition: look.objectPosition }}
         />
       </div>
+      {!closing && (
+      <aside
+        className={`look-expand-panel${panelOpen ? ' is-open' : ''}`}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="look-expand-panel-tools">
+          <ToolBtn
+            label={panelOpen ? 'Hide prompt' : 'Show prompt'}
+            pressed={panelOpen}
+            onClick={() => {
+              const next = !panelOpen;
+              setPanelOpen(next);
+              setRect(destRect(next));
+            }}
+          >
+            {panelOpen ? <IconPanelClose /> : <IconPanelOpen />}
+          </ToolBtn>
+        </div>
+        {panelOpen && (
+          <div className="look-expand-panel-body">
+            <p className="look-expand-kicker">{promptLabel}</p>
+            <p className="look-expand-prompt">{promptText}</p>
+            {keywords.length > 0 && (
+              <>
+                <p className="look-expand-kicker">Keywords</p>
+                <ul className="look-expand-tags">
+                  {keywords.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        )}
+      </aside>
+      )}
     </div>,
     document.body
   );
@@ -339,6 +416,20 @@ const SEARCH_PROMPTS = [
   'Chelsea boots',
   'oxford',
 ];
+
+const IconPanelOpen = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="8" height="13" rx="1" fill="currentColor" opacity="0.35" />
+    <rect x="9.2" y="0" width="3.8" height="13" rx="1" fill="currentColor" />
+  </svg>
+);
+
+const IconPanelClose = () => (
+  <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
+    <rect x="0" y="0" width="13" height="13" rx="1" fill="currentColor" opacity="0.2" />
+    <rect x="8.4" y="1.4" width="3.2" height="10.2" rx="0.7" fill="currentColor" />
+  </svg>
+);
 
 const IconSearch = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true">
@@ -629,7 +720,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         )}
       </div>
 
-      {!active && createPortal(
+      {createPortal(
         <LookbookToolbar
           layout={prefs.layout}
           size={prefs.size}
@@ -795,10 +886,107 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
         .look-expand-frame img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          object-position: center;
           display: block;
           user-select: none;
           pointer-events: none;
+        }
+        .look-expand-panel {
+          position: fixed;
+          z-index: 10000;
+          right: 12px;
+          top: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
+          max-width: min(320px, calc(100vw - 24px));
+          cursor: default;
+        }
+        .look-expand-panel-tools {
+          display: flex;
+          align-items: center;
+          padding: 4px;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid #f3f4f6;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+        :root.dark .look-expand-panel-tools {
+          background: rgba(26, 26, 26, 0.95);
+          border-color: rgba(255, 255, 255, 0.1);
+          color: #f3f4f6;
+        }
+        .look-expand-panel-body {
+          width: min(300px, calc(100vw - 24px));
+          max-height: calc(100vh - 160px);
+          overflow: auto;
+          padding: 16px 16px 18px;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid #f3f4f6;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+          color: #111;
+        }
+        :root.dark .look-expand-panel-body {
+          background: rgba(26, 26, 26, 0.95);
+          border-color: rgba(255, 255, 255, 0.1);
+          color: #f3f4f6;
+        }
+        .look-expand-kicker {
+          margin: 0 0 6px;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #9ca3af;
+        }
+        .look-expand-kicker + .look-expand-kicker,
+        .look-expand-prompt + .look-expand-kicker {
+          margin-top: 16px;
+        }
+        .look-expand-prompt {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.45;
+        }
+        .look-expand-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+        .look-expand-tags li {
+          padding: 4px 9px;
+          border-radius: 9999px;
+          background: #f3f4f6;
+          font-size: 12px;
+          line-height: 1.2;
+        }
+        :root.dark .look-expand-tags li {
+          background: rgba(255, 255, 255, 0.08);
+        }
+        @media (max-width: 719px) {
+          .look-expand-panel {
+            left: 12px;
+            right: 12px;
+            top: auto;
+            bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+            align-items: stretch;
+          }
+          .look-expand-panel-tools {
+            align-self: flex-end;
+          }
+          .look-expand-panel-body {
+            width: 100%;
+            max-height: 28vh;
+          }
         }
 
         .lookbook-toolbar-slot {
@@ -806,7 +994,7 @@ const StyleGallery: React.FC<{ animationClass: string }> = ({ animationClass }) 
           left: 0;
           right: 0;
           bottom: 0;
-          z-index: 80;
+          z-index: 10050;
           display: flex;
           justify-content: center;
           pointer-events: none;

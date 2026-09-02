@@ -8,6 +8,8 @@ export interface Look {
   alt: string;
   aspect: LookAspect;
   objectPosition: 'top' | 'center';
+  prompt?: string;
+  keywords?: string[];
 }
 
 // Newest first (source-file mtime).
