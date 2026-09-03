@@ -1,3 +1,5 @@
+import { looks } from './looks';
+
 export interface Experiment {
   slug: string;
   title: string;
@@ -6,7 +8,11 @@ export interface Experiment {
   iframeSrc?: string;
   href?: string;
   thumbnail: string;
+  /** When set, the tile cycles through these images in place. */
+  thumbnailCycle?: string[];
 }
+
+const lookThumbnails = looks.map((look) => look.src);
 
 export const experiments: Experiment[] = [
   {
@@ -15,7 +21,8 @@ export const experiments: Experiment[] = [
     description: 'A silent masonry lookbook of generated fits.',
     category: 'Lookbook',
     href: '/style',
-    thumbnail: '/images/looks/levis-sage-tee-light-501s.jpg',
+    thumbnail: lookThumbnails[0],
+    thumbnailCycle: lookThumbnails,
   },
   {
     slug: 'logocheck',
