@@ -104,7 +104,7 @@ const ExperimentsIndex: React.FC<{ animationClass: string }> = ({ animationClass
           </RevealOnScroll>
           <RevealOnScroll delay={50}>
             <h1 className="text-3xl md:text-5xl font-light leading-[1.1] tracking-tight text-black dark:text-gray-100">
-              Experiments in tools, interfaces, and small digital systems worth trying in motion.
+              Experiments in curating a personal clothing moodboard using generative AI.
             </h1>
           </RevealOnScroll>
         </div>
