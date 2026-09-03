@@ -1,9 +1,96 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RevealOnScroll from './RevealOnScroll';
 import { experiments } from '../data/experiments';
 
 const formatCount = (count: number) => count.toString().padStart(2, '0');
+
+const CYCLE_MS = 500;
+const FADE_MS = 260;
+
+function shuffled<T>(items: T[]): T[] {
+  const next = items.slice();
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = next[i];
+    next[i] = next[j];
+    next[j] = tmp;
+  }
+  return next;
+}
+
+const CyclingThumbnail: React.FC<{ srcs: string[]; alt: string }> = ({ srcs, alt }) => {
+  const frames = useMemo(() => (srcs.length > 1 ? shuffled(srcs) : srcs), [srcs]);
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const holderRef = useRef<HTMLDivElement>(null);
+
+  const reduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  useEffect(() => {
+    const el = holderRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      (entries) => setVisible(entries.some((entry) => entry.isIntersecting)),
+      { rootMargin: '120px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (reduced || frames.length < 2 || !visible) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % frames.length);
+    }, CYCLE_MS);
+    return () => window.clearInterval(id);
+  }, [reduced, frames.length, visible]);
+
+  useEffect(() => {
+    if (frames.length < 2) return;
+    const next = new Image();
+    next.src = frames[(index + 1) % frames.length];
+  }, [frames, index]);
+
+  const current = frames[index] || frames[0];
+  const previous = frames.length > 1 ? frames[(index - 1 + frames.length) % frames.length] : null;
+
+  return (
+    <div ref={holderRef} className="relative h-full w-full overflow-hidden">
+      {previous && !reduced && (
+        <img
+          src={previous}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+          draggable={false}
+        />
+      )}
+      <img
+        key={current}
+        src={current}
+        alt={alt}
+        className="exp-cycle-frame absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+        loading="eager"
+        draggable={false}
+      />
+      <style>{`
+        .exp-cycle-frame {
+          animation: expCycleIn ${FADE_MS}ms ease both;
+        }
+        @keyframes expCycleIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .exp-cycle-frame { animation: none; }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 const ExperimentsIndex: React.FC<{ animationClass: string }> = ({ animationClass }) => {
   return (
@@ -44,7 +131,9 @@ const ExperimentsIndex: React.FC<{ animationClass: string }> = ({ animationClass
                 className="group block"
               >
                 <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 dark:bg-white/[0.04]">
-                  {experiment.thumbnail ? (
+                  {experiment.thumbnailCycle && experiment.thumbnailCycle.length > 1 ? (
+                    <CyclingThumbnail srcs={experiment.thumbnailCycle} alt={experiment.title} />
+                  ) : experiment.thumbnail ? (
                     <img
                       src={experiment.thumbnail}
                       alt={experiment.title}
