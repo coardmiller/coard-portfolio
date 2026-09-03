@@ -18,7 +18,7 @@ export const experiments: Experiment[] = [
   {
     slug: 'style',
     title: 'Style',
-    description: 'A silent masonry lookbook of generated fits.',
+    description: 'A lookbook of generated fits.',
     category: 'Lookbook',
     href: '/style',
     thumbnail: lookThumbnails[0],
