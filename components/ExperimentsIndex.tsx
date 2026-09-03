@@ -40,7 +40,7 @@ const ExperimentsIndex: React.FC<{ animationClass: string }> = ({ animationClass
               className="md:col-span-6 lg:col-span-4"
             >
               <Link
-                to={`/experiments/${experiment.slug}`}
+                to={experiment.href || `/experiments/${experiment.slug}`}
                 className="group block"
               >
                 <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 dark:bg-white/[0.04]">
