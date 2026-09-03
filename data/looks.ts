@@ -21,6 +21,28 @@ export interface Look {
 //   2. Prepend one object to this array (pick the next aspect in the cycle)
 export const looks: Look[] = [
   {
+    id: "brown-grey-trousers-paynter-stripe",
+    date: "2026-09-03",
+    caption: "Navy Paynter, stripe oxford, brown-grey trousers, loafers.",
+    src: "/images/looks/brown-grey-trousers-paynter-stripe.jpg",
+    alt: "Navy Paynter chore over a blue-white stripe oxford, brown-grey textured trousers, brown loafers, storefront, head cropped.",
+    aspect: "4/3",
+    prompt: "Match the photography of the reference Japanese shop-staff snap exactly. Real Ricoh GR IIIx 28mm, cool early-fall daylight, grain, no flash. Straight-on full body from neck down, head cropped at nose, feet visible, hands in pockets.\n\nUse the exact trousers from the attached product photo: brown-grey/taupe fine textured straight-leg trousers, flat front, belt loops, likely wool blend, full length. Do not make them khaki chinos or corduroy. Outfit: pale blue and white university-stripe button-down oxford, tucked, under a navy Paynter three-pocket chore jacket worn open. Brown leather belt. Brown leather penny loafers, dark socks. English country Ivy, office. Real wrinkles, not shiny polyester, not skinny, not low-rise. No baseball cap. Not CGI, not AI smooth.",
+    keywords: ["Paynter", "university stripe oxford", "brown-grey trousers", "cotton", "loafers", "Ricoh GR IIIx"],
+    objectPosition: "top",
+  },
+  {
+    id: "brown-grey-trousers-shetland",
+    date: "2026-09-03",
+    caption: "Oatmeal Shetland, white oxford, brown-grey trousers, loafers.",
+    src: "/images/looks/brown-grey-trousers-shetland.jpg",
+    alt: "Oatmeal Shetland over a white oxford, brown-grey textured trousers, brown loafers, brick street, face turned away.",
+    aspect: "3/4",
+    prompt: "Match the photography of the reference Barbour People street photo exactly. Real 35mm Kodak Portra 400, overcast early fall, muted grade, grain, brick. 3/4 full body, face turned away, shoes visible, no cap.\n\nUse the exact trousers from the attached product photo: brown-grey/taupe fine textured straight-leg trousers, flat front, belt loops, full length. Outfit: oatmeal/ecru Shetland crewneck over a white oxford button-down, trousers with brown leather belt, brown leather penny loafers. English country Ivy. The trousers must look matte and textured, not shiny office polyester, not khaki, not corduroy. Real wrinkles. Not CGI, not AI smooth.",
+    keywords: ["oatmeal Shetland", "white oxford", "brown-grey trousers", "wool knit", "loafers", "Portra 400"],
+    objectPosition: "top",
+  },
+  {
     id: "quince-office-oxford-halfzip",
     date: "2026-09-03",
     caption: "Pale blue oxford, coffee-bean merino half-zip, navy cords, suede pennies.",
