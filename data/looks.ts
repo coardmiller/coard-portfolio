@@ -43,17 +43,6 @@ export const looks: Look[] = [
     objectPosition: "top",
   },
   {
-    id: "tue-sep8-knolling",
-    date: "2026-09-08",
-    caption: "White tee, dark 501s, navy Paynter, Blazer Mids. Midweek knoll.",
-    src: "/images/looks/tue-sep8-knolling.jpg",
-    alt: "Overhead knolling of white tee, dark indigo 501s, navy Paynter chore, white Blazer Mids black swoosh, and belt on grey wool.",
-    aspect: "1/1",
-    prompt: "Match the photography of the reference images exactly. Real photograph, not a render. Overhead knolling flatlay, 50mm lens, soft window light from the left, grey wool blanket ground, warm early-autumn grade, faint grain, lifted blacks. Arranged neatly but lived-in, not ecommerce grid. Pieces: plain white cotton crew tee folded, dark indigo Levi's 501 jeans folded, white Nike Blazer Mid high-tops with black swoosh, navy Paynter-style three-pocket cotton canvas work jacket folded as optional light midweek layer, brown leather belt. No chambray with light-wash jeans. No green-on-green. No Blundstones with shorts. English country Ivy midweek capsule. Real fabric texture and wrinkles. Not CGI, not product studio, not AI smooth, not influencer flatlay.",
-    keywords: ["white tee", "dark indigo Levi's 501", "navy Paynter chore", "Nike Blazer Mid", "brown belt", "midweek knolling"],
-    objectPosition: "center",
-  },
-  {
     id: "laborday-white-linen-olive-shorts",
     date: "2026-09-07",
     caption: "White linen BD, olive chino shorts, brown loafers.",
