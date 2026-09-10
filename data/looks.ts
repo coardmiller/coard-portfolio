@@ -32,17 +32,6 @@ export const looks: Look[] = [
     objectPosition: "top",
   },
   {
-    id: "thu-check-ocbd-dark-501s-loafers",
-    date: "2026-09-10",
-    caption: "Navy/white check OCBD, dark 501s, brown loafers. Hot afternoon Ivy.",
-    src: "/images/looks/thu-check-ocbd-dark-501s-loafers.jpg",
-    alt: "Navy and white check oxford tucked into dark 501s with brown penny loafers against white tile, head cropped.",
-    aspect: "4/3",
-    prompt: "Match the photography of the reference images exactly. Real photograph, not a render. Ricoh GR IIIx 28mm Japanese shop-staff snap, slightly high angle, bright hot afternoon sun, desaturated cool-green grade, faint grain, lifted blacks. Head cropped off at the nose. White tile wall with slightly dirty grout, grey concrete floor. Full-body mid-chest to shoes, both feet flat and separated. Man wearing a navy and white university-stripe oxford cloth button-down, regular classic fit, soft button-down collar, sleeves rolled once, shirt untucked with sharp wrinkles not soft drape. Dark indigo Levi's 501 jeans, straight classic fit, slight cuff. Brown leather penny loafers — oval toe, clear moccasin stitch, matching pair, anatomically correct, not warped, not melted. No shorts. No chambray. No oatmeal. English country Ivy hot-afternoon midweek. Not CGI, not product studio, not AI smooth, not influencer portrait mode.",
-    keywords: ["navy white check OCBD", "dark indigo Levi's 501", "brown penny loafers", "hot afternoon Ivy"],
-    objectPosition: "top",
-  },
-  {
     id: "thu-navy-polo-dark-501s-loafers",
     date: "2026-09-10",
     caption: "Navy polo, dark 501s, brown loafers. Sharper than the shorts polos.",
